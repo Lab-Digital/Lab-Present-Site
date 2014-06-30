@@ -1,4 +1,5 @@
 .directory
+.sublime-project
 templates_c/*
 /scripts/uploads/
 cache/*
