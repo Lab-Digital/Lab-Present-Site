@@ -1,0 +1,93 @@
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form span.error {
+  color: red;
+  margin-left: 10px;
+  margin-top: 3px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+form span.error.top_error {
+  margin-bottom: 10px;
+  margin-left: 0;
+}
+
+input {
+  padding: 3px 5px;
+  border: 1px solid #cacaca;
+  min-width: 200px;
+}
+
+form div.form_block {
+  margin-bottom: 9px;
+}
+
+form small {
+  display: block;
+  margin: 0 0 7px;
+  font-style: italic;
+  color: #888;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  min-width: 1px;
+  margin-right: 5px;
+}
+
+form div.checkbox_in, form div.radiogroup_in {
+   display: inline-block;
+   margin-top: 5px;
+}
+
+form div.div_checkbox small, form div.div_radiogroup small {
+   margin-bottom: 4px;
+}
+
+form b {
+  font-weight: bold;
+}
+
+form div.checkbox_in label, form div.radiogroup_in label, label.for_checkbox {
+  display: inline-block;
+  font-weight: normal;
+}
+
+form div.checkbox_in div, form div.radiogroup_in div {
+   margin-bottom: 2px;
+}
+
+form div.div_checkbox span.error, form div.div_radiogroup span.error {
+  vertical-align: top;
+  margin-top: 5px;
+}
+
+form div.div_checkbox, form div.div_radiogroup {
+  margin-bottom: 7px;
+}
+
+select {
+  padding: 3px 5px;
+  min-width: 200px;
+}
+
+textarea {
+  padding: 5px;
+}
+
+form div.form_block textarea {
+   margin-top: 5px;
+}
+
+form div.buttons {
+   margin-top: 20px;
+}
+
+form div.buttons button {
+   display: inline-block;
+   margin-right: 10px;
+}

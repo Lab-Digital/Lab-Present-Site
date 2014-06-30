@@ -1,0 +1,17 @@
+#center_block img {
+  box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.5);
+  border: 1px black solid;
+  margin: 0 auto 25px;
+  display: block;
+  text-align: center;
+}
+
+.block {
+   width: 1000px;
+   margin: 0 auto 50px;
+}
+
+.block h1 {
+   font-size: 200%;
+   margin-bottom: 10px;
+}

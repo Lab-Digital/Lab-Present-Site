@@ -1,0 +1,9 @@
+.directory
+templates_c/*
+/scripts/uploads/
+cache/*
+*~
+*.ajax
+user_consts.php
+*.log
+mails

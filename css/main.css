@@ -1,0 +1,39 @@
+body {
+  margin: 0 auto;
+  font-family: Calibri, Helvetica, Verdana, Tahoma, sans-serif;
+}
+
+#wrap {
+  height: auto;
+  margin: 0 auto;
+  background: #fff;
+  padding: 0 20px 50px;
+}
+
+a {
+  color: #37b0fa;
+  text-decoration: underline;
+}
+
+button {
+  background: #37b0fa;
+  padding: 10px 15px;
+  font-size: 90%;
+  cursor: pointer;
+  color: white;
+  border: 0;
+}
+
+.top_h1 {
+  font-size: 170%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#center_block {
+  text-align: center;
+}
+
+.small {
+  font-style: italic;
+}

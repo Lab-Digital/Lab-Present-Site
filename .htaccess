@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) /index.php [L]
+
+#ErrorDocument 404 /scripts/404.php
+
+php_flag error_repritng on
+php_flag display_errors on
