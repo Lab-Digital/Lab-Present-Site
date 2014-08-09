@@ -1,7 +1,7 @@
 .directory
 .sublime-project
 templates_c/*
-/scripts/uploads/
+/images/uploads/*
 cache/*
 *~
 *.ajax
