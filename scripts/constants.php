@@ -1,13 +1,16 @@
 <?php
 //numeric and string constants
 define('ADMIN_ID', 1);
-define('ADMIN_START_PAGE', 'change_data');
+define('ADMIN_START_PAGE', '/admin/meta');
 define('GENERAL_DATE_FORMAT', 'Y-m-d H:i:s');
+define('MAX_SHORT_DESC_LEN', 180);
 
 //errors messages
 define('ERROR_QUERY', 'В данный момент невозможно подключение к базе данных.');
 define('ERROR_LOGIN', 'Неверное имя пользователя или пароль.');
 define('ERROR_PASS', 'Неверный пароль.');
+define('ERROR_CONTACT_PHONE', 'Введен неверный номер телефона.');
+define('INCORRECT_MAIL', 'Введен неверный e-mail.');
 
 //database consts
 define('opEQ', '=');

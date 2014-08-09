@@ -1,40 +1,91 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/container.php';
 
-switch ($request[0]) {
+switch ($request_parts[0]) {
    case '': case null: case false:
-      $smarty->display('index.tpl');
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/main.php';
       break;
 
    case 'admin':
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Admin.php';
 
-      $isLoginPage = empty($request[1]) || $request[1] == 'login';
+      $isLoginPage = empty($request_parts[1]) || $request_parts[1] == 'login';
       if ($_admin->IsAdmin()) {
          if ($isLoginPage) {
-            Redirect('/admin/' . ADMIN_START_PAGE);
+            Redirect(ADMIN_START_PAGE);
          }
       } elseif (!$isLoginPage) {
          Redirect('/admin/');
       }
-      $request[1] = !empty($request[1]) ? $request[1] : null;
-      switch ($request[1]) {
+      $request_parts[1] = !empty($request_parts[1]) ? $request_parts[1] : null;
+      switch ($request_parts[1]) {
          case '': case 'login': case null: case false:
             require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.login.php';
+            break;
+
+         case 'news':
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.news.php';
             break;
 
          case 'change_data':
             require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.change_data.php';
             break;
 
+         case 'meta':
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.meta.php';
+            break;
+
          case 'logout':
             unset($_SESSION['admin_login']);
             unset($_SESSION['admin_pass']);
-            header('Location: /admin');
+            Redirect(ADMIN_START_PAGE);
+            break;
+
+         case 'add':
+            if (empty($request_parts[2])) {
+               Redirect(ADMIN_START_PAGE);
+            }
+            $id = null;
+            $smarty->assign('isAdd', true);
+            switch ($request_parts[2]) {
+               case 'news':
+                  $smarty->assign('handle_url', 'add/news');
+                  require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.change.news.php';
+                  break;
+
+               default:
+                  Redirect(ADMIN_START_PAGE);
+                  break;
+            }
+            break;
+
+         case 'edit':
+         case 'delete':
+            if (empty($request_parts[2]) || empty($request_parts[3]) || !IsPositiveNumber($request_parts[2])) {
+               Redirect(ADMIN_START_PAGE);
+            }
+            $id = $request_parts[2];
+            switch ($request_parts[3]) {
+               case 'news':
+                  if ($request_parts[1] == 'delete') {
+                     $request->request->set('id', $id);
+                     $request->request->set('mode', 'Delete');
+                  }
+                  require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
+                  $data = $_news->GetById($id);
+                  if (empty($data)) Redirect('/admin/add/news');
+                  $smarty->assign('article', $data)->assign('handle_url', "edit/$id/news");
+                  require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.change.news.php';
+                  break;
+
+               default:
+                  Redirect(ADMIN_START_PAGE);
+                  break;
+            }
             break;
 
          default:
-            header('Location: /admin/' . ADMIN_START_PAGE);
+            Redirect(ADMIN_START_PAGE);
             break;
       }
       break;

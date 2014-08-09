@@ -12,6 +12,7 @@ abstract class Validate
    const IS_NOT_EMPTY        = 7;
    const IS_POSITIVE_OR_ZERO = 8;
    const IS_NOT_EMPTY_STRING = 9;
+   const WITHOUT_HTML_TAGS   = 10;
 
 }
 
@@ -141,7 +142,7 @@ class Field
 
             case Validate::IS_NOT_EMPTY_STRING:
                $isException  = $value === '';
-               $exceptionStr = "$alias не может иметь пустое значение!";
+               $exceptionStr = "$alias не может принимать пустое значение!";
                break;
 
             case Validate::IS_BOOL:
@@ -156,12 +157,18 @@ class Field
 
             case Validate::IS_NOT_EMPTY:
                $isException  = empty($value);
-               $exceptionStr = "$alias не может иметь пустое значение!";
+               $exceptionStr = "$alias не может принимать пустое значение!";
                break;
 
             case Validate::IS_PHONE:
                $isException  = !(preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/', $value));
                $exceptionStr = "$value не является корректным номером телефона!";
+               break;
+
+            case Validate::WITHOUT_HTML_TAGS;
+               $value = strip_tags($value);
+               $value = htmlspecialchars($value);
+               $this->value = $value;
                break;
          }
       }

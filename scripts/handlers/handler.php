@@ -10,11 +10,19 @@ $ajaxResult = Array('result' => true, 'message' => 'Операция прошл�
 
 class Handler
 {
+   private $getLastInsertId = false;
+
    public $entity;
 
    public function __construct($entity)
    {
       $this->entity = $entity;
+   }
+
+   public function SetGetLastInsertId($getLastInsertId)
+   {
+      $this->getLastInsertId = $getLastInsertId;
+      return $this;
    }
 
    public function Update($params)
@@ -27,11 +35,11 @@ class Handler
       }
    }
 
-   public function Insert($params, $getLastInsertId = true)
+   public function Insert($params)
    {
       try {
          $this->entity->SetFields($params);
-         return $getLastInsertId ? $this->entity->Insert(true) : $this->entity->Insert(false);
+         return $this->entity->Insert($this->getLastInsertId);
       } catch (DBException $e) {
          throw new Exception('Возникли проблемы при добавлении записи.');
       }

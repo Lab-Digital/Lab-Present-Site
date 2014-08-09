@@ -7,7 +7,8 @@ function SetActiveItem($item = 'main')
 
 function GetPage()
 {
-   return isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? $_GET['page'] - 1 : 0;
+   global $request;
+   return $request->query->getInt('page', 1) - 1;
 }
 
 function Redirect($url = '/')
@@ -19,8 +20,7 @@ function Redirect($url = '/')
 function _GeneratePages($amount, $amount_on_page)
 {
    $current_page = GetPage() + 1;
-   $newsOnPage = $amount_on_page;
-   $pagesAmount = $newsOnPage != 0 ? ceil($amount / $newsOnPage) : 0;
+   $pagesAmount = $amount_on_page != 0 ? ceil($amount / $amount_on_page) : 0;
    if ($pagesAmount > 7) {
       if ($current_page <= 4) {
          $result = array_merge(range(1, $current_page + 2), array('...', $pagesAmount));
@@ -42,22 +42,29 @@ function GeneratePages($obj)
    return _GeneratePages($obj->GetAllAmount(), $obj::AMOUNT_PAGE);
 }
 
-function GetPOST($deleteTags = true)
+function ValidatePOST($deleteTags = true)
 {
-   foreach ($_POST as &$value) {
+   global $request;
+   foreach ($request->request->all() as $key => $value) {
       if (!is_array($value)) {
          $value = trim($value);
          if ($deleteTags) {
             $value = strip_tags($value);
             $value = htmlspecialchars($value);
          }
+         $request->request->set($key, $value);
       }
    }
-   return $_POST;
 }
 
-function GetRequest() {
-   return explode('/', substr($_SERVER['REQUEST_URI'], 1));
+function IsPositiveNumber($number)
+{
+   return filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+}
+
+function GetRequestParts($request)
+{
+   return explode('/', substr($request->getPathInfo(), 1));
 }
 
 function CutString($str, $amount)

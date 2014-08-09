@@ -20,6 +20,39 @@ CREATE TABLE IF NOT EXISTS `admin` (
    PRIMARY KEY (`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `index_meta` (
+   `id`           INT          NOT NULL AUTO_INCREMENT,
+   `title`        VARCHAR(130) NOT NULL,
+   `keywords`     TEXT,
+   `description`  TEXT,
+   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `news` (
+   `id`               INT          NOT NULL AUTO_INCREMENT,
+   `url`              VARCHAR(150) NOT NULL,
+   `head`             VARCHAR(150) NOT NULL,
+   `body`             TEXT         NOT NULL,
+   `description`      TEXT         NOT NULL,
+   `photo_id`         INT          DEFAULT NULL,
+   `meta_title`       VARCHAR(130) NOT NULL,
+   `meta_keywords`    TEXT,
+   `meta_description` TEXT,
+   `publication_date` TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY(`url`),
+   FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS `news_images` (
+   `id`       INT NOT NULL AUTO_INCREMENT,
+   `news_id`  INT NOT NULL,
+   `photo_id` INT NOT NULL,
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`news_id`)  REFERENCES `news`   (`id`) ON DELETE CASCADE,
+   FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE CASCADE
+);
+
 DELIMITER //
 
 DROP TRIGGER IF EXISTS `update_admin`//
@@ -30,4 +63,8 @@ FOR EACH ROW BEGIN
    END IF;
 END//
 
+DELIMITER ;
+
 INSERT INTO `admin`(`login`, `pass_md5`) VALUES('admin', '21232f297a57a5a743894a0e4a801fc3');
+
+INSERT INTO `index_meta`(`title`, `keywords`, `description`) VALUES('Lab Present - Главная', '', '');

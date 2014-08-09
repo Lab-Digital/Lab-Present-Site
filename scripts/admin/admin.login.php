@@ -1,7 +1,7 @@
 <?php
-if (isset($_POST['submit'])) {
-   $login = isset($_POST['login']) ? $_POST['login'] : '';
-   $pass  = isset($_POST['pass'])  ? $_POST['pass']  : '';
+if ($request->get('submit')) {
+   $login = $request->get('login');
+   $pass  = $request->get('pass');
    if ($_admin->IsAdmin($login, $pass)) {
       Redirect("/admin/{ADMIN_START_PAGE}");
    } else {
@@ -9,4 +9,5 @@ if (isset($_POST['submit'])) {
              ->assign('admin_login', $login);
    }
 }
+
 $smarty->display('admin.login.tpl');
