@@ -1,9 +1,20 @@
 RewriteEngine on
 
-RewriteCond %{REQUEST_FILENAME} !/index.php
-RewriteRule (.*) /index.php [L]
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !index.php
+RewriteCond %{REQUEST_URI} !^/css/*
+RewriteCond %{REQUEST_URI} !^/js/*
+RewriteCond %{REQUEST_URI} !^/images/*
+RewriteCond %{REQUEST_URI} !^/fancybox/*
+#RewriteCond %{REQUEST_URI} !^/upload_photo/*
+#RewriteCond %{REQUEST_URI} !^/scripts/uploads/*
+#RewriteCond %{REQUEST_URI} !^/scripts/uploadimage.php
+#RewriteCond %{REQUEST_URI} !^/scripts/resize.php
+
+RewriteRule (.*) index.php [L]
 
 #ErrorDocument 404 /scripts/404.php
 
-php_flag error_repritng on
+php_flag error_reporting on
 php_flag display_errors on
