@@ -28,7 +28,7 @@ class Department extends EntityURL
             static::TEXT_HEAD_FLD,
             StrType(150),
             true,
-            'Заголовок отдела',
+            'Название отдела',
             [Validate::IS_NOT_EMPTY]
          ),
          new Field(
