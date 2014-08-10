@@ -7,8 +7,8 @@ RewriteCond %{REQUEST_URI} !^/css/*
 RewriteCond %{REQUEST_URI} !^/js/*
 RewriteCond %{REQUEST_URI} !^/images/*
 RewriteCond %{REQUEST_URI} !^/fancybox/*
-#RewriteCond %{REQUEST_URI} !^/upload_photo/*
-#RewriteCond %{REQUEST_URI} !^/scripts/uploads/*
+RewriteCond %{REQUEST_URI} !^/upload_photo/*
+RewriteCond %{REQUEST_URI} !^/scripts/uploads/*
 #RewriteCond %{REQUEST_URI} !^/scripts/uploadimage.php
 #RewriteCond %{REQUEST_URI} !^/scripts/resize.php
 

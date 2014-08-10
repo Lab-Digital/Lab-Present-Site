@@ -10,7 +10,7 @@
   <header>
     <nav>
       <ul>
-        <li><a href="/admin/news">Новости</a></li><li><a href="/admin/meta">Остальное</a></li><li><a href="/admin/change_data">Изменить данные</a></li><li><a href="/admin/logout">Выход</a></li>
+        <li><a href="/admin/news">Новости</a></li><li><a href="/admin/departments">Отделы</a></li><li><a href="/admin/meta">Остальное</a></li><li><a href="/admin/change_data">Изменить данные</a></li><li><a href="/admin/logout">Выход</a></li>
       </ul>
     </nav>
   </header>

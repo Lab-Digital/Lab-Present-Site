@@ -6,6 +6,27 @@ switch ($request_parts[0]) {
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/main.php';
       break;
 
+   case 'uploadphoto':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/upload_photo.php';
+      break;
+
+   case 'uploadimage':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/uploadimage.php';
+      break;
+
+   case 'resizeimage':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/resize.php';
+      break;
+
+   case 'handler':
+      $possible_handlers = [
+         'news'     => $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.News.php',
+         'image'    => $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.Image.php'
+      ];
+      if (empty($request[1]) || empty($possible_handlers[$request[1]])) Redirect('/404');
+      require_once $possible_handlers[$request[1]];
+      break;
+
    case 'admin':
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Admin.php';
 
@@ -25,6 +46,10 @@ switch ($request_parts[0]) {
 
          case 'news':
             require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.news.php';
+            break;
+
+         case 'departments':
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.departments.php';
             break;
 
          case 'change_data':

@@ -1,0 +1,8 @@
+#upload_photo {
+  text-align: center;
+}
+
+#upload_photo small.info {
+  font-style: italic;
+  color: #999;
+}

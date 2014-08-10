@@ -53,6 +53,22 @@ CREATE TABLE IF NOT EXISTS `news_images` (
    FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `departments` (
+   `id`               INT          NOT NULL AUTO_INCREMENT,
+   `url`              VARCHAR(150) NOT NULL,
+   `head`             VARCHAR(150) NOT NULL,
+   `avatar_id`        INT          DEFAULT NULL,
+   `photo_id`         INT          DEFAULT NULL,
+   `body`             TEXT,
+   `meta_title`       VARCHAR(130) NOT NULL,
+   `meta_keywords`    TEXT,
+   `meta_description` TEXT,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY(`url`),
+   FOREIGN KEY (`photo_id`)  REFERENCES `images` (`id`) ON DELETE SET NULL,
+   FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+);
+
 DELIMITER //
 
 DROP TRIGGER IF EXISTS `update_admin`//

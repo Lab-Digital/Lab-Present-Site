@@ -1,4 +1,8 @@
 <?php
+use Symfony\Component\HttpFoundation\Response;
+$response = new Response('', Response::HTTP_NOT_FOUND, ['Content-Type' => 'application/json']);
+
+$ajaxResult = ['result' => true];
 function crop_and_resize ($im, $x1, $y1, $x2, $y2, $new_width, $new_height) {
    $im_w = abs($x1 - $x2);
    $im_h = abs($y1 - $y2);
@@ -7,16 +11,15 @@ function crop_and_resize ($im, $x1, $y1, $x2, $y2, $new_width, $new_height) {
    return $new_img;
 }
 
-$uploaddir    = 'uploads/';
-$image_name   = $_POST['fileName'];
-$path         = $uploaddir . $image_name . '.jpg';
+$image_name   = $request->get('fileName');
+$path         = UPLOAD_DIR . $image_name . '.jpg';
 $im           = imagecreatefromjpeg($path);
 $arr          = getimagesize($path);
 $owner_width  = $arr[0];
 $owner_height = $arr[1];
-$width        = $_POST['width'];
-$height       = $_POST['height'];
-$after_resize = $_POST['afterResize'];
+$width        = $request->get('width');
+$height       = $request->get('height');
+$after_resize = $request->get('afterResize');
 
 $crop_type = $_POST['cropType'];
 
@@ -32,7 +35,7 @@ if ($crop_type == 'userCrop') {
    $y2 = $y1 + $height;
 }
 
-$p_sizes   = explode(',', $_POST['sizes']);
+$p_sizes   = explode(',', $request->get('sizes'));
 
 foreach ($p_sizes as $size) {
    $sizes = explode('#', $size);
@@ -40,7 +43,7 @@ foreach ($p_sizes as $size) {
    $n_width = $sizes[1];
    $n_height = $sizes[2];
    $new_img = crop_and_resize($im, $x1, $y1, $x2, $y2, $n_width, $n_height);
-   imagejpeg($new_img, $uploaddir . $image_name . '_' . $n_name . '.jpg');
+   imagejpeg($new_img, UPLOAD_DIR . $image_name . '_' . $n_name . '.jpg');
 }
 
 if (isset($after_resize) && $after_resize > 0) {
@@ -57,10 +60,19 @@ if (isset($after_resize) && $after_resize > 0) {
    }
    $big = imagecreatetruecolor($w, $h);
    imagecopyresampled($big, $im, 0, 0, 0, 0, $w, $h, $owner_width, $owner_height);
-   imagejpeg($big, $uploaddir . $image_name . '_b.jpg');
+   imagejpeg($big, UPLOAD_DIR . $image_name . '_b.jpg');
 }
 
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Image.php';
 
-$_image->SetFieldByName(Image::ID_FLD, $image_name)->SetFieldByName(Image::IS_RESIZED_FLD, 1)->Update();
+try {
+   $_image->SetFieldByName(Image::ID_FLD, $image_name)->SetFieldByName(Image::IS_RESIZED_FLD, 1)->Update();
+} catch (Exception $e) {
+   $ajaxResult['result'] = false;
+}
+
+if ($ajaxResult['result']) {
+   $response->setStatusCode(Response::HTTP_OK);
+}
+$response->setContent(json_encode($ajaxResult))->send();

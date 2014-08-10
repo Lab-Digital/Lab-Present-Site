@@ -1,0 +1,14 @@
+#resize_photo {
+  display: none;
+  text-align: center;
+}
+
+#resize_photo img.src_image {
+}
+
+#resize_photo small.info {
+  font-style: italic;
+  display: block;
+  margin-top: 15px;
+  color: #999;
+}

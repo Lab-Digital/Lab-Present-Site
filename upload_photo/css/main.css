@@ -1,0 +1,16 @@
+#wrap {
+  width: 1000px;
+  margin: 0 auto;
+  padding-top: 50px;
+  font-family: Calibri, Helvetica, Arial, sans-serif;
+}
+
+#upload_photo button.upload, #resize_photo button.go_end {
+  padding: 7px 10px;
+  margin: 20px auto;
+  display: block;
+  cursor: pointer;
+  background: #36a09f;
+  color: white;
+  border: 0;
+}

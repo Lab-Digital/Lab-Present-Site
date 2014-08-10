@@ -57,6 +57,15 @@ function ValidatePOST($deleteTags = true)
    }
 }
 
+function SetLastViewedID($name)
+{
+   global $smarty;
+   if (isset($_SESSION[$name])) {
+      $smarty->assign('last_viewed_id', $_SESSION[$name]);
+      unset($_SESSION[$name]);
+   }
+}
+
 function IsPositiveNumber($number)
 {
    return filter_var($number, FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);

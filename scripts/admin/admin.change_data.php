@@ -1,12 +1,11 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.php';
 
-if (isset($_POST['mode'])) {
-   $post = GetPOST();
+if ($request->get('mode')) {
    $_admin->ChangeData(
-      isset($post['login'])     ? $post['login']     : '',
-      isset($post['pass'])      ? $post['pass']      : '',
-      isset($post['new_pass'])  ? $post['new_pass']  : ''
+      $request->get('login'),
+      $request->get('pass'),
+      $request->get('new_pass')
    );
 }
 $smarty->assign('admin', $_admin->GetById(ADMIN_ID))

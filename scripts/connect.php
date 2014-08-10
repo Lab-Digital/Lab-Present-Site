@@ -4,6 +4,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Field.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/lib/exception.inc';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/constants.php';
 
+define('DEBUG', false);
+
 class DBConnect
 {
    public $link;
@@ -30,14 +32,16 @@ class DBConnect
    public function Query($query, $params = Array())
    {
       if (!$this->isConnected) return Array();
-     // echo "<br>";
-     // echo "<br>";
-     // echo $query;
-     // echo "<br>";
-     // print_r($params);
-     // echo "<br>";
-     // echo "<br>";
-     // echo "<br>";
+      if (DEBUG) {
+         echo "<br>";
+         echo "<br>";
+         echo $query;
+         echo "<br>";
+         print_r($params);
+         echo "<br>";
+         echo "<br>";
+         echo "<br>";
+      }
       $st = $this->link->prepare($query);
       if (empty($st) || !$st->execute($params)) {
          // echo "<br>";
