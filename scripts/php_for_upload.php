@@ -4,10 +4,11 @@ try {
    $ajaxOtherResult = Array('result' => true, 'message' => 'Загрузка прошла успешно!');
    $item_id = $request->get('item_id');
    switch ($request->get('uploadType')) {
+      case 'projects':
       case 'departments':
-      case 'services':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Project.php';
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Department.php';
-      $obj = $request->get('uploadType') == 'departments' ? $_department : $_department;
+      $obj = $request->get('uploadType') == 'projects' ? $_project : $_department;
       if (!empty($request->get('image_id'))) {
          $_image->Delete($request->get('image_id'));
       }

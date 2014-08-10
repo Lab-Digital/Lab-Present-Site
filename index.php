@@ -48,8 +48,14 @@ switch ($request_parts[0]) {
             require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.news.php';
             break;
 
+         case 'projects':
          case 'departments':
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.departments.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Project.php';
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Department.php';
+            $page = $request_parts[1];
+            $obj = $page == 'projects' ? $_project : $_department;
+            $smarty->assign('pname', $page == 'projects' ? 'Проект' : 'Отдел');
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.textsbase.php';
             break;
 
          case 'change_data':
