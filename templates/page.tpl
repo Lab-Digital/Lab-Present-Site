@@ -6,5 +6,4 @@
    <div id="wrap">
        {block name='div.main'}{/block}
    </div>
-   {include file="footer.tpl"}
 {/block}

@@ -1,17 +1,122 @@
-#center_block img {
-  box-shadow: -3px 3px 4px rgba(0, 0, 0, 0.5);
-  border: 1px black solid;
-  margin: 0 auto 25px;
-  display: block;
-  text-align: center;
+div.slider {
+	height: 355px;
+	background: yellow;
 }
 
-.block {
-   width: 1000px;
-   margin: 0 auto 50px;
+section.menu_first {
+	height: 390px;
+	background: white;
+	text-align: center;
 }
 
-.block h1 {
-   font-size: 200%;
-   margin-bottom: 10px;
+section.menu_first ul li {
+	display: inline-block;
+	margin: 26px 32px 0;
+	vertical-align: top;
+}
+
+section.menu_first ul li img {
+	display: block;
+	width: 235px;
+	height: 135px;
+	background: red;
+	margin-bottom: 8px;
+}
+
+section.news {
+	height: 385px;
+	background: lightblue;
+}
+
+section.news ul {
+	text-align: center;
+}
+
+section.news ul li {
+	display: inline-block;
+	margin: 20px 40px 25px;
+	width: 150px;
+	text-align: left;
+	vertical-align: top;
+}
+
+section.news ul li a {
+	text-decoration: none;
+	color: white;
+}
+
+section.news ul li article h1 {
+	font-weight: bold;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+section.news ul li article div.text {
+	text-align: justify;
+}
+
+section.news ul li article time {
+	margin-top: 20px;
+	display: block;
+}
+
+section.news ul li article img {
+	display: block;
+	width: 150px;
+	height: 150px;
+	border-radius: 150px;
+	background: white;
+	margin-bottom: 9px;
+}
+
+#go_news_button {
+	background: #989998;
+	font-weight: bold;
+	width: 370px;
+	height: 38px;
+	border-radius: 20px;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	display: block;
+	margin: 0 auto;
+}
+
+section.menu_second {
+	height: 610px;
+	background: white;
+	text-align: center;
+}
+
+section.menu_second ul li {
+	display: inline-block;
+	margin: 65px 25px 0;
+	width: 280px;
+	vertical-align: top;
+}
+
+section.menu_second ul li article img {
+	display: block;
+	width: 210px;
+	height: 210px;
+	border-radius: 210px;
+	border: 1px black solid;
+	background: white;
+	margin: 0 auto 20px;
+	text-align: center;
+}
+
+section.menu_second ul li a {
+	text-decoration: none;
+	color: black;
+}
+
+section.menu_second ul li article h1 {
+	font-size: 150%;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+section.news ul li article div.text {
+	text-align: justify;
 }

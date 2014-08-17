@@ -1,0 +1,26 @@
+footer {
+	background: #343434;
+}
+
+footer nav {
+	margin-bottom: 5px;
+	text-align: center;
+	padding: 14px 140px;
+}
+
+footer nav li {
+	display: inline-block;
+	margin: 4px 0;
+}
+
+footer nav li a {
+	color: white;
+	border-right: 1px red solid;
+	display: block;
+	text-decoration: none;
+	padding: 0 7px;
+}
+
+footer nav li:last-child a {
+	border-right: none;
+}

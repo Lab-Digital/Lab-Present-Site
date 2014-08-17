@@ -1,0 +1,49 @@
+
+header img.top_logo {
+	width: 395px;
+	height: 195px;
+	background: red;
+	float: left;
+}
+
+header div.right {
+	text-align: right;
+}
+
+header div.right img.top_info {
+	width: 270px;
+	height: 96px;
+	background: pink;
+	margin-top: 32px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#top_send {
+	width: 320px;
+	height: 85px;
+	background: #0091f7;
+	border-radius: 6px;
+	margin: 43px 15px 29px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+header nav {
+	margin-bottom: 5px;
+}
+
+header nav li {
+	display: inline-block;
+}
+
+header nav li a {
+	background: #989998;
+	color: white;
+	border-right: 1px white solid;
+	display: block;
+	height: 34px;
+	text-decoration: none;
+	width: 200px;
+	text-align: center;
+}
