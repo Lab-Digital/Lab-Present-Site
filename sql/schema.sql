@@ -98,3 +98,11 @@ DELIMITER ;
 INSERT INTO `admin`(`login`, `pass_md5`) VALUES('admin', '21232f297a57a5a743894a0e4a801fc3');
 
 INSERT INTO `index_meta`(`title`, `keywords`, `description`) VALUES('Lab Present - Главная', '', '');
+
+INSERT INTO `departments` (`id`, `url`, `head`, `body`, `meta_title`, `meta_keywords`, `meta_description`) VALUES
+(1, 'internet', 'Интернет', 'Интернет', 'Интернет', 'Интернет', 'Интернет'),
+(3, 'dizayn-i-kreativ', 'Дизайн и креатив', 'Дизайн и креатив', 'Дизайн и креатив', 'Дизайн и креатив', 'Дизайн и креатив'),
+(4, 'btl', 'BTL', 'BTL', 'BTL', 'BTL', 'BTL'),
+(5, 'videostudiya', 'Видеостудия', 'Видеостудия', 'Видеостудия', 'Видеостудия', 'Видеостудия'),
+(6, 'outdoor-transport-media', '“Outdoor, транспорт, медиа”', '“Outdoor, транспорт, медиа”', '“Outdoor, транспорт, медиа”', '“Outdoor, транспорт, медиа”', '“Outdoor, транспорт, медиа”'),
+(7, 'reklamnoe-proizvodstvo', 'Рекламное производство', 'Рекламное производство', 'Рекламное производство', 'Рекламное производство', 'Рекламное производство');
