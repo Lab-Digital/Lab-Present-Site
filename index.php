@@ -11,6 +11,10 @@ switch ($request_parts[0]) {
       require_once SCRIPTS_ROOT . 'main.php';
       break;
 
+   case 'departaments':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/departaments.php';
+      break;
+
    case 'uploadphoto':
       require_once SCRIPTS_ROOT . 'upload_photo.php';
       break;

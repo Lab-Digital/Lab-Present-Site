@@ -24,3 +24,7 @@ button {
     color: white;
     border: 0;
 }
+
+div.wrap_inner {
+    padding: 0 30px;
+}

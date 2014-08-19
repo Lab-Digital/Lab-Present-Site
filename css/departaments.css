@@ -1,0 +1,94 @@
+div.main_block {
+	margin-top: 55px;
+}
+
+div.main_block div.left {
+	float: left;
+	vertical-align: top;
+}
+
+div.main_block div.left div.photo img {
+	width: 375px;
+	height: 385px;
+}
+
+#portfolio_button {
+	height: 46px;
+	width: 375px;
+	background: #838383;
+	display: block;
+	margin-top: 13px;
+}
+
+#send_parts_button {
+	height: 46px;
+	width: 375px;
+	display: block;
+	background: #54c40e;
+	margin-top: 13px;
+}
+
+div.main_block article.text {
+	vertical-align: top;
+	min-height: 530px;
+	margin-left: 385px;
+	padding-left: 15px;
+}
+
+div.main_block article.text p {
+	margin-bottom: 33px;
+}
+
+div.watch_other {
+	margin-top: 50px;
+}
+
+div.watch_other li {
+	margin-bottom: 18px;
+}
+
+div.watch_other li article {
+	height: 270px;
+	position: relative;
+}
+
+div.watch_other li article img {
+	width: 560px;
+	height: 270px;
+	float: left;
+	border: 1px black solid;
+	margin-right: 18px;
+}
+
+div.watch_other li article h1 {
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+div.watch_other li article a.go {
+	display: block;
+	color: #a6a6a6;
+}
+
+div.watch_other li article time {
+	display: block;
+	position: absolute;
+	bottom: 10px;
+	left: 578px;
+	color: #a6a6a6;
+}
+
+#go_news {
+	background: #3393ff;
+	font-weight: bold;
+	width: 370px;
+	height: 38px;
+	border-radius: 20px;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	display: block;
+	margin: 0 auto;
+	margin-top: 60px;
+	margin-bottom: 125px;
+}
