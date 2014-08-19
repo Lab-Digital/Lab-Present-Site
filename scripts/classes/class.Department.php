@@ -4,6 +4,8 @@ require_once CLASSES_ROOT . 'class.TableImages.php';
 
 class Department extends TextsBase
 {
+   const MAIN_SCHEME = 2;
+
    const PHOTO_FLD = 'photo_id';
 
    const TABLE = 'departments';
@@ -18,8 +20,16 @@ class Department extends TextsBase
 
    public function SetSelectValues()
    {
-      $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
-      $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+      switch ($this->samplingScheme) {
+         case static::MAIN_SCHEME:
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, [$this->urlField, $this->GetFieldByName(static::TEXT_HEAD_FLD)]);
+            break;
+
+         default:
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+            break;
+      }
       $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD));
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
    }
