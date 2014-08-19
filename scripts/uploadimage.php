@@ -30,7 +30,7 @@ try {
       throw new Exception('Размер изображения превышает максимальный!');
    }
 
-   require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/php_for_upload.php';
+   require_once SCRIPTS_ROOT . 'php_for_upload.php';
 
    if (!$ajaxOtherResult['result']) {
       throw new Exception($ajaxOtherResult['message']);

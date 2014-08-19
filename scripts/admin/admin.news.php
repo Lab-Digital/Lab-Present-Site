@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
+require_once CLASSES_ROOT . 'class.News.php';
 
 list($curPage, $pagesDesc) = $_news->SetSamplingScheme(News::ADMIN_INFO_SCHEME)->GeneratePages();
 

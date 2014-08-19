@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/connect_params.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Field.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/lib/exception.inc';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/constants.php';
+require_once SCRIPTS_ROOT . 'connect_params.php';
+require_once CLASSES_ROOT . 'class.Field.php';
+require_once SCRIPTS_ROOT . 'lib/exception.inc';
+require_once SCRIPTS_ROOT . 'constants.php';
 
 define('DEBUG', false);
 

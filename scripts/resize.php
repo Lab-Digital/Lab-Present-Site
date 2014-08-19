@@ -64,7 +64,7 @@ if (isset($after_resize) && $after_resize > 0) {
 }
 
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Image.php';
+require_once CLASSES_ROOT . 'class.Image.php';
 
 try {
    $_image->SetFieldByName(Image::ID_FLD, $image_name)->SetFieldByName(Image::IS_RESIZED_FLD, 1)->Update();

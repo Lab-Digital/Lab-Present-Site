@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.EntityURL.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.TableImages.php';
+require_once CLASSES_ROOT . 'class.EntityURL.php';
+require_once CLASSES_ROOT . 'class.TableImages.php';
 
 class TextsBase extends EntityURL
 {

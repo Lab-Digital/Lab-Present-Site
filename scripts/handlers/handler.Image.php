@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Image.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.php';
+require_once CLASSES_ROOT  . 'class.Image.php';
+require_once HANDLERS_ROOT . 'handler.php';
 
 use Symfony\Component\HttpFoundation\Response;
 $response = new Response('', Response::HTTP_NOT_FOUND, ['Content-Type' => 'application/json']);

@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.IndexMeta.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.php';
+require_once CLASSES_ROOT  . 'class.IndexMeta.php';
+require_once HANDLERS_ROOT . 'handler.php';
 
 $vars['meta_title'] = $vars['meta_keywords'] = $vars['meta_description'] = null;
 

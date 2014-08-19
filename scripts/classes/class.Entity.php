@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/connect.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.SQL.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Field.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Search.php';
+require_once SCRIPTS_ROOT . 'connect.php';
+require_once CLASSES_ROOT . 'class.SQL.php';
+require_once CLASSES_ROOT . 'class.Field.php';
+require_once CLASSES_ROOT . 'class.Search.php';
 
 class Entity
 {

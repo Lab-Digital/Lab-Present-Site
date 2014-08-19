@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Entity.php';
+require_once CLASSES_ROOT . 'class.Entity.php';
 
 class Image extends Entity
 {
@@ -21,10 +21,10 @@ class Image extends Entity
 
    public function DeleteImg($id)
    {
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/scripts/uploads/' . $id . '.jpg');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/scripts/uploads/' . $id . '_b.jpg');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/scripts/uploads/' . $id . '_s.jpg');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/scripts/uploads/' . $id . '_m.jpg');
+      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '.jpg');
+      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '_b.jpg');
+      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '_s.jpg');
+      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '_m.jpg');
    }
 
    public function Delete($id)

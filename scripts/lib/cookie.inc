@@ -1,9 +1,9 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/constants.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.User.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Session.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/lib/encryption.inc';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/lib/exception.inc';
+require_once SCRIPTS_ROOT . 'constants.php';
+require_once CLASSES_ROOT . 'class.User.php';
+require_once CLASSES_ROOT . 'class.Session.php';
+require_once SCRIPTS_ROOT . 'lib/encryption.inc';
+require_once SCRIPTS_ROOT . 'lib/exception.inc';
 
 class Cookie
 {

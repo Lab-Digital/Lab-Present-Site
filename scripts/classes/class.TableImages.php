@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Image.php';
+require_once CLASSES_ROOT . 'class.Image.php';
 
 class TableImages extends Entity
 {

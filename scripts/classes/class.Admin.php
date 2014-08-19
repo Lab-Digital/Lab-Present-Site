@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Entity.php';
+require_once CLASSES_ROOT . 'class.Entity.php';
 
 class Admin extends Entity
 {

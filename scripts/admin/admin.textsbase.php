@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.php';
+require_once HANDLERS_ROOT . 'handler.php';
 
 SetLastViewedID($obj::LAST_VIEWED_ID);
 

@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.SQL.php';
+require_once CLASSES_ROOT . 'class.SQL.php';
 
 class Search
 {

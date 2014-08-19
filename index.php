@@ -1,34 +1,39 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/container.php';
+define('SCRIPTS_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/scripts/');
+define('ADMIN_ROOT', SCRIPTS_ROOT . 'admin/');
+define('CLASSES_ROOT', SCRIPTS_ROOT . 'classes/');
+define('HANDLERS_ROOT', SCRIPTS_ROOT . 'handlers/');
+
+require_once SCRIPTS_ROOT . 'container.php';
 
 switch ($request_parts[0]) {
    case '': case null: case false:
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/main.php';
+      require_once SCRIPTS_ROOT . 'main.php';
       break;
 
    case 'uploadphoto':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/upload_photo.php';
+      require_once SCRIPTS_ROOT . 'upload_photo.php';
       break;
 
    case 'uploadimage':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/uploadimage.php';
+      require_once SCRIPTS_ROOT . 'uploadimage.php';
       break;
 
    case 'resizeimage':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/resize.php';
+      require_once SCRIPTS_ROOT . 'resize.php';
       break;
 
    case 'handler':
       $possible_handlers = [
-         'news'     => $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.News.php',
-         'image'    => $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.Image.php'
+         'news'     => HANDLERS_ROOT . 'handler.News.php',
+         'image'    => HANDLERS_ROOT . 'handler.Image.php'
       ];
       if (empty($request[1]) || empty($possible_handlers[$request[1]])) Redirect('/404');
       require_once $possible_handlers[$request[1]];
       break;
 
    case 'admin':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Admin.php';
+      require_once CLASSES_ROOT . 'class.Admin.php';
 
       $isLoginPage = empty($request_parts[1]) || $request_parts[1] == 'login';
       if ($_admin->IsAdmin()) {
@@ -41,29 +46,29 @@ switch ($request_parts[0]) {
       $request_parts[1] = !empty($request_parts[1]) ? $request_parts[1] : null;
       switch ($request_parts[1]) {
          case '': case 'login': case null: case false:
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.login.php';
+            require_once ADMIN_ROOT . 'admin.login.php';
             break;
 
          case 'news':
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.news.php';
+            require_once ADMIN_ROOT . 'admin.news.php';
             break;
 
          case 'projects':
          case 'departments':
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Project.php';
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Department.php';
+            require_once CLASSES_ROOT . 'class.Project.php';
+            require_once CLASSES_ROOT . 'class.Department.php';
             $page = $request_parts[1];
             $obj = $page == 'projects' ? $_project : $_department;
             $smarty->assign('pname', $page == 'projects' ? 'Проект' : 'Отдел');
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.textsbase.php';
+            require_once ADMIN_ROOT . 'admin.textsbase.php';
             break;
 
          case 'change_data':
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.change_data.php';
+            require_once ADMIN_ROOT . 'admin.change_data.php';
             break;
 
          case 'meta':
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.meta.php';
+            require_once ADMIN_ROOT . 'admin.meta.php';
             break;
 
          case 'logout':
@@ -81,7 +86,7 @@ switch ($request_parts[0]) {
             switch ($request_parts[2]) {
                case 'news':
                   $smarty->assign('handle_url', 'add/news');
-                  require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.change.news.php';
+                  require_once ADMIN_ROOT . 'admin.change.news.php';
                   break;
 
                default:
@@ -102,11 +107,11 @@ switch ($request_parts[0]) {
                      $request->request->set('id', $id);
                      $request->request->set('mode', 'Delete');
                   }
-                  require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
+                  require_once CLASSES_ROOT . 'class.News.php';
                   $data = $_news->GetById($id);
                   if (empty($data)) Redirect('/admin/add/news');
                   $smarty->assign('article', $data)->assign('handle_url', "edit/$id/news");
-                  require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/admin/admin.change.news.php';
+                  require_once ADMIN_ROOT . 'admin.change.news.php';
                   break;
 
                default:

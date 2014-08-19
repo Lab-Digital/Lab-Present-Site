@@ -1,13 +1,13 @@
 <?php
 try {
-   require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.TableImages.php';
+   require_once CLASSES_ROOT . 'class.TableImages.php';
    $ajaxOtherResult = Array('result' => true, 'message' => 'Загрузка прошла успешно!');
    $item_id = $request->get('item_id');
    switch ($request->get('uploadType')) {
       case 'projects':
       case 'departments':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Project.php';
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Department.php';
+      require_once CLASSES_ROOT . 'class.Project.php';
+      require_once CLASSES_ROOT . 'class.Department.php';
       $obj = $request->get('uploadType') == 'projects' ? $_project : $_department;
       if (!empty($request->get('image_id'))) {
          $_image->Delete($request->get('image_id'));
@@ -26,7 +26,7 @@ try {
       break;
 
       case 'news':
-         require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
+         require_once CLASSES_ROOT . 'class.News.php';
          if ($request->get('isAvatar', false)) {
             $__file = $_newsImages->SetFieldByName(NewsImages::NEWS_FLD, $item_id)->Insert(true);
          } else {

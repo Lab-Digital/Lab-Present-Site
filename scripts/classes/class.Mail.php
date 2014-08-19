@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.UserForgottenPass.php';
+require_once CLASSES_ROOT . 'class.UserForgottenPass.php';
 
 class Mail
 {

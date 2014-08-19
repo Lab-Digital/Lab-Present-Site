@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/utils.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Entity.php';
+require_once SCRIPTS_ROOT . 'utils.php';
+require_once CLASSES_ROOT . 'class.Entity.php';
 
 if(!isset($_SESSION)) {
    @session_start();

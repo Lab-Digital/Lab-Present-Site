@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/lib/exception.inc';
+require_once SCRIPTS_ROOT . 'lib/exception.inc';
 
 abstract class Validate
 {

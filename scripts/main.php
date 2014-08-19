@@ -1,10 +1,11 @@
 <?php
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Texts.php';
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Slider.php';
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Service.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.IndexMeta.php';
+// require_once CLASSES_ROOT . 'class.Texts.php';
+// require_once CLASSES_ROOT . 'class.Slider.php';
+require_once CLASSES_ROOT . 'class.Department.php';
+require_once CLASSES_ROOT . 'class.IndexMeta.php';
 
 $smarty->assign('meta', $_indexMeta->GetById(IndexMeta::META_ID))
+       // ->assign('services', $_service)
        // ->assign('sliders',  $_slider->GetAll())
        // ->assign('services', $_service->SetSamplingScheme(Service::MAIN_SCHEME)->GetAll())
        // ->assign('projects', $_texts->SetSamplingScheme(Texts::MAIN_PROJECTS_SCHEME)->GetAll())

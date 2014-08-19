@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.php';
+require_once HANDLERS_ROOT . 'handler.php';
 
 if ($request->get('mode')) {
    $_admin->ChangeData(

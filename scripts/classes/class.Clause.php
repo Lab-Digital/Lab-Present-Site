@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Field.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.SQLFieldView.php';
+require_once CLASSES_ROOT . 'class.Field.php';
+require_once CLASSES_ROOT . 'class.SQLFieldView.php';
 
 class BaseClausePart
 {

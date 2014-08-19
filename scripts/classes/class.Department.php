@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.TextsBase.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.TableImages.php';
+require_once CLASSES_ROOT . 'class.TextsBase.php';
+require_once CLASSES_ROOT . 'class.TableImages.php';
 
 class Department extends TextsBase
 {

@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/lib/transliteration.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.Entity.php';
+require_once SCRIPTS_ROOT . 'lib/transliteration.php';
+require_once CLASSES_ROOT . 'class.Entity.php';
 
 class EntityURL extends Entity
 {

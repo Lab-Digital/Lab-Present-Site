@@ -1,5 +1,5 @@
 <?php
-define('SMARTY_DIR', $_SERVER['DOCUMENT_ROOT'] . '/scripts/smarty/libs/');
+define('SMARTY_DIR', SCRIPTS_ROOT . 'smarty/libs/');
 require_once SMARTY_DIR . 'Smarty.class.php';
 
 class TSmarty extends Smarty

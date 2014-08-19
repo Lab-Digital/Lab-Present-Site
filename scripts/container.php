@@ -8,8 +8,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
 $request = Request::createFromGlobals();
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/constants.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/settings.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/utils.php';
+require_once SCRIPTS_ROOT . 'constants.php';
+require_once SCRIPTS_ROOT . 'settings.php';
+require_once SCRIPTS_ROOT . 'utils.php';
 
 $request_parts = GetRequestParts($request);

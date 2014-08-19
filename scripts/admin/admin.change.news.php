@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/handlers/handler.php';
+require_once CLASSES_ROOT  . 'class.News.php';
+require_once HANDLERS_ROOT . 'handler.php';
 
 $vars['head'] = $vars['body'] = $vars['desc'] = $vars['mtitle'] = $vars['mkeywords'] = $vars['mdescription'] = null;
 
