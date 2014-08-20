@@ -10,7 +10,7 @@
 {/block}
 {block name='div.main'}
 	{include file="header.tpl"}
-	<div class="wrap_inner">
+	<div class="wrap_deps">
 		<div class="main_block">
 			<div class="left">
 				<div class="photo">

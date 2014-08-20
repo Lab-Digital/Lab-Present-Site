@@ -1,3 +1,7 @@
+div.wrap_deps {
+    padding: 0 30px;
+}
+
 div.main_block {
 	margin-top: 55px;
 }
@@ -90,5 +94,4 @@ div.watch_other li article time {
 	display: block;
 	margin: 0 auto;
 	margin-top: 60px;
-	margin-bottom: 125px;
 }

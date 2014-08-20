@@ -15,6 +15,14 @@ switch ($request_parts[0]) {
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/departaments.php';
       break;
 
+   case 'news':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/news.php';
+      break;
+
+   case 'send':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/send.php';
+      break;
+
    case 'uploadphoto':
       require_once SCRIPTS_ROOT . 'upload_photo.php';
       break;

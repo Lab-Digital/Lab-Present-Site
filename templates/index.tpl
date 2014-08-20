@@ -18,8 +18,7 @@
    <section class="menu_first">
       <ul>
          {foreach from=$departments item=d}
-            {if !empty($d.departments_avatar_id)}
-            <li><a href="/departments/{$d.departments_url}"><img src="/images/uploads/{$d.departments_avatar_id}_s.jpg" />{$d.departments_head}</a></li>{/if}
+            {if !empty($d.departments_avatar_id)}<li><a href="/departments/{$d.departments_url}"><img src="/images/uploads/{$d.departments_avatar_id}_s.jpg" />{$d.departments_head}</a></li>{/if}
          {/foreach}
       </ul>
    </section>
@@ -27,7 +26,7 @@
    <!-- news -->
    <section class="news">
       <ul>
-         <li><a href="#"><article><img src="news_0.jpg" /><h1>Новость 1</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_1.jpg" /><h1>Новость 2</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_2.jpg" /><h1>Новость 3</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_3.jpg" /><h1>Новость 4</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li>
+         <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled"><</button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="enabled">></button></div><li><a href="#"><article><img src="news_0.jpg" /><h1>Новость 1</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_1.jpg" /><h1>Новость 2</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_2.jpg" /><h1>Новость 3</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_3.jpg" /><h1>Новость 4</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li>
       </ul>
       <a href="#" id="go_news_button">Новости</a>
    </section>
