@@ -18,6 +18,9 @@ class DBConnect
          $this->link->exec('SET CHARACTER SET utf8');
          $this->link->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
       } catch (PDOException $e) {
+         if (DEBUG) {
+            echo $e->getMessage();
+         }
          $this->isConnected = false;
       }
    }
