@@ -11,8 +11,8 @@ switch ($request_parts[0]) {
       require_once SCRIPTS_ROOT . 'main.php';
       break;
 
-   case 'departaments':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/departaments.php';
+   case 'departments':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/departments.php';
       break;
 
    case 'news':
