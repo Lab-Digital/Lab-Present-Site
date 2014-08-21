@@ -15,10 +15,10 @@
             'uploadType'  : 'departments',
             'isAvatar'    : 'true',
             'item_id'     :  $data,
-            'width'       : '100',
-            'height'      : '100',
+            'width'       : '235',
+            'height'      : '135',
             'count'       : '1',
-            'sizes'       : 's#100#100'
+            'sizes'       : 's#235#145'
          });
       });
       $('div.photos_in button.upload').each(function(){

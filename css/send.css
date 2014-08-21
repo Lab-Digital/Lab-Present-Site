@@ -61,7 +61,7 @@
 	margin-bottom: 6px;
 }
 
-#send_window div.main_send_block div.right ul li.active {
+#send_window div.main_send_block div.right ul li.active, #send_window div.main_send_block div.right ul li:hover {
 	background: #5889aa;
 	color: white;
 }

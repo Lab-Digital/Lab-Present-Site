@@ -1,10 +1,11 @@
 #wrap {
 	width: 1100px;
-	margin: 0 auto;
+  padding: 50px;
+  margin: 20px auto !important;
 }
 
 header {
-	margin: 20px 0;
+  margin: 0 0 20px;
 	font-size: 150%;
 }
 

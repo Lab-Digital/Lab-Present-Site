@@ -4,6 +4,7 @@
   <link href="/css/admin.css" rel="stylesheet" />
   <link href="/css/main.css" rel="stylesheet" />
   <link href="/css/forms.css" rel="stylesheet" />
+  <link href="/css/upload_photos.css" rel="stylesheet" />
 {/block}
 {block name='page'}
 <div id="wrap">
