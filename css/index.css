@@ -65,8 +65,8 @@ section.news .button_left button, section.news .button_right button {
 	font-size: 150%;
 }
 
-section.news .button_left button:hover, section.news .button_right button:hover {
-	
+section.news .button_left button.hidden, section.news .button_right button.hidden {
+	display: none;
 }
 
 section.news .button_right {
