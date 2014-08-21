@@ -6,7 +6,7 @@ class News extends EntityURL
 {
    const INFO_SCHEME       = 2;
    const MAIN_SCHEME       = 3;
-   const OTHER_SCHEME      = 4;
+   const ARTICLE_SCHEME    = 4;
    const ADMIN_INFO_SCHEME = 5;
 
    const PHOTO_FLD            = 'photo_id';
@@ -23,7 +23,8 @@ class News extends EntityURL
 
    const LAST_VIEWED_ID = 'last_viewed_news_id';
 
-   const NEWS_ON_INDEX_PAGE = 1;
+   const SEE_ALSO_AMOUNT = 3;
+   const NEWS_ON_INDEX_PAGE = 4;
    const NEWS_ON_ADMIN_PAGE = 1;
 
    public function __construct()
@@ -91,6 +92,7 @@ class News extends EntityURL
       switch ($this->samplingScheme) {
          case static::MAIN_SCHEME:
          case static::INFO_SCHEME:
+         case static::ARTICLE_SCHEME:
             $key = $this->ToPrfxNm(static::PHOTOS_FLD);
             $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
             foreach ($sample as &$set) {
@@ -130,6 +132,23 @@ class News extends EntityURL
             $fields[] = ImageSelectSQL($this, $_newsImages, NewsImages::NEWS_FLD);
             break;
 
+         case static::ARTICLE_SCHEME:
+            $fields = SQL::PrepareFieldsForSelect(
+               static::TABLE,
+               [
+                  $this->idField,
+                  $this->urlField,
+                  $this->GetFieldByName(static::TEXT_HEAD_FLD),
+                  $this->GetFieldByName(static::TEXT_BODY_FLD),
+                  $this->GetFieldByName(static::PUBLICATION_DATE_FLD),
+                  $this->GetFieldByName(static::TITLE_FLD),
+                  $this->GetFieldByName(static::KEYWORDS_FLD),
+                  $this->GetFieldByName(static::META_DESCRIPTION_FLD),
+                  $this->GetFieldByName(static::PHOTO_FLD)
+               ]
+            );
+            break;
+
          case static::MAIN_SCHEME:
             $fields = SQL::PrepareFieldsForSelect(
                static::TABLE,
@@ -150,6 +169,26 @@ class News extends EntityURL
       }
       $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
+   }
+
+   public function CreateOtherNewsSearch($id, $categories = [])
+   {
+      $this->CreateSearch()->SetSamplingScheme(static::MAIN_SCHEME);
+      $this->search->AddClause(CCond(
+         CF(static::TABLE, $this->idField),
+         CVP($id),
+         cAND,
+         opNE
+      ));
+      foreach ($categories as $category) {
+         // $this->search->AddClause(CCond(
+         //    CF(statitc::TABLE, $this->GetFieldByName()),
+         //    CVP($id),
+         //    cOR,
+         // ));
+      }
+      $this->AddLimit(static::SEE_ALSO_AMOUNT);
+      return $this;
    }
 
    protected function GetURLBase()
