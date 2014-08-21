@@ -175,7 +175,7 @@ function CVS($param)
    return new ClauseValueStrParam($param);
 }
 
-function CCond($left, $right, $cond = '', $op = '=', $lp = '', $rp = '')
+function CCond($left, $right, $cond = '', $op = opEQ, $lp = '', $rp = '')
 {
    return new ClauseCondition($left, $right, $cond, $op, $lp, $rp);
 }

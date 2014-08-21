@@ -16,7 +16,13 @@ switch ($request_parts[0]) {
       break;
 
    case 'news':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/news.php';
+      if (empty($request_parts[1])) Redirect('/#news');
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
+      $data = $_news->SetSamplingScheme(News::ARTICLE_SCHEME)->GetByURL($request_parts[1]);
+      if (empty($data)) Redirect('/#news');
+      $smarty->assign('article', $data)
+             ->assign('other_articles', $_news->CreateOtherNewsSearch($data[$_news->ToPrfxNm(News::ID_FLD)])->GetAll())
+             ->display('news.tpl');
       break;
       
    case 'uploadphoto':
@@ -36,8 +42,8 @@ switch ($request_parts[0]) {
          'news'     => HANDLERS_ROOT . 'handler.News.php',
          'image'    => HANDLERS_ROOT . 'handler.Image.php'
       ];
-      if (empty($request[1]) || empty($possible_handlers[$request[1]])) Redirect('/404');
-      require_once $possible_handlers[$request[1]];
+      if (empty($request_parts[1]) || empty($possible_handlers[$request_parts[1]])) Redirect('/404');
+      require_once $possible_handlers[$request_parts[1]];
       break;
 
    case 'admin':

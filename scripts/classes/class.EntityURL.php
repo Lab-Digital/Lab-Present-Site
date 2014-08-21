@@ -20,7 +20,7 @@ class EntityURL extends Entity
       );
    }
 
-   private function _CreateUrlSearch($url, $isUpdate)
+   private function _CreateUrlSearch($url, $isUpdate = false)
    {
       $this->CreateSearch()->search->AddClause(CCond(
          CF(static::TABLE, $this->GetFieldByName(static::URL_FLD)),
