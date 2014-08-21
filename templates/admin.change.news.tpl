@@ -14,6 +14,13 @@
          <label for="title_new">Meta title</label>
          <input name="title" id="title_new" value="{$mtitle|default:$article.news_meta_title|default:''}" />
       </div>
+      <div class="form_block div_checkbox">
+        <label for="category_new">Категория</label>
+        <div class="checkbox_in">
+          <div><input id="с_1" type="checkbox" name="с_1" {if}checked{/if}/><label for="с_1"><b>Категория 1</b></label></div>
+          <div><input id="с_2" type="checkbox" name="с_2" {if}checked{/if}/><label for="с_2"><b>Категория 2</b></label></div>
+        </div>
+      </div>
       <div class="form_block">
         <label for="article_description_new">Описание новости</label>
         <textarea name="desc" id="article_description_new" rows="3" cols="90">{$desc|default:$article.news_description|default:''}</textarea>
