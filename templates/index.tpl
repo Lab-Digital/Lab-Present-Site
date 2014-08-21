@@ -28,7 +28,6 @@
    <section class="news">
       <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled hidden"><</button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="disabled hidden">></button></div>
       <ul>
-         <li><a href="#"><article><img src="news_0.jpg" /><h1>Новость 1</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_1.jpg" /><h1>Новость 2</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_2.jpg" /><h1>Новость 3</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li><li><a href="#"><article><img src="news_3.jpg" /><h1>Новость 4</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div><time>21.01.2014</time></article></a></li>
       </ul>
       <a href="#" id="go_news_button">Новости</a>
    </section>

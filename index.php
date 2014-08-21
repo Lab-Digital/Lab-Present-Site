@@ -40,8 +40,8 @@ switch ($request_parts[0]) {
          'news'     => HANDLERS_ROOT . 'handler.News.php',
          'image'    => HANDLERS_ROOT . 'handler.Image.php'
       ];
-      if (empty($request[1]) || empty($possible_handlers[$request[1]])) Redirect('/404');
-      require_once $possible_handlers[$request[1]];
+      if (empty($request_parts[1]) || empty($possible_handlers[$request_parts[1]])) Redirect('/404');
+      require_once $possible_handlers[$request_parts[1]];
       break;
 
    case 'admin':

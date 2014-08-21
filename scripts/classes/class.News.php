@@ -23,7 +23,8 @@ class News extends EntityURL
 
    const LAST_VIEWED_ID = 'last_viewed_news_id';
 
-   const NEWS_ON_PAGE = 1;
+   const NEWS_ON_INDEX_PAGE = 1;
+   const NEWS_ON_ADMIN_PAGE = 1;
 
    public function __construct()
    {
@@ -156,15 +157,15 @@ class News extends EntityURL
       return $this->GetFieldByName(static::TEXT_HEAD_FLD)->GetValue();
    }
 
-   public function GeneratePages()
+   public function GeneratePages($amount)
    {
-      list($pageNum, $pagesInfo) = _GeneratePages($this->GetAllAmount(), static::NEWS_ON_PAGE);
+      list($pageNum, $pagesInfo) = _GeneratePages($this->GetAllAmount(), $amount);
       return [$pageNum, $pagesInfo];
    }
 
-   public function GetNews($page)
+   public function GetNews($page, $amount)
    {
-      return $this->AddLimit(static::NEWS_ON_PAGE, $page * static::NEWS_ON_PAGE)->GetAll();
+      return $this->AddLimit($amount, $page * $amount)->GetAll();
    }
 
    // public function GetNews($category = null)
