@@ -297,7 +297,7 @@ class Entity
    public function Delete($id)
    {
      global $db;
-     $db->Query('DELETE FROM ' . static::TABLE . ' WHERE id = ?', Array($id));
+     $db->Query(SQL::GetDeleteQuery(static::TABLE, static::ID_FLD), [$id]);
    }
 
    public function Update()

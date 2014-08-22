@@ -92,6 +92,11 @@ class SQL
       );
    }
 
+   public static GetDeleteQuery($table, $where_field)
+   {
+      return sprintf('DELETE FROM %s WHERE %s = ?', $table, $where_field);
+   }
+
    public static function PrepareFieldsForSelect($table, $fields)
    {
       $result = Array();
