@@ -23,6 +23,7 @@
             <div class="text">{$article.news_body}</div>
             <time>{$article.news_publication_date}</time>
          </article>
+         {if $other_articles|@count > 0}
          <div class="watch_other">
             <h2>Читайте также:</h2>
             <ul>
@@ -40,6 +41,7 @@
             {/foreach}
             </ul>
          </div>
+         {/if}
       </div>
    </div>
    {include file="footer.tpl"} 

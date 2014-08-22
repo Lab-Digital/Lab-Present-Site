@@ -21,8 +21,11 @@ switch ($request_parts[0]) {
       $data = $_news->SetSamplingScheme(News::ARTICLE_SCHEME)->GetByURL($request_parts[1]);
       if (empty($data)) Redirect('/#news');
       $smarty->assign('article', $data)
-             ->assign('other_articles', $_news->CreateOtherNewsSearch($data[$_news->ToPrfxNm(News::ID_FLD)])->GetAll())
-             ->display('news.tpl');
+             ->assign(
+                  'other_articles',
+                  $_news->GetOtherNews($data[$_news->ToPrfxNm(News::ID_FLD)], $data[$_news->ToPrfxNm(News::CATEGORIES_FLD)]
+               )
+             )->display('news.tpl');
       break;
 
    case 'uploadphoto':

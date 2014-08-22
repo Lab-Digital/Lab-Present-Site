@@ -24,6 +24,8 @@
       <td>
       {foreach from=$article.news_categories item=c}
         {$departments[$c]}<br />
+      {foreachelse}
+        -
       {/foreach}
       </td>
       <td>{$article.news_meta_title}</td>

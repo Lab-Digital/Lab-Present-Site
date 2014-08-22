@@ -28,7 +28,7 @@ class News extends EntityURL
 
    const SEE_ALSO_AMOUNT = 3;
    const NEWS_ON_INDEX_PAGE = 4;
-   const NEWS_ON_ADMIN_PAGE = 1;
+   const NEWS_ON_ADMIN_PAGE = 20;
 
    private $categories;
 
@@ -105,12 +105,19 @@ class News extends EntityURL
          case static::INFO_SCHEME:
          case static::ARTICLE_SCHEME:
             $key = $this->ToPrfxNm(static::PHOTOS_FLD);
+            $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
             foreach ($sample as &$set) {
                $date_var = new DateTime($set[$dateKey]);
                $set[$dateKey] = $date_var->format('d-m-Y');
-               if ($this->samplingScheme == static::INFO_SCHEME) {
-                  $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
+               switch ($this->samplingScheme) {
+                  case static::INFO_SCHEME:
+                     $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
+                     break;
+
+                  case static::ARTICLE_SCHEME:
+                     $set[$catKey] = explode(',', $set[$catKey]);
+                     break;
                }
             }
             break;
@@ -118,7 +125,7 @@ class News extends EntityURL
          case static::ADMIN_INFO_SCHEME:
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             foreach ($sample as &$set) {
-               $set[$catKey] = explode(',', $set[$catKey]);
+               $set[$catKey] = !empty($set[$catKey]) ? explode(',', $set[$catKey]) : [];
             }
             break;
 
@@ -174,10 +181,11 @@ class News extends EntityURL
                   $this->GetFieldByName(static::PUBLICATION_DATE_FLD),
                   $this->GetFieldByName(static::TITLE_FLD),
                   $this->GetFieldByName(static::KEYWORDS_FLD),
-                  $this->GetFieldByName(static::META_DESCRIPTION_FLD),
-                  $this->GetFieldByName(static::PHOTO_FLD)
+                  $this->GetFieldByName(static::META_DESCRIPTION_FLD)
                ]
             );
+            $fields[] = $this->_SelectCategories();
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
             break;
 
          case static::MAIN_SCHEME:
@@ -215,8 +223,9 @@ class News extends EntityURL
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
    }
 
-   public function CreateOtherNewsSearch($id, $categories = [])
+   public function GetOtherNews($id, $categories = [])
    {
+      $result = [];
       $this->CreateSearch()->SetSamplingScheme(static::MAIN_SCHEME);
       $this->search->AddClause(CCond(
          CF(static::TABLE, $this->idField),
@@ -224,15 +233,40 @@ class News extends EntityURL
          cAND,
          opNE
       ));
-      foreach ($categories as $category) {
-         // $this->search->AddClause(CCond(
-         //    CF(static::TABLE, $this->GetFieldByName()),
-         //    CVP($id),
-         //    cOR,
-         // ));
+      $this->search->SetJoins([NewsDepartments::TABLE => [null, [static::ID_FLD, NewsDepartments::NEWS_FLD]]]);
+      global $_newsDepartments;
+      $departmentFld = $_newsDepartments->GetFieldByName(NewsDepartments::DEPARTMENT_FLD);
+      $tmp_department_first = array_shift($categories);
+      $tmp_department_last = array_pop($categories);
+      if (!empty($tmp_department_first)) {
+         $this->search->AddClause(CCond(
+            CF(NewsDepartments::TABLE, $departmentFld),
+            CVP($tmp_department_first),
+            cAND,
+            opEQ,
+            '(',
+            empty($tmp_department_last) ? ')' : ''
+         ));
+         foreach ($categories as $category) {
+            $this->search->AddClause(CCond(
+               CF(NewsDepartments::TABLE, $departmentFld),
+               CVP($category),
+               cOR
+            ));
+         }
+         if (!empty($tmp_department_last)) {
+            $this->search->AddClause(CCond(
+               CF(NewsDepartments::TABLE, $departmentFld),
+               CVP($tmp_department_last),
+               cOR,
+               opEQ,
+               '',
+               ')'
+            ));
+         }
+         $result = $this->AddLimit(static::SEE_ALSO_AMOUNT)->GetAll();
       }
-      $this->AddLimit(static::SEE_ALSO_AMOUNT);
-      return $this;
+      return $result;
    }
 
    protected function GetURLBase()
