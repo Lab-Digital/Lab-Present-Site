@@ -21,7 +21,11 @@
     <tr>
       <td>{$article.news_head}</td>
       <td>{$article.news_publication_date}</td>
-      <td>-</td>
+      <td>
+      {foreach from=$article.news_categories item=c}
+        {$departments[$c]}<br />
+      {/foreach}
+      </td>
       <td>{$article.news_meta_title}</td>
       <td>{$article.news_meta_description}</td>
       <td>{$article.news_meta_keywords}</td>

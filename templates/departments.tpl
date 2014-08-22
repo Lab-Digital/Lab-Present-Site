@@ -25,40 +25,21 @@
       </div>
       <div class="watch_other">
          <ul>
+         {foreach from=$articles item=a}
             <li>
                <article>
-                  <img src="#" class="photo" />
-                  <h1>Открыт прием заявок</h1>
-                  <div class="text">
-                     Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                  </div>
-                  <a href="#" class="go">Далее</a>
-                  <time>21.01.2014</time>
+                  {if !empty($a.news_photo_id)}
+                     <img src="/images/uploads/{$a.news_photo_id}_b.jpg" alt="{$a.news_head}" class="photo" />
+                  {/if}
+                  <h1>{$a.news_head}</h1>
+                  <div class="text">{$a.news_description}</div>
+                  <a href="/news/{$a.news_url}" class="go">Далее</a>
+                  <time>{$a.news_publication_date}</time>
                </article>
             </li>
-            <li>
-               <article>
-                  <img src="#" class="photo" />
-                  <h1>Открыт прием заявок</h1>
-                  <div class="text">
-                     Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                  </div>
-                  <a href="#" class="go">Далее</a>
-                  <time>21.01.2014</time>
-               </article>
-            </li>
-            <li>
-               <article>
-                  <img src="#" class="photo" />
-                  <h1>Открыт прием заявок</h1>
-                  <div class="text">
-                     Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-                  </div>
-                  <a href="#" class="go">Далее</a>
-                  <time>21.01.2014</time>
-               </article>
-            </li>
-            <a href="#" id="go_news">Новости</a>
+
+         {/foreach}
+         <a href="#" id="go_news">Новости</a>
          </ul>
       </div>
    </div>

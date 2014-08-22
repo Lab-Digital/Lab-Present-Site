@@ -36,14 +36,9 @@ class DBConnect
    {
       if (!$this->isConnected) return Array();
       if (DEBUG) {
-         echo "<br>";
-         echo "<br>";
-         echo $query;
-         echo "<br>";
+         echo "<br><br>" . $query . "<br>";
          print_r($params);
-         echo "<br>";
-         echo "<br>";
-         echo "<br>";
+         echo "<br><br><br>";
       }
       $st = $this->link->prepare($query);
       if (empty($st) || !$st->execute($params)) {
@@ -58,13 +53,11 @@ class DBConnect
    public function Insert($query, $params = Array(), $getLastInsertId = false)
    {
       if (!$this->isConnected) return -1;
-      // echo "<br>";
-      // echo "<br>";
-      // echo "<br>";
-      // echo $query;
-      // echo "<br>";
-      // echo "<br>";
-      // print_r($params);
+      if (DEBUG) {
+         echo "<br><br>" . $query . "<br>";
+         print_r($params);
+         echo "<br><br><br>";
+      }
       $st = $this->link->prepare($query);
       if (empty($st) || !$st->execute($params)) {
          throw new DBException(ERROR_QUERY);

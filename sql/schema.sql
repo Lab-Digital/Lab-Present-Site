@@ -69,6 +69,16 @@ CREATE TABLE IF NOT EXISTS `departments` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `news_departments` (
+   `id`            INT NOT NULL AUTO_INCREMENT,
+   `news_id`       INT NOT NULL,
+   `department_id` INT NOT NULL,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY  (`news_id`, `department_id`),
+   FOREIGN KEY (`news_id`)       REFERENCES `news`        (`id`) ON DELETE CASCADE,
+   FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS `projects` (
    `id`               INT          NOT NULL AUTO_INCREMENT,
    `url`              VARCHAR(150) NOT NULL,

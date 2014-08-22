@@ -1,5 +1,6 @@
 <?php
 require_once CLASSES_ROOT  . 'class.News.php';
+require_once CLASSES_ROOT  . 'class.Department.php';
 require_once HANDLERS_ROOT . 'handler.php';
 
 $vars['head'] = $vars['body'] = $vars['desc'] = $vars['mtitle'] = $vars['mkeywords'] = $vars['mdescription'] = null;
@@ -11,7 +12,7 @@ if ($request->get('mode')) {
    $vars['mtitle']       = $request->get('title');
    $vars['mkeywords']    = $request->get('keywords');
    $vars['mdescription'] = $request->get('description');
-   HandleAdminData($_news, [
+   HandleAdminData($_news->SetCategories($request->get('categories')), [
       'mode'   => $request->get('mode'),
       'params' => [
          News::ID_FLD               => $request->get('id'),
@@ -25,4 +26,6 @@ if ($request->get('mode')) {
    ], 'news');
 }
 
-$smarty->assign($vars)->display('admin.change.news.tpl');
+$smarty->assign($vars)
+       ->assign('departments', $_department->SetSamplingScheme(Department::SHORT_INFO_SCHEME)->GetAll())
+       ->display('admin.change.news.tpl');

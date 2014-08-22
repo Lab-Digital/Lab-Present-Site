@@ -66,7 +66,7 @@ class EntityURL extends Entity
    public function Insert($getLastInsertId = false)
    {
       $this->_GenerateURL();
-      parent::Insert($getLastInsertId);
+      return parent::Insert($getLastInsertId);
    }
 
    public function Update()

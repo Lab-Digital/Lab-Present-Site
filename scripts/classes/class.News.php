@@ -1,13 +1,15 @@
 <?php
 require_once CLASSES_ROOT . 'class.EntityURL.php';
+require_once CLASSES_ROOT . 'class.NewsDepartments.php';
 require_once CLASSES_ROOT . 'class.TableImages.php';
 
 class News extends EntityURL
 {
-   const INFO_SCHEME       = 2;
-   const MAIN_SCHEME       = 3;
-   const ARTICLE_SCHEME    = 4;
-   const ADMIN_INFO_SCHEME = 5;
+   const INFO_SCHEME         = 2;
+   const MAIN_SCHEME         = 3;
+   const ARTICLE_SCHEME      = 4;
+   const ADMIN_INFO_SCHEME   = 5;
+   const ADMIN_CHANGE_SCHEME = 6;
 
    const PHOTO_FLD            = 'photo_id';
    const TITLE_FLD            = 'meta_title';
@@ -15,6 +17,7 @@ class News extends EntityURL
    const KEYWORDS_FLD         = 'meta_keywords';
    const TEXT_HEAD_FLD        = 'head';
    const TEXT_BODY_FLD        = 'body';
+   const CATEGORIES_FLD       = 'categories';
    const DESCRIPTION_FLD      = 'description';
    const PUBLICATION_DATE_FLD = 'publication_date';
    const META_DESCRIPTION_FLD = 'meta_description';
@@ -26,6 +29,8 @@ class News extends EntityURL
    const SEE_ALSO_AMOUNT = 3;
    const NEWS_ON_INDEX_PAGE = 4;
    const NEWS_ON_ADMIN_PAGE = 1;
+
+   private $categories;
 
    public function __construct()
    {
@@ -86,6 +91,12 @@ class News extends EntityURL
          Array(static::PUBLICATION_DATE_FLD => new OrderField(static::TABLE, $this->GetFieldByName(static::PUBLICATION_DATE_FLD)));
    }
 
+   public function SetCategories($categories)
+   {
+      $this->categories = $categories;
+      return $this;
+   }
+
    public function ModifySample(&$sample)
    {
       if (empty($sample)) return $sample;
@@ -101,6 +112,26 @@ class News extends EntityURL
                if ($this->samplingScheme == static::INFO_SCHEME) {
                   $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
                }
+            }
+            break;
+
+         case static::ADMIN_INFO_SCHEME:
+            $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
+            foreach ($sample as &$set) {
+               $set[$catKey] = explode(',', $set[$catKey]);
+            }
+            break;
+
+         case static::ADMIN_CHANGE_SCHEME:
+            $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
+            foreach ($sample as &$set) {
+               $a = [];
+               if (!empty($set[$catKey])) {
+                  foreach (explode(',', $set[$catKey]) as $category_id) {
+                     $a[$category_id] = 1;
+                  }
+               }
+               $set[$catKey] = $a;
             }
             break;
       }
@@ -160,14 +191,27 @@ class News extends EntityURL
                   $this->GetFieldByName(static::PUBLICATION_DATE_FLD)
                ]
             );
+            $photoFld = $this->GetFieldByName(static::PHOTO_FLD);
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $photoFld);
+            $this->CheckSearch()->search->AddClause(CCond(
+               CF(static::TABLE, $photoFld),
+               CVS('NULL'),
+               cAND,
+               'IS NOT'
+            ));
             break;
 
          case static::ADMIN_INFO_SCHEME:
             $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+            $fields[] = $this->_SelectCategories();
+            break;
+
+         case static::ADMIN_CHANGE_SCHEME:
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+            $fields[] = $this->_SelectCategories();
             break;
 
       }
-      $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
    }
 
@@ -182,7 +226,7 @@ class News extends EntityURL
       ));
       foreach ($categories as $category) {
          // $this->search->AddClause(CCond(
-         //    CF(statitc::TABLE, $this->GetFieldByName()),
+         //    CF(static::TABLE, $this->GetFieldByName()),
          //    CVP($id),
          //    cOR,
          // ));
@@ -205,6 +249,73 @@ class News extends EntityURL
    public function GetNews($page, $amount)
    {
       return $this->AddLimit($amount, $page * $amount)->GetAll();
+   }
+
+   private function _SelectCategories()
+   {
+      global $_newsDepartments;
+      return sprintf(
+         "IFNULL((SELECT GROUP_CONCAT(%s) FROM %s WHERE %s GROUP BY %s), '') as %s",
+         $_newsDepartments->ToTblNm(NewsDepartments::DEPARTMENT_FLD),
+         NewsDepartments::TABLE,
+         // SQL::MakeJoin(NewsDepartments::TABLE, [static::TABLE => [null, [NewsDepartments::NEWS_FLD, static::ID_FLD]]]),
+         (new Clause(CCond(
+            CF(NewsDepartments::TABLE, $_newsDepartments->GetFieldByName(NewsDepartments::NEWS_FLD)),
+            CF(News::TABLE, $this->GetFieldByName(static::ID_FLD))
+         )))->GetClause(),
+         $_newsDepartments->ToTblNm(NewsDepartments::NEWS_FLD),
+         $this->ToPrfxNm(static::CATEGORIES_FLD)
+      );
+   }
+
+   public function Insert($getLastInsertId = false)
+   {
+      global $db, $_newsDepartments;
+      try {
+         $db->link->beginTransaction();
+         $id = parent::Insert(true);
+         $_newsDepartments->SetFieldByName(NewsDepartments::NEWS_FLD, $id);
+         foreach ($this->categories as $category => $value) {
+            if ($value) {
+               $_newsDepartments->SetFieldByName(NewsDepartments::DEPARTMENT_FLD, $category)->Insert();
+            }
+         }
+         $db->link->commit();
+      } catch (DBException $e) {
+         $db->link->rollback();
+         throw new Exception($e->getMessage());
+      }
+   }
+
+   public function Update()
+   {
+      global $db, $_newsDepartments;
+      try {
+         $db->link->beginTransaction();
+         $_newsDepartments->SetFieldByName(NewsDepartments::NEWS_FLD, $this->GetFieldByName(static::ID_FLD)->GetValue())
+                          ->DeleteByNews();
+         foreach ($this->categories as $category => $value) {
+            if ($value) {
+               $_newsDepartments->SetFieldByName(NewsDepartments::DEPARTMENT_FLD, $category)->Insert();
+            }
+         }
+         parent::Update();
+         $db->link->commit();
+      } catch (DBException $e) {
+         $db->link->rollback();
+         throw new Exception($e->getMessage());
+      }
+   }
+
+   public function GetDepartmentNews($department_id, $page = 0)
+   {
+      $this->CreateSearch()->search->SetJoins([NewsDepartments::TABLE => [null, [static::ID_FLD, NewsDepartments::NEWS_FLD]]]);
+      global $_newsDepartments;
+      $this->search->AddClause(CCond(
+         CF(NewsDepartments::TABLE, $_newsDepartments->GetFieldByName(NewsDepartments::DEPARTMENT_FLD)),
+         CVP($department_id)
+      ));
+      return $this->SetSamplingScheme(static::MAIN_SCHEME)->GetNews($page, static::NEWS_ON_INDEX_PAGE);
    }
 
    // public function GetNews($category = null)

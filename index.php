@@ -24,7 +24,7 @@ switch ($request_parts[0]) {
              ->assign('other_articles', $_news->CreateOtherNewsSearch($data[$_news->ToPrfxNm(News::ID_FLD)])->GetAll())
              ->display('news.tpl');
       break;
-      
+
    case 'uploadphoto':
       require_once SCRIPTS_ROOT . 'upload_photo.php';
       break;
@@ -122,7 +122,7 @@ switch ($request_parts[0]) {
                      $request->request->set('mode', 'Delete');
                   }
                   require_once CLASSES_ROOT . 'class.News.php';
-                  $data = $_news->GetById($id);
+                  $data = $_news->SetSamplingScheme(News::ADMIN_CHANGE_SCHEME)->GetById($id);
                   if (empty($data)) Redirect('/admin/add/news');
                   $smarty->assign('article', $data)->assign('handle_url', "edit/$id/news");
                   require_once ADMIN_ROOT . 'admin.change.news.php';
