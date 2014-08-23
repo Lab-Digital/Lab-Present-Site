@@ -1,7 +1,11 @@
 <header>
-	<img src="/images/logo.jpg" class="top_logo" />
+	<a href="/"><img src="/images/logo.png" class="top_logo" /></a>
 	<div class="right">
-		<img src="/images/info.jpg" class="top_info" /><button id="top_send">Отправить заявку</button>
+		<div class="top_info">
+			<a href="mailto:info@adlab.ru" class="mailto">info@adlab.ru</a>
+			<a href="tel:+74232434970" class="tel">8 (423) 243-49-70</a>
+		</div>
+		<button id="top_send">Отправить заявку</button>
 		<nav>
 			<ul>
 				<li><a href="#">Агенство</a></li><li><a href="#">Услуги</a></li><li><a href="#">Контакты</a></li>

@@ -1,6 +1,6 @@
 body {
     margin: 0 auto;
-    font-family: Calibri, Helvetica, Verdana, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
     background: #efefef;
 }
 
@@ -8,7 +8,7 @@ body {
     height: auto;
     margin: 0 auto;
     width: 1024px;
-    background: #fff;
+    background: #fff url('/images/bg.png') no-repeat;
 }
 
 a {
@@ -18,8 +18,7 @@ a {
 
 button {
     background: #37b0fa;
-    padding: 10px 15px;
-    font-size: 90%;
+    font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
     cursor: pointer;
     color: white;
     border: 0;
