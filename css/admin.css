@@ -4,6 +4,10 @@
   margin: 20px auto !important;
 }
 
+button {
+  padding: 10px 15px;
+}
+
 header {
   margin: 0 0 20px;
 	font-size: 150%;

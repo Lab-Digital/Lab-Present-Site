@@ -18,7 +18,7 @@
         <label for="category_new">Категория</label>
         <div class="checkbox_in">
           {foreach from=$departments item=d}
-          <div><input id="с_{$d.departments_id}" type="checkbox" name="categories[{$d.departments_id}]" {if !empty($article.news_categories[$d.departments_id])}checked{/if} value="1"/><label for="с_{$d.departments_id}"><b>{$d.departments_head}</b></label></div>
+          <div><input id="с_{$d.departments_id}" type="checkbox" name="categories[{$d.departments_id}]" {if !empty($article.news_categories[$d.departments_id])}checked{/if} value="1"/><label for="с_{$d.departments_id}">{$d.departments_head}</label></div>
           {/foreach}
         </div>
       </div>
