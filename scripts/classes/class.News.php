@@ -97,6 +97,16 @@ class News extends EntityURL
       return $this;
    }
 
+   private function _NotNullImageClause()
+   {
+      $this->CheckSearch()->search->AddClause(CCond(
+         CF(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD)),
+         CVS('NULL'),
+         cAND,
+         'IS NOT'
+      ));
+   }
+
    public function ModifySample(&$sample)
    {
       if (empty($sample)) return $sample;
@@ -141,6 +151,16 @@ class News extends EntityURL
                $set[$catKey] = $a;
             }
             break;
+      }
+      if ($this->samplingScheme == static::MAIN_SCHEME) {
+         $a = [];
+         $photoKey = $this->ToPrfxNm(static::PHOTO_FLD);
+         foreach ($sample as &$set) {
+            if (!empty($set[$photoKey])) {
+               $a[] = $set;
+            }
+         }
+         $sample = $a;
       }
    }
 
@@ -199,14 +219,8 @@ class News extends EntityURL
                   $this->GetFieldByName(static::PUBLICATION_DATE_FLD)
                ]
             );
-            $photoFld = $this->GetFieldByName(static::PHOTO_FLD);
-            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $photoFld);
-            $this->CheckSearch()->search->AddClause(CCond(
-               CF(static::TABLE, $photoFld),
-               CVS('NULL'),
-               cAND,
-               'IS NOT'
-            ));
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+            $this->_NotNullImageClause();
             break;
 
          case static::ADMIN_INFO_SCHEME:
@@ -221,6 +235,12 @@ class News extends EntityURL
 
       }
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
+   }
+
+   public function GetAllAmountWithPhoto()
+   {
+      $this->CreateSearch()->_NotNullImageClause();
+      return $this->GetAllAmount();
    }
 
    public function GetOtherNews($id, $categories = [])

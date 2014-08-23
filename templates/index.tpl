@@ -52,7 +52,7 @@
    <section class="menu_first">
       <ul>
          {foreach from=$departments item=d}
-            {if !empty($d.departments_avatar_id)}<li><a href="/departments/{$d.departments_url}"><img src="/images/uploads/{$d.departments_avatar_id}_s.png" />{$d.departments_head}</a></li>{/if}
+            {if !empty($d.departments_avatar_id)}<li><a href="/departments/{$d.departments_url}"><img src="/images/uploads/{$d.departments_avatar_id}_s.jpg" />{$d.departments_head}</a></li>{/if}
          {/foreach}
       </ul>
    </section>
