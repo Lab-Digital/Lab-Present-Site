@@ -68,7 +68,9 @@
    <!-- menu_second -->
    <section class="menu_second">
       <ul>
-         <li><a href="#"><article><img src="menu_2_0.jpg" /><h1>Финн</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet. Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet. Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div></article></a></li><li><a href="#"><article><img src="menu_2_1.jpg" /><h1>Джейк</h1><div class="text">Lorem ipsum dolor Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet. Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet. Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div></article></a></li><li><a href="#"><article><img src="menu_2_2.jpg" /><h1>Снежный король</h1><div class="text">Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet. Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet. Lorem ipsum dolor sit amet orem ipsum dolor sit amet orem ipsum dolor sit amet</div></article></a></li>
+      {foreach from=$projects item=p}
+      <li><a href="#"><article><img src="/images/uploads/{$p.projects_avatar_id}_s.jpg" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_body}</div></article></a></li>
+      {/foreach}
       </ul>
    </section>
    <!-- menu_second end -->

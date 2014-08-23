@@ -4,6 +4,8 @@ require_once CLASSES_ROOT . 'class.TableImages.php';
 
 class Project extends TextsBase
 {
+   const MAIN_SCHEME = 2;
+
    const TABLE = 'projects';
 
    const LAST_VIEWED_ID = 'last_viewed_project_id';
@@ -16,7 +18,20 @@ class Project extends TextsBase
 
    public function SetSelectValues()
    {
-      $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+      if ($this->samplingScheme != static::MAIN_SCHEME) {
+         $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+      } else {
+         $fields = SQL::PrepareFieldsForSelect(
+            static::TABLE,
+            [$this->urlField, $this->GetFieldByName(static::TEXT_HEAD_FLD), $this->GetFieldByName(static::TEXT_BODY_FLD)]
+         );
+         $this->CreateSearch()->search->AddClause(CCond(
+            CF(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD)),
+            CVS('NULL'),
+            '',
+            'IS NOT'
+         ));
+      }
       $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD));
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
    }
