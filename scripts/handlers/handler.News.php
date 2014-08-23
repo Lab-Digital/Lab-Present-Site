@@ -7,7 +7,6 @@ try {
    // $handler = (new ProposalHandler())->Handle(GetPOST());
    $ajaxResult['pages_amount'] = News::NEWS_ON_INDEX_PAGE != 0 ? ceil($_news->GetAllAmountWithPhoto() / News::NEWS_ON_INDEX_PAGE) : 0;
    $ajaxResult['news'] = $_news->SetSamplingScheme(News::MAIN_SCHEME)->GetNews(!empty($_POST['page']) ? $_POST['page'] : 0, News::NEWS_ON_INDEX_PAGE);
-   print_r($ajaxResult['news']);
 } catch (Exception $e) {
    $ajaxResult['result'] = false;
    $ajaxResult['message'] = $e->getMessage();

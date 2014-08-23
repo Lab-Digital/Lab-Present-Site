@@ -42,6 +42,11 @@
          <a href="#" id="go_news">Новости</a>
          </ul>
       </div>
+      {if $pagesInfo.amount > 0}
+      <div id="nav_num">
+        {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<button class="{if $curPage == $t}active{/if}" onClick="javascript:location.assign('/departments/{$department.departments_url}/?page={$t}')">{$t}</button>{/if}{/foreach}
+      </div>
+      {/if}
    </div>
    {include file="footer.tpl"} 
 {/block}

@@ -1,5 +1,31 @@
 {extends file='admin.tpl'}
 {block name='title' append} - Новости{/block}
+{block name='links' append}
+   <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+   <link rel="stylesheet" href="/css/styles_for_text.css" />
+   <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.js"></script>
+   <script src="/upload_photo/js/plugin.js"></script>
+   <script>
+   {literal}
+   $(function(){
+      $('div.avatar_in button.upload').each(function(){
+         $data = $(this).attr('data');
+         $(this).getUpload({
+            'uploadType'  : 'news',
+            'isAvatar'    : 'true',
+            'item_id'     :  $data,
+            'width'       : '235',
+            'height'      : '135',
+            'count'       : '1',
+            'sizes'       : 's#235#145'
+         });
+      });
+      $('div.avatar_in a').fancybox();
+   });
+   {/literal}
+   </script>
+   <script src="/js/images.js"></script>
+{/block}
 {block name='main'}
    <h1>{if $isAdd|default:false}Добавление{else}Редактирование{/if} новости</h1>
    {if isset($error_txt)}<p class="db_error">{$error_txt}</p>{/if}
@@ -40,5 +66,14 @@
       </div>
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>
+    <div class="in avatar_in">
+       <h1 class="head_upload">Главное фото</h1>
+       <button class="upload" type="submit" data="{$article.news_id}">Загрузить главное фото</button>
+       <ul>
+          {if !empty($article.news_photo_id)}
+             <li><a href="/images/uploads/{$article.news_photo_id}_b.jpg" rel="gallery_{$article.news_id}"><img src="/images/uploads/{$article.news_photo_id}_s.jpg" /></a><button class="x" data="{$article.news_photo_id}">x</button></li>
+          {/if}
+       </ul>
+    </div>
   </div>
 {/block}

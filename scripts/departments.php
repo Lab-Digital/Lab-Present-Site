@@ -7,5 +7,5 @@ $data = $_department->GetByURL($request_parts[1]);
 if (empty($data)) Redirect('/#departments');
 
 $smarty->assign('department', $data)
-       ->assign('articles', $_news->GetDepartmentNews($data[$_department->ToPrfxNm(Department::ID_FLD)]))
+       ->assign($_news->GetDepartmentNews($data[$_department->ToPrfxNm(Department::ID_FLD)]))
        ->display('departments.tpl');

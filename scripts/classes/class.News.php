@@ -28,6 +28,7 @@ class News extends EntityURL
 
    const SEE_ALSO_AMOUNT = 3;
    const NEWS_ON_INDEX_PAGE = 4;
+   const NEWS_ON_DEPARTMENT_PAGE = 2;
    const NEWS_ON_ADMIN_PAGE = 20;
 
    private $categories;
@@ -239,7 +240,7 @@ class News extends EntityURL
 
    public function GetAllAmountWithPhoto()
    {
-      $this->CreateSearch()->_NotNullImageClause();
+      $this->CheckSearch()->_NotNullImageClause();
       return $this->GetAllAmount();
    }
 
@@ -294,9 +295,9 @@ class News extends EntityURL
       return $this->GetFieldByName(static::TEXT_HEAD_FLD)->GetValue();
    }
 
-   public function GeneratePages($amount)
+   public function GeneratePages($all_amount, $amount)
    {
-      list($pageNum, $pagesInfo) = _GeneratePages($this->GetAllAmount(), $amount);
+      list($pageNum, $pagesInfo) = _GeneratePages($all_amount, $amount);
       return [$pageNum, $pagesInfo];
    }
 
@@ -341,6 +342,22 @@ class News extends EntityURL
       }
    }
 
+   public function UpdatePhoto($id)
+   {
+      global $db, $_image;
+      try {
+         $db->link->beginTransaction();
+         $__file = $_image->Insert(true);
+         $this->SetFieldByName(News::ID_FLD, $id)->SetFieldByName(News::PHOTO_FLD, $__file);
+         parent::Update();
+         $db->link->commit();
+      } catch (DBException $e) {
+         $db->link->rollback();
+         throw new Exception($e->getMessage());
+      }
+      return $__file;
+   }
+
    public function Update()
    {
       global $db, $_newsDepartments;
@@ -361,7 +378,7 @@ class News extends EntityURL
       }
    }
 
-   public function GetDepartmentNews($department_id, $page = 0)
+   public function CreateDepartmentNewsSearch($department_id)
    {
       $this->CreateSearch()->search->SetJoins([NewsDepartments::TABLE => [null, [static::ID_FLD, NewsDepartments::NEWS_FLD]]]);
       global $_newsDepartments;
@@ -369,7 +386,16 @@ class News extends EntityURL
          CF(NewsDepartments::TABLE, $_newsDepartments->GetFieldByName(NewsDepartments::DEPARTMENT_FLD)),
          CVP($department_id)
       ));
-      return $this->SetSamplingScheme(static::MAIN_SCHEME)->GetNews($page, static::NEWS_ON_INDEX_PAGE);
+      return $this;
+   }
+
+   public function GetDepartmentNews($department_id)
+   {
+      list($curPage, $pagesDesc) = $this->GeneratePages(
+         $this->CreateDepartmentNewsSearch($department_id)->SetSamplingScheme(static::MAIN_SCHEME)->GetAllAmountWithPhoto(),
+         News::NEWS_ON_DEPARTMENT_PAGE
+      );
+      return ['curPage' => $curPage + 1, 'pagesInfo' => $pagesDesc, 'articles' => $this->GetNews($curPage, static::NEWS_ON_DEPARTMENT_PAGE)];
    }
 
    // public function GetNews($category = null)

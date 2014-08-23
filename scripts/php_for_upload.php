@@ -27,18 +27,10 @@ try {
 
       case 'news':
          require_once CLASSES_ROOT . 'class.News.php';
-         if ($request->get('isAvatar', false)) {
+         if (!$request->get('isAvatar', false)) {
             $__file = $_newsImages->SetFieldByName(NewsImages::NEWS_FLD, $item_id)->Insert(true);
          } else {
-            try {
-               $db->link->beginTransaction();
-               $__file = $_image->Insert(true);
-               $_news->SetFieldByName(News::ID_FLD, $item_id)->SetFieldByName(News::PHOTO_FLD, $__file)->Update();
-               $db->link->commit();
-            } catch (DBException $e) {
-               $db->link->rollback();
-               throw new Exception($e->getMessage());
-            }
+            $__file = $_news->UpdatePhoto($item_id);
          }
       break;
 
