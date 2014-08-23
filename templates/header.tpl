@@ -8,7 +8,7 @@
 		<button id="top_send">Отправить заявку</button>
 		<nav>
 			<ul>
-				<li><a href="#">Агенство</a></li><li><a href="#">Услуги</a><ul><li><a href="#">Категория1</a></li><li><a href="#">Категория2</a></li><li><a href="#">Категория3</a></li></ul></li><li><a href="#">Контакты</a></li>
+				<li><a href="#">Агенство</a></li><li><a href="#">Услуги</a><ul>{foreach from=$departments item=d}<li><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></li>{/foreach}</ul></li><li><a href="#">Контакты</a></li>
 			</ul>
 		</nav>
 	</div>

@@ -24,7 +24,7 @@ class Department extends TextsBase
    {
       switch ($this->samplingScheme) {
          case static::MAIN_SCHEME:
-            $fields = SQL::PrepareFieldsForSelect(static::TABLE, [$this->urlField, $this->GetFieldByName(static::TEXT_HEAD_FLD)]);
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, [$this->urlField, $this->urlField, $this->GetFieldByName(static::TEXT_HEAD_FLD)]);
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD));
             break;
 

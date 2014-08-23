@@ -1,13 +1,11 @@
 <?php
 // require_once CLASSES_ROOT . 'class.Texts.php';
 // require_once CLASSES_ROOT . 'class.Slider.php';
-require_once CLASSES_ROOT . 'class.Department.php';
 require_once CLASSES_ROOT . 'class.IndexMeta.php';
 require_once CLASSES_ROOT . 'class.Project.php';
 
 $smarty->assign('meta', $_indexMeta->GetById(IndexMeta::META_ID))
        ->assign('projects', $_project->SetSamplingScheme(Project::MAIN_SCHEME)->GetAll())
-       ->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll())
        // ->assign('sliders',  $_slider->GetAll())
        // ->assign('services', $_service->SetSamplingScheme(Service::MAIN_SCHEME)->GetAll())
        // ->assign('projects', $_texts->SetSamplingScheme(Texts::MAIN_PROJECTS_SCHEME)->GetAll())

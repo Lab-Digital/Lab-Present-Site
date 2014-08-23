@@ -13,3 +13,13 @@ require_once SCRIPTS_ROOT . 'settings.php';
 require_once SCRIPTS_ROOT . 'utils.php';
 
 $request_parts = GetRequestParts($request);
+
+$ds = ['', 'departments', 'news'];
+
+foreach ($ds as $d) {
+   if ($d == $request_parts[0]) {
+      require_once CLASSES_ROOT . 'class.Department.php';
+      $smarty->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll());
+      break;
+   }
+}
