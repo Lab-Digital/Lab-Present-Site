@@ -69,6 +69,15 @@ CREATE TABLE IF NOT EXISTS `departments` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `portfolio` (
+   `id`               INT          NOT NULL AUTO_INCREMENT,
+   `head`             VARCHAR(150) NOT NULL,
+   `avatar_id`        INT          DEFAULT NULL,
+   `description`      TEXT,
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+);
+
 CREATE TABLE IF NOT EXISTS `news_departments` (
    `id`            INT NOT NULL AUTO_INCREMENT,
    `news_id`       INT NOT NULL,

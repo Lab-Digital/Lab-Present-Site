@@ -70,6 +70,12 @@ switch ($request_parts[0]) {
             require_once ADMIN_ROOT . 'admin.news.php';
             break;
 
+         case 'portfolio':
+            require_once CLASSES_ROOT . 'class.Portfolio.php';
+            $smarty->assign($_portfolio->GetPortfolio($_portfolio->GetAllAmount(), Portfolio::ADMIN_AMOUNT))
+                   ->display('admin.portfolio.tpl');
+            break;
+
          case 'projects':
          case 'departments':
             require_once CLASSES_ROOT . 'class.Project.php';
@@ -106,6 +112,11 @@ switch ($request_parts[0]) {
                   require_once ADMIN_ROOT . 'admin.change.news.php';
                   break;
 
+               case 'portfolio':
+                  $smarty->assign('handle_url', 'add/portfolio');
+                  require_once ADMIN_ROOT . 'admin.change.portfolio.php';
+                  break;
+
                default:
                   Redirect(ADMIN_START_PAGE);
                   break;
@@ -129,6 +140,18 @@ switch ($request_parts[0]) {
                   if (empty($data)) Redirect('/admin/add/news');
                   $smarty->assign('article', $data)->assign('handle_url', "edit/$id/news");
                   require_once ADMIN_ROOT . 'admin.change.news.php';
+                  break;
+
+               case 'portfolio':
+                  if ($request_parts[1] == 'delete') {
+                     $request->request->set('id', $id);
+                     $request->request->set('mode', 'Delete');
+                  }
+                  require_once CLASSES_ROOT . 'class.Portfolio.php';
+                  $data = $_portfolio->GetById($id);
+                  if (empty($data)) Redirect('/admin/add/portfolio');
+                  $smarty->assign('portfolio', $data)->assign('handle_url', "edit/$id/portfolio");
+                  require_once ADMIN_ROOT . 'admin.change.portfolio.php';
                   break;
 
                default:

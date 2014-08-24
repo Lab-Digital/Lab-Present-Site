@@ -5,10 +5,19 @@ try {
    $item_id = $request->get('item_id');
    switch ($request->get('uploadType')) {
       case 'projects':
+      case 'portfolio':
       case 'departments':
       require_once CLASSES_ROOT . 'class.Project.php';
+      require_once CLASSES_ROOT . 'class.Portfolio.php';
       require_once CLASSES_ROOT . 'class.Department.php';
-      $obj = $request->get('uploadType') == 'projects' ? $_project : $_department;
+      $uploadType = $request->get('uploadType') == 'projects';
+      if ($uploadType == 'projects') {
+         $obj = $_project;
+      } elseif ($uploadType == 'departments') {
+         $obj = $_department;
+      } else {
+         $obj = $_portfolio;
+      }
       if (!empty($request->get('image_id'))) {
          $_image->Delete($request->get('image_id'));
       }
