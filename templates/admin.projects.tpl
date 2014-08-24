@@ -42,7 +42,7 @@
          <script type="text/javascript">
             $('#choose_item option[value="{$item_id}"]').attr('selected', 'selected');
          </script>
-         <h2>Редактирование проект</h2>
+         <h2>Редактирование проекта</h2>
          {foreach from=$projects item=d name=f}
          <div class="edit">
             <form action="/admin/projects" method="post" class="item_edit" id="item{$d.projects_id}">

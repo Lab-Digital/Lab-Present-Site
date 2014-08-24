@@ -71,6 +71,10 @@ switch ($request_parts[0]) {
             require_once ADMIN_ROOT . 'admin.news.php';
             break;
 
+         case 'slider':
+            require_once ADMIN_ROOT . 'admin.slider.php';
+            break;
+
          case 'portfolio':
             require_once CLASSES_ROOT . 'class.Portfolio.php';
             $smarty->assign($_portfolio->GetPortfolio($_portfolio->GetAllAmount(), Portfolio::ADMIN_AMOUNT))

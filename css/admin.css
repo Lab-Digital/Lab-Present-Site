@@ -13,6 +13,10 @@ header {
 	font-size: 150%;
 }
 
+header ul {
+  margin-bottom: 20px;
+}
+
 header ul li {
 	display: inline-block;
 }
