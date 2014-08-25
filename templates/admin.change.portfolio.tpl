@@ -42,14 +42,16 @@
       </div>
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>
+    {if !$isAdd|default:false}
     <div class="in avatar_in">
        <h1 class="head_upload">Главное фото</h1>
        <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить главное фото</button>
        <ul>
           {if !empty($portfolio.portfolio_avatar_id)}
-             <li><a href="/images/uploads/{$portfolio.portfolio_avatar_id}_b.jpg" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_avatar_id}_s.jpg" /></a><button class="x" data="{$portfolio.portfolio_avatar_id}">x</button></li>
+             <li><a href="/images/uploads/{$portfolio.portfolio_avatar_id.name}_b.{$portfolio.portfolio_avatar_id.ext}" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_avatar_id.name}_s.{$portfolio.portfolio_avatar_id.ext}" /></a><button class="x" data="{$portfolio.portfolio_avatar_id.name}">x</button></li>
           {/if}
        </ul>
     </div>
+    {/if}
   </div>
 {/block}

@@ -14,8 +14,8 @@
       <div class="main_block">
          <div class="left">
             <div class="photo">
-            {if !empty($department.department_photo_id)}
-               <img src="/images/uploads/{$department.department_photo_id}_b.jpg" alt="{$department.department_head}" class="main_photo" />
+            {if !empty($department.departments_photo_id)}
+               <img src="/images/uploads/{$department.departments_photo_id.name}_b.{$department.departments_photo_id.ext}" alt="{$department.department_head}" class="main_photo" />
             {/if}
             </div>
             <button id="portfolio_button">Портфолио</button>
@@ -29,7 +29,7 @@
             <li>
                <article>
                   {if !empty($a.news_photo_id)}
-                     <img src="/images/uploads/{$a.news_photo_id}_b.jpg" alt="{$a.news_head}" class="photo" />
+                     <img src="/images/uploads/{$a.news_photo_id.name}_b.{$a.news_photo_id.ext}" alt="{$a.news_head}" class="photo" />
                   {/if}
                   <h1>{$a.news_head}</h1>
                   <div class="text">{$a.news_description}</div>

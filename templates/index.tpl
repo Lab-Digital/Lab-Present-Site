@@ -52,7 +52,7 @@
    <section class="menu_first">
       <ul>
          {foreach from=$departments item=d}
-            {if !empty($d.departments_avatar_id)}<li><a href="/departments/{$d.departments_url}"><img src="/images/uploads/{$d.departments_avatar_id}_s.jpg" />{$d.departments_head}</a></li>{/if}
+            {if !empty($d.departments_avatar_id)}<li><a href="/departments/{$d.departments_url}"><img src="/images/uploads/{$d.departments_avatar_id.name}_s.{$d.departments_avatar_id.ext}" />{$d.departments_head}</a></li>{/if}
          {/foreach}
       </ul>
    </section>
@@ -69,7 +69,7 @@
    <section class="menu_second">
       <ul>
       {foreach from=$projects item=p}
-      <li><a href="#"><article><img src="/images/uploads/{$p.projects_avatar_id}_s.jpg" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_body}</div></article></a></li>
+      <li><a href="#"><article><img src="/images/uploads/{$p.projects_avatar_id.name}_s.{$p.projects_avatar_id.ext}" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_body}</div></article></a></li>
       {/foreach}
       </ul>
    </section>

@@ -86,7 +86,7 @@
                <button class="upload" type="submit" data="{$d.departments_id}">Загрузить фото</button>
                <ul>
                   {if !empty($d.departments_photo_id)}
-                     <li><a href="/images/uploads/{$d.departments_photo_id}_b.jpg" rel="gallery_{$d.departments_id}"><img src="/images/uploads/{$d.departments_photo_id}_s.jpg" /></a><button class="x" data="{$d.departments_photo_id}">x</button></li>
+                     <li><a href="/images/uploads/{$d.departments_photo_id.name}_b.{$d.departments_photo_id.ext}" rel="gallery_{$d.departments_id}"><img src="/images/uploads/{$d.departments_photo_id.name}_s.{$d.departments_photo_id.ext}" /></a><button class="x" data="{$d.departments_photo_id.name}">x</button></li>
                   {/if}
                </ul>
             </div>
@@ -95,7 +95,7 @@
                <button class="upload" type="submit" data="{$d.departments_id}">Загрузить главное фото</button>
                <ul>
                   {if !empty($d.departments_avatar_id)}
-                     <li><a href="/images/uploads/{$d.departments_avatar_id}_s.jpg"><img src="/images/uploads/{$d.departments_avatar_id}_s.jpg" /></a><button class="x" data="{$d.departments_avatar_id}">x</button></li>
+                     <li><a href="/images/uploads/{$d.departments_avatar_id.name}_s.{$d.departments_avatar_id.ext}"><img src="/images/uploads/{$d.departments_avatar_id.name}_s.{$d.departments_avatar_id.ext}" /></a><button class="x" data="{$d.departments_avatar_id.name}">x</button></li>
                   {/if}
                </ul>
             </div>

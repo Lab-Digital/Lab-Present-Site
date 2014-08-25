@@ -74,7 +74,7 @@
                <button class="upload" type="submit" data="{$d.projects_id}">Загрузить фото</button>
                <ul>
                   {if !empty($d.projects_photo_id)}
-                     <li><a href="/images/uploads/{$d.projects_photo_id}_b.jpg" rel="gallery_{$d.projects_id}"><img src="/images/uploads/{$d.projects_photo_id}_s.jpg" /></a><button class="x" data="{$d.projects_photo_id}">x</button></li>
+                     <li><a href="/images/uploads/{$d.projects_photo_id.name}_b.{$d.projects_photo_id.ext}" rel="gallery_{$d.projects_id}"><img src="/images/uploads/{$d.projects_photo_id.name}_s.{$d.projects_photo_id.ext}" /></a><button class="x" data="{$d.projects_photo_id.name}">x</button></li>
                   {/if}
                </ul>
             </div>*}
@@ -83,7 +83,7 @@
                <button class="upload" type="submit" data="{$d.projects_id}">Загрузить главное фото</button>
                <ul>
                   {if !empty($d.projects_avatar_id)}
-                     <li><a href="/images/uploads/{$d.projects_avatar_id}_s.jpg"><img src="/images/uploads/{$d.projects_avatar_id}_s.jpg" /></a><button class="x" data="{$d.projects_avatar_id}">x</button></li>
+                     <li><a href="/images/uploads/{$d.projects_avatar_id.name}_s.{$d.projects_avatar_id.ext}"><img src="/images/uploads/{$d.projects_avatar_id.name}_s.{$d.projects_avatar_id.ext}" /></a><button class="x" data="{$d.projects_avatar_id.name}">x</button></li>
                   {/if}
                </ul>
             </div>

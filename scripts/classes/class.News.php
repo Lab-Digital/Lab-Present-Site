@@ -151,6 +151,7 @@ class News extends EntityURL
                }
                $set[$catKey] = $a;
             }
+            ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
             break;
       }
       if ($this->samplingScheme == static::MAIN_SCHEME) {
@@ -162,6 +163,9 @@ class News extends EntityURL
             }
          }
          $sample = $a;
+         ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
+      } elseif ($this->samplingScheme == static::ARTICLE_SCHEME) {
+         ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
       }
    }
 
@@ -181,7 +185,6 @@ class News extends EntityURL
                      $this->GetFieldByName(static::TEXT_HEAD_FLD),
                      $this->GetFieldByName(static::TEXT_BODY_FLD),
                      $this->GetFieldByName(static::DESCRIPTION_FLD),
-                     $this->GetFieldByName(static::PHOTO_FLD),
                      $this->GetFieldByName(static::PUBLICATION_DATE_FLD),
                      $this->GetFieldByName(static::TITLE_FLD),
                      $this->GetFieldByName(static::KEYWORDS_FLD),
@@ -230,7 +233,17 @@ class News extends EntityURL
             break;
 
          case static::ADMIN_CHANGE_SCHEME:
-            $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, [
+               $this->idField,
+               $this->urlField,
+               $this->GetFieldByName(static::TEXT_HEAD_FLD),
+               $this->GetFieldByName(static::TEXT_BODY_FLD),
+               $this->GetFieldByName(static::PUBLICATION_DATE_FLD),
+               $this->GetFieldByName(static::TITLE_FLD),
+               $this->GetFieldByName(static::KEYWORDS_FLD),
+               $this->GetFieldByName(static::META_DESCRIPTION_FLD)
+            ]);
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD), false);
             $fields[] = $this->_SelectCategories();
             break;
 

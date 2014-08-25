@@ -46,14 +46,26 @@ class Department extends TextsBase
 
    public function ModifySample(&$sample)
    {
-      if (empty($sample) || $this->samplingScheme != static::ADMIN_NEWS_SCHEME) return $sample;
-      $a = [];
-      $idKey = $this->ToPrfxNm(static::ID_FLD);
-      $headKey = $this->ToPrfxNm(static::TEXT_HEAD_FLD);
-      foreach ($sample as &$set) {
-         $a[$set[$idKey]] = $set[$headKey];
+      if (empty($sample)) return;
+      switch ($this->samplingScheme) {
+         case static::ADMIN_NEWS_SCHEME:
+            $a = [];
+            $idKey = $this->ToPrfxNm(static::ID_FLD);
+            $headKey = $this->ToPrfxNm(static::TEXT_HEAD_FLD);
+            foreach ($sample as &$set) {
+               $a[$set[$idKey]] = $set[$headKey];
+            }
+            $sample = $a;
+            break;
+
+         case static::MAIN_SCHEME:
+            ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
+            break;
+
+         default:
+            ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD), $this->ToPrfxNm(static::AVATAR_FLD)]);
+            break;
       }
-      $sample = $a;
    }
 
    protected function GetURLBase()

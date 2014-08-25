@@ -1,5 +1,5 @@
 <?php
-require_once CLASSES_ROOT . 'class.Entity.php';
+require_once CLASSES_ROOT . 'class.Image.php';
 
 class Portfolio extends Entity
 {
@@ -64,6 +64,21 @@ class Portfolio extends Entity
          'pagesInfo' => $pagesInfo,
          'portfolio' => $this->AddLimit($amount, $pageNum * $amount)->GetAll()
       ];
+   }
+
+   public function SetSelectValues()
+   {
+      $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+      $this->selectFields = SQL::GetListFieldsForSelect(array_merge(
+         $fields,
+         [ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD))]
+      ));
+   }
+
+   public function ModifySample(&$sample)
+   {
+      if (empty($sample)) return $sample;
+      ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
    }
 
 }

@@ -28,10 +28,10 @@ class Image extends Entity
 
    public function DeleteImg($id)
    {
-      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '.jpg');
-      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '_b.jpg');
-      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '_s.jpg');
-      @unlink(SCRIPTS_ROOT . 'uploads/' . $id . '_m.jpg');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '.jpg');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_b.jpg');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_s.jpg');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_m.jpg');
    }
 
    public function Delete($id)
@@ -104,26 +104,37 @@ function ImageSelectSQL($th, $entity, $field)
    );
 }
 
-function ImageWithFlagSelectSQL($table, $field)
+function ImageWithFlagSelectSQL($table, $field, $withFlag = true)
 {
    global $_image;
+   $clause = new Clause(CCond(
+         CF($table, $field),
+         CF(Image::TABLE, $_image->GetFieldByName(Image::ID_FLD))
+   ));
+   if ($withFlag) {
+      $clause->AddClause(CCond(
+         CF(Image::TABLE, $_image->GetFieldByName(Image::IS_RESIZED_FLD)),
+         CVS(1),
+         cAND
+      ));
+   }
    return sprintf(
       "IFNULL((%s), '') as %s",
       SQL::SimpleQuerySelect(
-         $_image->ToTblNm(Image::ID_FLD),
+         sprintf('CONCAT(%s, %s)', $_image->ToTblNm(Image::ID_FLD), $_image->ToTblNm(Image::EXT_FLD)),
          Image::TABLE,
-         new Clause(
-            CCond(
-               CF($table, $field),
-               CF(Image::TABLE, $_image->GetFieldByName(Image::ID_FLD))
-            ),
-            CCond(
-               CF(Image::TABLE, $_image->GetFieldByName(Image::IS_RESIZED_FLD)),
-               CVS(1),
-               'AND'
-            )
-         )
+         $clause
       ),
       SQL::ToPrfxNm($table, $field->GetName())
    );
+}
+
+function ModifySampleWithImage(&$sample, $image_fields)
+{
+   foreach ($sample as &$set) {
+      foreach ($image_fields as $field_name) {
+         $tmp = !empty($set[$field_name]) ? explode('.', $set[$field_name]) : [];
+         $set[$field_name] = !empty($tmp) ? ['name' => $tmp[0], 'ext' => $tmp[1]] : null;
+      }
+   }
 }

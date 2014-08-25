@@ -36,6 +36,12 @@ class Project extends TextsBase
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
    }
 
+   public function ModifySample(&$sample)
+   {
+      if (empty($sample)) return $sample;
+      ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
+   }
+
    protected function GetURLBase()
    {
       return $this->GetFieldByName(static::TEXT_HEAD_FLD)->GetValue();
