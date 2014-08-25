@@ -13,9 +13,9 @@ $(function() {
     name: 'uploadimage',
     data: $data,
     onSubmit: function(file, ext) {
-      if (!(ext && /^(jpg|jpeg)$/.test(ext))) {
+      if (!(ext && /^(jpg|jpeg|png)$/.test(ext))) {
         // extension is not allowed
-        alert('Это разрешение не поддерживается. Только JPG.');
+        alert('Это разрешение не поддерживается. Только JPG и PNG.');
         return false;
       }
     },
@@ -25,9 +25,10 @@ $(function() {
       if ($response.result) {
 
         $data.fileName = $response.file;
-
+        $data.ext = $response.ext;
+        
         $('#upload_photo').hide();
-        $('#resize_photo img.src_image').attr('src', '/images/uploads/' + $response.file + '.jpg');
+        $('#resize_photo img.src_image').attr('src', '/images/uploads/' + $response.file + $response.ext);
 
         $imgWidth = $data.width;
         $imgHeight = $data.height;

@@ -12,8 +12,12 @@ function crop_and_resize ($im, $x1, $y1, $x2, $y2, $new_width, $new_height) {
 }
 
 $image_name   = $request->get('fileName');
-$path         = UPLOAD_DIR . $image_name . '.jpg';
-$im           = imagecreatefromjpeg($path);
+$path         = UPLOAD_DIR . $image_name . $request->get('ext');
+if ($request->get('ext') == '.png') {
+   $im        = imagecreatefrompng($path);
+} else {
+   $im        = imagecreatefromjpeg($path);
+}
 $arr          = getimagesize($path);
 $owner_width  = $arr[0];
 $owner_height = $arr[1];
@@ -43,7 +47,11 @@ foreach ($p_sizes as $size) {
    $n_width = $sizes[1];
    $n_height = $sizes[2];
    $new_img = crop_and_resize($im, $x1, $y1, $x2, $y2, $n_width, $n_height);
-   imagejpeg($new_img, UPLOAD_DIR . $image_name . '_' . $n_name . '.jpg');
+   if ($request->get('ext') == '.png') {
+      imagepng($new_img, UPLOAD_DIR . $image_name . '_' . $n_name . '.png');
+   } else {
+      imagejpeg($new_img, UPLOAD_DIR . $image_name . '_' . $n_name . '.jpg');
+   }
 }
 
 if (isset($after_resize) && $after_resize > 0) {
@@ -60,7 +68,11 @@ if (isset($after_resize) && $after_resize > 0) {
    }
    $big = imagecreatetruecolor($w, $h);
    imagecopyresampled($big, $im, 0, 0, 0, 0, $w, $h, $owner_width, $owner_height);
-   imagejpeg($big, UPLOAD_DIR . $image_name . '_b.jpg');
+   if ($request->get('ext') == '.png') {
+      imagepng($big, UPLOAD_DIR . $image_name . '_b.png');
+   } else {
+      imagejpeg($big, UPLOAD_DIR . $image_name . '_b.jpg');
+   }
 }
 
 

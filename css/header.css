@@ -62,10 +62,10 @@ header nav li a {
 	border-right: 1px white solid;
 	border-bottom: 1px white solid;
 	display: block;
-	height: 26px;
-	padding-top: 8px;
+	min-height: 18px;
+	padding: 8px 10px 8px;
 	text-decoration: none;
-	width: 200px;
+	width: 180px;
 	text-align: center;    
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
