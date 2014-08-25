@@ -43,7 +43,8 @@ switch ($request_parts[0]) {
    case 'handler':
       $possible_handlers = [
          'news'     => HANDLERS_ROOT . 'handler.News.php',
-         'image'    => HANDLERS_ROOT . 'handler.Image.php'
+         'image'    => HANDLERS_ROOT . 'handler.Image.php',
+         'proposal' => HANDLERS_ROOT . 'handler.Proposal.php'
       ];
       if (empty($request_parts[1]) || empty($possible_handlers[$request_parts[1]])) Redirect('/404');
       require_once $possible_handlers[$request_parts[1]];

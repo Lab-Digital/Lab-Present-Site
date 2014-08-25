@@ -14,6 +14,7 @@
 	</div>
 </header>
 <script src="/js/send_send.js"></script>
+<script src="/js/send_to_mail.js"></script>
 <script type="text/javascript">
 	$('header a[data="{$active_item|default:'main'}"]').addClass('active');
 	{literal}
@@ -37,25 +38,25 @@
 </script>
 <div style="display: none">
 	<section id="send_window">
-		<form>
+		<form id="proposal">
 			<div class="main_send_block">
 				<div class="left">
 					<h1>Заявка</h1>
 					<label for="name">Ваше имя:</label>
-					<input id="name" name="name" class="good" />
+					<input id="name" name="name" class="good" class="form-control" />
 					<label for="phone">Контактный телефон:</label>
-					<input id="phone" type="phone" name="phone" class="wrong" />
-					<label for="email">Ваше имя:</label>
-					<input id="email" type="email" name="email" />
+					<input id="phone" type="phone" name="phone" class="form-control" />
+					<label for="email">Ваш e-mail:</label>
+					<input id="email" type="email" name="email" class="form-control" />
 				</div>
 				<div class="right">
 					<ul id="category_choose">
-						<li data="0">BTL</li><li data="1">Интернет</li><li data="2">Производство</li><li data="3">Размещение</li><li data="4">Видео</li><li data="5">Дизайн и креатив</li>
+					{foreach from=$departments item=d}<li data="{$d.departments_id}">{$d.departments_head}</li>{/foreach}
 					</ul>
 					<input type="hidden" id="category" name="category" />
 					<div class="textarea">
 						<label for="text">Текст заявки</label>
-						<textarea id="text" name="text"></textarea>
+						<textarea id="text" name="text" class="form-control"></textarea>
 					</div>
 				</div>
 			</div>

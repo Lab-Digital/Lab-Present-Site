@@ -69,6 +69,19 @@ CREATE TABLE IF NOT EXISTS `departments` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `proposal` (
+   `id`             INT          NOT NULL AUTO_INCREMENT,
+   `name`           VARCHAR(180) NOT NULL,
+   `email`          VARCHAR(180) NOT NULL,
+   `phone`          VARCHAR(32)  NOT NULL,
+   `task`           TEXT         NOT NULL,
+   `is_express`     INT          NOT NULL DEFAULT 0,
+   `department_id`  INT          NOT NULL,
+   CHECK (`is_express` >= 0 AND `is_express` <= 1),
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS `portfolio` (
    `id`               INT          NOT NULL AUTO_INCREMENT,
    `head`             VARCHAR(150) NOT NULL,

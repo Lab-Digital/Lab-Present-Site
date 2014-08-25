@@ -1,120 +1,41 @@
 <?php
-require_once CLASSES_ROOT . 'class.UserForgottenPass.php';
-
 class Mail
 {
-   private $company_site = 'camerapeople.local';
-   private $company_email = 'noreply@camerapeople.ru';
-   private $company_name = 'Camera People';
-   private $company_logo = '<a href="http://camerapeople.com/"><img src="http://camerapeople.com/images/logo.png"></a><br><br>';
-   private $company_signature = '<br><br>-----<br>С уважением, компания <a href="http://camerapeople.com/">Camera People</a><br>info@camerapeople.ru';
+   private $isLocalhost = true;
 
-   private $activation_url = '/activation/';
-   private $isLocalhost = false;
+   const FROM_EMAIL    = 'labdigital@site.ru';
+   const COMPANY_NAME  = 'Lab Digital';
+   const COMPANY_SITE  = 'labdigital.local';
+   const COMPANY_EMAIL = '2lab.digital@gmail.com';
 
-   public function getUniqueSignature($email, $pass)
-   {
-      $parts = explode('@', $email);
-      return substr(base64_encode(md5($pass . md5($parts[1] . 'nologin' . $parts[0]))), 0, 30);
-   }
+   // const COMPANY_LOGO  = '<a href="http://camerapeople.com/"><img src="http://camerapeople.com/images/logo.png"></a><br><br>';
 
    public function compareUniqueSignature($hash, $email, $pass)
    {
       return $hash == $this->getUniqueSignature($email, $pass);
    }
 
-   private function saveToFile($email, $subject, $message)
+   private function saveToFile($to, $subject, $text, $from, $fromName)
    {
-      $filename = $email . '.txt';
-      $file = fopen($_SERVER['DOCUMENT_ROOT'] . "/mails/$filename", "w");
-      $letter =
-          "From: $this->company_site\nSubject: $subject\nTo: $email\n\n$message";
+      $uploaddir = $_SERVER['DOCUMENT_ROOT'] . '/mails/';
+      if (!file_exists($uploaddir)) {
+         mkdir($uploaddir);
+      }
+      $file = fopen($uploaddir . $to . 'txt', "w");
+      $letter = sprintf("To:\t%s\n\nFrom:\t%s\n\nFrom Name:\t%s\n\nSubject:\t%s\n\nText:\t%s\n\n", $to, $from, $fromName, $subject, $text);
       fwrite($file, $letter);
       fclose($file);
    }
 
-   public function sendCustomMail($message, $email)
+   public function SendNewProposalMail($name, $email, $phone, $task)
    {
-      $message['message'] = $this->company_logo . $message['message'] . $this->company_signature;
+      $subject = 'Новая заявка на ' . static::COMPANY_NAME;
+      $message = sprintf("Имя: %s<br>E-mail: %s<br>Телефон: %s<br>Задача: %s<br>", $name, $email, $phone, $task);
       if ($this->isLocalhost) {
-         $this->saveToFile($email, $message['subject'], $message['message']);
+         $this->saveToFile(static::COMPANY_EMAIL, $subject, $message, static::FROM_EMAIL, static::COMPANY_NAME);
       } else {
-         sendEmail($email, $message['subject'], $message['message'], $this->company_email, $this->company_name);
+         sendEmail(static::COMPANY_EMAIL, $subject, $message, static::FROM_EMAIL, static::COMPANY_NAME);
       }
-   }
-
-   public function sendActivationMail($email)
-   {
-      $_user = new User();
-      $result = $_user->SetSamplingScheme(User::EMAIL_SCHEME)->GetByEmail($email);
-      $hash = $this->getUniqueSignature($email, $result[$_user->ToPrfxNm(User::PASS_FLD)]);
-      $message = Array('subject' => '', 'message' => '');
-
-      $message['subject'] = 'Активация аккаунта на ' . $this->company_site;
-      $message['message'] = '<a href="http://' .
-                            $this->company_site .
-                            $this->activation_url .
-                            '?type=activation&hash=' .
-                            $hash .
-                            '&email=' .
-                            $email .
-                            '">Активировать аккаунт</a>';
-
-      self::SendCustomMail($message, $email);
-   }
-
-   public function SendChangeMail($oldEmail, $newEmail)
-   {
-      $_user = new User();
-      $result = $_user->SetSamplingScheme(User::EMAIL_SCHEME)->GetByEmail($oldEmail);
-      $hash = $this->getUniqueSignature($newEmail, $result[$_user->ToPrfxNm(User::PASS_FLD)]);
-
-      $message = Array('subject' => '', 'message' => '');
-
-      $message['subject'] = 'Подтверждение изменения e-mail на ' . $this->company_site;
-      $message['message'] = 'Подтверждение изменения e-mail на <a href="http://' .
-                            $this->company_site .
-                            '/">' .
-                            $this->company_site .
-                            '</a>' .
-                            '<br><a href="http://' .
-                            $this->company_site .
-                            $this->activation_url .
-                            '?type=change_email&hash=' .
-                            $hash .
-                            '&old_email=' .
-                            $oldEmail .
-                            '&new_email=' . $newEmail .
-                            '">Ссылка</a> для подтверждения смены e-mail.';
-
-      self::sendCustomMail($message, $newEmail);
-   }
-
-   public function SendForgottenPassMail($email, $pass)
-   {
-      global $_userFPass;
-      $result = $_userFPass->GetByEmail($email);
-      $hash = $this->getUniqueSignature($email, $result[$_userFPass->ToPrfxNm(UserForgottenPass::PASS_FLD)]);
-      $message = Array('subject' => '', 'message' => '');
-
-      $message['subject'] = 'Подтверждение изменения e-mail на ' . $this->company_site;
-      $message['message'] = 'Восстановление пароля на <a href="http://' .
-                            $this->company_site .
-                            '/">' .
-                            $this->company_site .
-                            '</a>' .
-                            '<br>Новый пароль:' .
-                            $pass .
-                            '<br><a href="http://' .
-                            $this->company_site .
-                            $this->activation_url .
-                            '?type=forgotten_pass&hash=' .
-                            $hash .
-                            '&email=' .
-                            $email .
-                            '">Принять новый пароль</a>';
-
-      self::SendCustomMail($message, $email);
    }
 }
 
@@ -130,7 +51,7 @@ function SendEmail($to, $subject, $text, $from, $fromName)
    $mail->send();
 }
 
-class mailer
+class Mailer
 {
    var $priority = 3;
    var $charSet = "utf-8";

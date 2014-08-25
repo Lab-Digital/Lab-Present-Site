@@ -12,6 +12,7 @@ define('ERROR_LOGIN', 'Неверное имя пользователя или �
 define('ERROR_PASS', 'Неверный пароль.');
 define('ERROR_CONTACT_PHONE', 'Введен неверный номер телефона.');
 define('INCORRECT_MAIL', 'Введен неверный e-mail.');
+define('INCORRECT_DEPARTMENT', 'Неверно указан отдел.');
 
 //database consts
 define('opEQ', '=');
