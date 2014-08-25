@@ -3,7 +3,9 @@ require_once CLASSES_ROOT . 'class.Entity.php';
 
 class Image extends Entity
 {
+   const EXT_FLD        = 'ext';
    const IS_RESIZED_FLD = 'is_resized';
+
    const TABLE = 'images';
 
    public function __construct()
@@ -15,7 +17,12 @@ class Image extends Entity
             static::IS_RESIZED_FLD,
             IntType(),
             true
-         )
+         ),
+         new Field(
+            static::EXT_FLD,
+            StrType(5),
+            true
+         ),
       );
    }
 

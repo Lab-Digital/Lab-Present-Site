@@ -23,7 +23,7 @@ try {
       }
       try {
          $db->link->beginTransaction();
-         $__file = $_image->Insert(true);
+         $__file = $_image->SetFieldByName(Image::EXT_FLD, $ext)->Insert(true);
          $obj->SetFieldByName($obj::ID_FLD, $item_id)
              ->SetFieldByName($request->get('isAvatar', false) ? $obj::AVATAR_FLD : $obj::PHOTO_FLD, $__file)
              ->Update();
@@ -37,6 +37,7 @@ try {
       case 'news':
          require_once CLASSES_ROOT . 'class.News.php';
          if (!$request->get('isAvatar', false)) {
+            $_image->SetFieldByName(Image::EXT_FLD, $ext);
             $__file = $_newsImages->SetFieldByName(NewsImages::NEWS_FLD, $item_id)->Insert(true);
          } else {
             $__file = $_news->UpdatePhoto($item_id);

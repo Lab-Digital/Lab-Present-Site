@@ -8,8 +8,9 @@ ON `lab_present`.*
 TO `lab_db_user`@localhost IDENTIFIED BY 'lab_db_user_password';
 
 CREATE TABLE IF NOT EXISTS `images` (
-   `id`         INT(11)    NOT NULL AUTO_INCREMENT,
-   `is_resized` TINYINT(4) NOT NULL DEFAULT 0,
+   `id`         INT(11)     NOT NULL AUTO_INCREMENT,
+   `ext`        VARCHAR(5)  NOT NULL,
+   `is_resized` TINYINT(4)  NOT NULL DEFAULT 0,
    PRIMARY KEY (`id`)
 );
 

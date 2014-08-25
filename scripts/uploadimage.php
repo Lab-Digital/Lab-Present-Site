@@ -10,7 +10,7 @@ $ajaxResult = Array('result' => true, 'message' => 'Загрузка прошл�
 $__file = null;
 
 try {
-   
+
    if (!in_array($ext, $filetypes)) {
       throw new Exception('Это разрешение не поддерживается. Только JPG и PNG.');
    }
