@@ -10,7 +10,7 @@ try {
       require_once CLASSES_ROOT . 'class.Project.php';
       require_once CLASSES_ROOT . 'class.Portfolio.php';
       require_once CLASSES_ROOT . 'class.Department.php';
-      $uploadType = $request->get('uploadType') == 'projects';
+      $uploadType = $request->get('uploadType');
       if ($uploadType == 'projects') {
          $obj = $_project;
       } elseif ($uploadType == 'departments') {

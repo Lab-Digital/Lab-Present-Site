@@ -18,7 +18,7 @@
       <small class="info">Минимальная ширина: <span class="_width"></span> пикс., минимальная высота: <span class="_height"></span> пикс., максимальный размер: <span class="_size"></span> Мб</small>
     </section>
     <section id="resize_photo">
-      <img class="src_image" src="/scripts/uploads/72.jpg" />
+      <img class="src_image" src="#" />
       <small class="info">Выделите область фотографии чтобы обрезать её до нужных размеров</small>
       <button class="go_end">Сохранить</button>
     </section>
