@@ -1,0 +1,45 @@
+div.wrap_resume {
+	padding: 0 20px;
+}
+
+div.wrap_resume div.lineh1 {
+	margin: 30px 0 40px;
+}
+
+div.wrap_resume div.lineh1 h1 {
+	font-size: 150%;
+	text-align: center;
+} 
+
+.bx-pager {
+	display: none !important;
+}
+
+ul.bxslider > li {
+	border-top: 1px #cdcdcd solid;
+	border-bottom: 1px #cdcdcd solid;	
+	height: 695px !important;
+}
+
+ul.bxslider > li article.slider_text {
+	padding: 60px 50px;
+	width: 555px;
+	display: inline-block;
+	vertical-align: top;
+	background: #f9f9f9;
+}
+
+ul.bxslider > li article.slider_text div.text {
+	margin-left: 17px;
+	line-height: 1.5 !important;
+	font-size: 90%;
+}
+
+ul.bxslider > li article.slider_text h1 {
+	margin-bottom: 50px;
+	font-size: 180%;
+}
+
+ul.bxslider > li img {
+	display: inline-block;
+}
