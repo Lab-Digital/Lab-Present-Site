@@ -343,9 +343,11 @@ class News extends EntityURL
          $db->link->beginTransaction();
          $id = parent::Insert(true);
          $_newsDepartments->SetFieldByName(NewsDepartments::NEWS_FLD, $id);
-         foreach ($this->categories as $category => $value) {
-            if ($value) {
-               $_newsDepartments->SetFieldByName(NewsDepartments::DEPARTMENT_FLD, $category)->Insert();
+         if (!empty($this->categories)) {
+            foreach ($this->categories as $category => $value) {
+               if ($value) {
+                  $_newsDepartments->SetFieldByName(NewsDepartments::DEPARTMENT_FLD, $category)->Insert();
+               }
             }
          }
          $db->link->commit();

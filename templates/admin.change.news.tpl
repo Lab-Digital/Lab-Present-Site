@@ -14,10 +14,10 @@
             'uploadType'  : 'news',
             'isAvatar'    : 'true',
             'item_id'     :  $data,
-            'width'       : '235',
-            'height'      : '135',
+            'width'       : '900',
+            'height'      : '300',
             'count'       : '1',
-            'sizes'       : 's#235#145'
+            'sizes'       : 's#150#150,b#900#300'
          });
       });
       $('div.avatar_in a').fancybox();
@@ -66,14 +66,16 @@
       </div>
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>
-    <div class="in avatar_in">
-       <h1 class="head_upload">Главное фото</h1>
-       <button class="upload" type="submit" data="{$article.news_id}">Загрузить главное фото</button>
-       <ul>
-          {if !empty($article.news_photo_id)}
-             <li><a href="/images/uploads/{$article.news_photo_id.name}_b.{$article.news_photo_id.ext}" rel="gallery_{$article.news_id}"><img src="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}" /></a><button class="x" data="{$article.news_photo_id.name}">x</button></li>
-          {/if}
-       </ul>
-    </div>
+    {if !$isAdd|default:false}
+      <div class="in avatar_in">
+         <h1 class="head_upload">Главное фото</h1>
+         <button class="upload" type="submit" data="{$article.news_id}">Загрузить главное фото</button>
+         <ul>
+            {if !empty($article.news_photo_id)}
+               <li><a href="/images/uploads/{$article.news_photo_id.name}_b.{$article.news_photo_id.ext}" rel="gallery_{$article.news_id}"><img src="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}" /></a><button class="x" data="{$article.news_photo_id.name}">x</button></li>
+            {/if}
+         </ul>
+      </div>
+    {/if}
   </div>
 {/block}

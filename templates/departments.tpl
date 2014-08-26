@@ -15,13 +15,16 @@
          <div class="left">
             <div class="photo">
             {if !empty($department.departments_photo_id)}
-               <img src="/images/uploads/{$department.departments_photo_id.name}_b.{$department.departments_photo_id.ext}" alt="{$department.department_head}" class="main_photo" />
+               <img src="/images/uploads/{$department.departments_photo_id.name}_s.{$department.departments_photo_id.ext}" alt="{$department.departments_head}" class="main_photo" />
             {/if}
             </div>
             <button id="portfolio_button">Портфолио</button>
             <button id="send_parts_button">Отправить заявку</button>
          </div>
-         <article class="text">{$department.departments_body}</article>
+         <article class="text">
+          <h1>{$department.departments_head}</h1>
+          {$department.departments_body}
+         </article>
       </div>
       <div class="watch_other">
          <ul>

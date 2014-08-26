@@ -3,10 +3,16 @@ use Symfony\Component\HttpFoundation\Response;
 $response = new Response('', Response::HTTP_NOT_FOUND, ['Content-Type' => 'application/json']);
 
 $ajaxResult = ['result' => true];
-function crop_and_resize ($im, $x1, $y1, $x2, $y2, $new_width, $new_height) {
+
+function crop_and_resize ($im, $is_png, $x1, $y1, $x2, $y2, $new_width, $new_height) {
    $im_w = abs($x1 - $x2);
    $im_h = abs($y1 - $y2);
    $new_img = imagecreatetruecolor($new_width, $new_height);
+   if ($is_png) {
+      imagealphablending($new_img, false);
+      imagesavealpha($new_img, true);
+      imagecolortransparent($new_img, imagecolorallocate($new_img, 0, 0, 0));
+   }
    imagecopyresampled($new_img, $im, 0, 0, $x1, $y1, $new_width, $new_height, $im_w, $im_h);
    return $new_img;
 }
@@ -46,7 +52,7 @@ foreach ($p_sizes as $size) {
    $n_name = $sizes[0];
    $n_width = $sizes[1];
    $n_height = $sizes[2];
-   $new_img = crop_and_resize($im, $x1, $y1, $x2, $y2, $n_width, $n_height);
+   $new_img = crop_and_resize($im, $request->get('ext') == '.png', $x1, $y1, $x2, $y2, $n_width, $n_height);
    if ($request->get('ext') == '.png') {
       imagepng($new_img, UPLOAD_DIR . $image_name . '_' . $n_name . '.png');
    } else {

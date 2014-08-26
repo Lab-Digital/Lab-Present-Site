@@ -8,7 +8,7 @@
   <script src="/upload_photo/js/imgareaselect.js"></script>
   <script src="/upload_photo/js/upload_photo.js"></script>
   <script>
-    window.referer = '{$referer}';
+    window.referer = '{$referer}'.split('/?', 1);
   </script>
 {/block}
 {block name='page'}

@@ -16,9 +16,9 @@
             'isAvatar'    : 'true',
             'item_id'     :  $data,
             'width'       : '235',
-            'height'      : '135',
+            'height'      : '140',
             'count'       : '1',
-            'sizes'       : 's#235#145'
+            'sizes'       : 's#235#140'
          });
       });
       $('div.photos_in button.upload').each(function(){
@@ -26,11 +26,10 @@
          $(this).getUpload({
             'uploadType'  : 'departments',
             'item_id'     :  $data,
-            'width'       : '300',
-            'height'      : '200',
+            'width'       : '375',
+            'height'      : '385',
             'count'       : '1',
-            'afterResize' : '700',
-            'sizes'       : 's#300#200'
+            'sizes'       : 's#375#385'
          });
       });
       $('a[rel^="gallery"]').fancybox();
@@ -45,7 +44,7 @@
    {if isset($error_txt)}<p class="db_error">{$error_txt}</p>{/if}
    <div class="right_block">
       {if $departments|@count}
-         <label for="choose">Выберите отдел</label>
+         <label for="choose_item">Выберите отдел</label>
          <select id="choose_item">
             {foreach from=$departments item=d}
                <option value="{$d.departments_id}">{$d.departments_head}</option>

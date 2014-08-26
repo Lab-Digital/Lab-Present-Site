@@ -4,6 +4,11 @@
   margin: 20px auto !important;
 }
 
+button.table_top_button {
+  margin-bottom: 25px;
+  display: block;
+}
+
 button {
   padding: 10px 15px;
 }
@@ -111,6 +116,14 @@ div.in h1.head_upload {
 	font-weight: bold;
 }
 
+#nav_num {
+  margin-top: 25px;
+}
+
+#nav_num a {
+  margin: 5px;
+}
+
 /*----table----*/
 
 table {
@@ -123,7 +136,7 @@ table {
 
 table td {
    text-align: left;
-   padding: 5px 7px;
+   padding: 10px 17px;
    vertical-align: middle;
    border: 1px #ddd solid;
    border-left: 0;
@@ -135,14 +148,19 @@ table tr:hover {
 }
 
 table tr.head {
-   background: transparent !important;
+  background: transparent !important;
 }
 
 table tr.head td {
-   font-weight: bold;
+  font-weight: bold;
 }
 
-table > button.delete, table > button.edit {
+table td span.li {
+  display: block;
+  margin-bottom: 5px;
+}
+
+table button.delete, table button.edit {
   width: 25px;
   height: 25px;
   cursor: pointer;
@@ -162,11 +180,11 @@ table button.delete {
   border: 1px #ff3a31 solid;
 }
 
-table > button.edit:hover {
+table button.edit:hover {
   background-color: #1C546C;
 }
 
-table > button.delete:hover {
+table button.delete:hover {
   background-color: #ae0e0e;
 }
 

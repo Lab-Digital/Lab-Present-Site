@@ -17,6 +17,7 @@ div.main_block div.left div.photo img {
 }
 
 #portfolio_button {
+	font-size: 130%;
 	height: 46px;
 	width: 375px;
 	background: #838383;
@@ -25,11 +26,17 @@ div.main_block div.left div.photo img {
 }
 
 #send_parts_button {
+	font-size: 130%;
 	height: 46px;
 	width: 375px;
 	display: block;
 	background: #54c40e;
 	margin-top: 13px;
+}
+
+div.main_block article.text h1 {
+	font-size: 180%;
+	margin-bottom: 40px;
 }
 
 div.main_block article.text {
