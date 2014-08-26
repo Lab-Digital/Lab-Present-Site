@@ -7,6 +7,7 @@
 	<link href="/css/footer.css" rel="stylesheet" />
 	<link href="/css/index.css" rel="stylesheet" />
 	<link href="/css/forms.css" rel="stylesheet" />
+  <link href="/css/upload_photos.css" rel="stylesheet" />
    <link href="/css/jquery.bxslider.css" rel="stylesheet" />
    <script src="/js/jquery.bxslider.js"></script>
    <script src="/js/news.js"></script>

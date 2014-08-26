@@ -102,6 +102,10 @@
 	font-weight: bold;
 }
 
+#send_window div.buttons input {
+	display:none;
+}
+
 #add_file {
 	background: #aaaaaa;
 }
@@ -110,33 +114,45 @@
 	background: #7bc34c;
 }
 
-#send_window div.files_send_block table {
+#send_window div.files_send_block table.attachments {
 	width: 100%;
 }
 
-#send_window div.files_send_block table tr td {
+#send_window div.files_send_block table.attachments tr td {
 	height: 30px;
 }
 
-#send_window div.files_send_block table tr td.num {
+#send_window div.files_send_block table.attachments tr td.num {
 	width: 88px;
 	text-align: center;
 	background: #424242;
 	color: white;
 }
 
-#send_window div.files_send_block table tr td.name {
+#send_window div.files_send_block table.attachments tr td.name {
 	background: #e4e4e4;
 	padding-left: 34px;
 }
 
-#send_window div.files_send_block table tr td.delete {
+#send_window div.files_send_block table.attachments tr td.delete {
 	width: 128px;
 	background: #aaaaaa;
 	text-align: center;
 	color: white;
 }
 
-#send_window div.files_send_block table tr td.delete:hover {
+#send_window div.files_send_block table.attachments tr td.delete:hover {
 	background: #d94245;
+}
+
+#send_window div.files_send_block table.attachments tr input.file_input {
+	display:none;
+}
+
+#send_window div.files_send_block table.attachments tr.inactive {
+	visibility:hidden;
+}
+
+#send_window div.files_send_block table.attachments tr.active {
+	visibility:visible;
 }

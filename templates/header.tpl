@@ -24,9 +24,9 @@
 				href       : '#send_window',
 				autoCenter : false
 			}
-		], 
+		],
 			{
-				'autoDimensions'  : false,
+				'autoDimensions'  : true,
 				'width'           : 886,
 				'height'          : 'auto',
 				'transitionIn'    : 'none',
@@ -62,27 +62,14 @@
 			</div>
 			<div class="buttons">
 				<button id="add_file" type="button">Прикрепить</button>
+				<input  id="fake_input" type="file">
 				<button id="send_send" type="sumbit">Отправить</button>
 			</div>
+			<div class="files_send_block">
+				<table class="attachments">
+				</table>
+			</div>
 		</form>
-		<div class="files_send_block">
-			<table>
-				<tr>
-					<td class="num">1</td>
-					<td class="name">Имя номер 1</td>
-					<td class="delete" data="0">Удалить</td>
-				</tr>
-				<tr>
-					<td class="num">2</td>
-					<td class="name">Имя номер 2</td>
-					<td class="delete" data="1">Удалить</td>
-				</tr>
-				<tr>
-					<td class="num">3</td>
-					<td class="name">Имя номер 3</td>
-					<td class="delete" data="2">Удалить</td>
-				</tr>
-			</table>
-		</div>
+
 	</section>
 </div>
