@@ -1,0 +1,55 @@
+div.wrap_news {
+	padding: 0 20px;
+}
+
+div.wrap_news div.lineh1 {
+	margin: 30px 0 40px;
+	background: url('/images/blackline.jpg') center center repeat-x;
+	text-align: center;
+}
+
+div.wrap_news div.lineh1 h1 {
+	font-size: 280%;
+	display: inline-block;
+	background: white;
+	padding: 0 12px;
+} 
+
+ul.news {
+	margin-top: 50px;
+}
+
+ul.news li {
+	margin-bottom: 18px;
+}
+
+ul.news li article {
+	height: 270px;
+	position: relative;
+}
+
+ul.news li article img {
+	width: 560px;
+	height: 270px;
+	float: left;
+	border: 1px black solid;
+	margin-right: 18px;
+}
+
+ul.news li article h1 {
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+ul.news li article a.go {
+	display: block;
+	color: #a6a6a6;
+}
+
+ul.news li article time {
+	display: block;
+	position: absolute;
+	bottom: 10px;
+	left: 578px;
+	color: #a6a6a6;
+}

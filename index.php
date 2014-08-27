@@ -19,6 +19,10 @@ switch ($request_parts[0]) {
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/resume.php';
       break;
 
+   case 'allnews':
+      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/allnews.php';
+      break;
+
    case 'news':
       if (empty($request_parts[1])) Redirect('/#news');
       require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';

@@ -4,11 +4,15 @@ div.wrap_resume {
 
 div.wrap_resume div.lineh1 {
 	margin: 30px 0 40px;
+	background: url('/images/blackline.jpg') center center repeat-x;
+	text-align: center;
 }
 
 div.wrap_resume div.lineh1 h1 {
-	font-size: 150%;
-	text-align: center;
+	font-size: 280%;
+	display: inline-block;
+	background: white;
+	padding: 0 12px;
 } 
 
 .bx-pager {
