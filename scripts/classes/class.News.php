@@ -33,6 +33,7 @@ class News extends EntityURL
    const NEWS_ON_INDEX_PAGE = 4;
    const NEWS_ON_DEPARTMENT_PAGE = 2;
    const NEWS_ON_ADMIN_PAGE = 20;
+   const NEWS_ON_ALLNEWS_PAGE = 5;
 
    private $categories;
 
@@ -289,9 +290,10 @@ class News extends EntityURL
       $this->selectFields = SQL::GetListFieldsForSelect($fields);
    }
 
-   public function GetAllAmountWithPhoto()
+   public function GetAllAmountWithPhoto($field = null)
    {
-      $this->CheckSearch()->_NotNullImageClause();
+      $field = !empty($field) ? $field : static::PHOTO_FLD;
+      $this->CheckSearch()->_NotNullImageClause($field);
       return $this->GetAllAmount();
    }
 
@@ -445,10 +447,19 @@ class News extends EntityURL
    public function GetDepartmentNews($department_id)
    {
       list($curPage, $pagesDesc) = $this->GeneratePages(
-         $this->CreateDepartmentNewsSearch($department_id)->SetSamplingScheme(static::MAIN_SCHEME)->GetAllAmountWithPhoto(),
+         $this->CreateDepartmentNewsSearch($department_id)->SetSamplingScheme(static::WATH_OTHER_SCHEME)->GetAllAmountWithPhoto(static::OTHER_PHOTO_FLD),
          News::NEWS_ON_DEPARTMENT_PAGE
       );
       return ['curPage' => $curPage + 1, 'pagesInfo' => $pagesDesc, 'articles' => $this->GetNews($curPage, static::NEWS_ON_DEPARTMENT_PAGE)];
+   }
+
+   public function GetAllNews()
+   {
+      list($curPage, $pagesDesc) = $this->GeneratePages(
+         $this->SetSamplingScheme(static::WATH_OTHER_SCHEME)->GetAllAmountWithPhoto(static::OTHER_PHOTO_FLD),
+         News::NEWS_ON_ALLNEWS_PAGE
+      );
+      return ['curPage' => $curPage + 1, 'pagesInfo' => $pagesDesc, 'articles' => $this->GetNews($curPage, static::NEWS_ON_ALLNEWS_PAGE)];
    }
 
    // public function GetNews($category = null)

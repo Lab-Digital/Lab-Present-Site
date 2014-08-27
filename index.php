@@ -12,28 +12,30 @@ switch ($request_parts[0]) {
       break;
 
    case 'departments':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/departments.php';
+      require_once SCRIPTS_ROOT . 'departments.php';
       break;
 
    case 'resume':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/resume.php';
-      break;
-
-   case 'allnews':
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/allnews.php';
+      require_once SCRIPTS_ROOT . 'resume.php';
       break;
 
    case 'news':
-      if (empty($request_parts[1])) Redirect('/#news');
-      require_once $_SERVER['DOCUMENT_ROOT'] . '/scripts/classes/class.News.php';
-      $data = $_news->SetSamplingScheme(News::ARTICLE_SCHEME)->GetByURL($request_parts[1]);
-      if (empty($data)) Redirect('/#news');
-      $smarty->assign('article', $data)
-             ->assign(
-                  'other_articles',
-                  $_news->GetOtherNews($data[$_news->ToPrfxNm(News::ID_FLD)], $data[$_news->ToPrfxNm(News::CATEGORIES_FLD)]
-               )
-             )->display('news.tpl');
+      require_once CLASSES_ROOT . 'class.News.php';
+      if (empty($request_parts[1])) {
+         require_once CLASSES_ROOT . 'class.IndexMeta.php';
+         $smarty->assign($_news->GetAllNews())
+                ->assign('meta', $_indexMeta->GetById(IndexMeta::META_ID))
+                ->display('allnews.tpl');
+      } else {
+         $data = $_news->SetSamplingScheme(News::ARTICLE_SCHEME)->GetByURL($request_parts[1]);
+         if (empty($data)) Redirect('/#news');
+         $smarty->assign('article', $data)
+                ->assign(
+                     'other_articles',
+                     $_news->GetOtherNews($data[$_news->ToPrfxNm(News::ID_FLD)], $data[$_news->ToPrfxNm(News::CATEGORIES_FLD)]
+                  )
+                )->display('news.tpl');
+      }
       break;
 
    case 'uploadphoto':

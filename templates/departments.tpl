@@ -31,8 +31,8 @@
          {foreach from=$articles item=a}
             <li>
                <article>
-                  {if !empty($a.news_photo_id)}
-                     <img src="/images/uploads/{$a.news_photo_id.name}_b.{$a.news_photo_id.ext}" alt="{$a.news_head}" class="photo" />
+                  {if !empty($a.news_other_photo_id)}
+                     <img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" alt="{$a.news_head}" class="photo" />
                   {/if}
                   <h1>{$a.news_head}</h1>
                   <div class="text">{$a.news_description}</div>
