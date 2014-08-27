@@ -12,6 +12,7 @@ class Proposal extends Entity
    const PHONE_FLD      = 'phone';
    const EXPRESS_FLD    = 'is_express';
    const DEPARTMENT_FLD = 'department_id';
+   const ZIP_FLD        = 'zip_name';
 
    const TABLE = 'proposal';
 
@@ -59,13 +60,18 @@ class Proposal extends Entity
             static::EXPRESS_FLD,
             IntType(),
             true
+         ),
+         new Field(
+            static::ZIP_FLD,
+            TextType(),
+            true,
+            'Прикрепления'
          )
       );
    }
 
    public function Insert($getLastInsertId = false)
    {
-
       global $db;
       list($names, $params) = $this->SetChangeParams();
       $query = SQL::GetInsertQuery(static::TABLE, $names);

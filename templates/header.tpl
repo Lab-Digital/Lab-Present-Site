@@ -15,6 +15,7 @@
 </header>
 <script src="/js/send_send.js"></script>
 <script src="/js/send_to_mail.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
 <script type="text/javascript">
 	$('header a[data="{$active_item|default:'main'}"]').addClass('active');
 	{literal}
@@ -38,7 +39,7 @@
 </script>
 <div style="display: none">
 	<section id="send_window">
-		<form id="proposal">
+		<form id="proposal" action="handler/proposal" method="post" enctype=multipart/form-data>
 			<div class="main_send_block">
 				<div class="left">
 					<h1>Заявка</h1>
@@ -48,6 +49,8 @@
 					<input id="phone" type="phone" name="phone" class="form-control" />
 					<label for="email">Ваш e-mail:</label>
 					<input id="email" type="email" name="email" class="form-control" />
+					<input id="params" type="hidden" name="params" class="form-control" />
+					<input id="mode" type="hidden" name="mode" class="form-control" />
 				</div>
 				<div class="right">
 					<ul id="category_choose">

@@ -1,19 +1,69 @@
 var rowcnt = 0;
 $(function(){
-   function deleteRow(num, tbody) {
-      var row = document.getElementById('row' + num);
-      if (row) {
-         tbody.removeChild(row);
-      }
+
+   function deleteRow(num) {
+      $('#row' + num).remove();
       for (var j = num + 1; j <= rowcnt; j++) {
          var new_num = j - 1;
-         var row = document.getElementById('row' + j);
-         row.setAttribute('id', 'row' + new_num);
-         row.firstChild.innerHTML = new_num;
+         var row = $('#row' + j);
+         row.attr('id', 'row' + new_num);
+         row.children(":first").html(new_num);
       }
       rowcnt--;
       $.fancybox.center();
    }
+
+   var options = {
+      beforeSend: function() {
+         $('#proposal').find('#mode').val("Insert");
+         // console.log($('#proposal').find('#mode').val());
+      },
+      uploadProgress: function(event, position, total, percentComplete) {
+         console.log('upload progress');
+      },
+      success: function() {
+         console.log('success');
+      },
+      complete: function(response) {
+         console.log('complete');
+         console.log(JSON.stringify(response));
+         console.log(response.responseText);
+         var data = $.parseJSON(response.responseText);
+
+         if (data.result) {
+            $('#category_choose li').removeClass('active');
+            $('#send_window').find('.form-control').each(function() {
+               $(this).val('');
+            });
+            while (rowcnt > 0) {
+               deleteRow(rowcnt);
+            }
+            $.fancybox(
+               '<span style="color: green; font-weight: bold; display: block; margin: 30px;">Заявка отправлена! Спасибо!</span>',
+               {
+                  'autoDimensions'  : false,
+                  'width'           : 360,
+                  'height'          : 'auto',
+                  'transitionIn'    : 'none',
+                  'transitionOut'   : 'none'
+               }
+            );
+         } else {
+           $.fancybox(
+               '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + data.message + '</span>',
+               {
+                  'autoDimensions'  : false,
+                  'width'           : 360,
+                  'height'          : 'auto',
+                  'transitionIn'    : 'none',
+                  'transitionOut'   : 'none'
+               }
+            );
+         }
+      }
+   };
+
+   $('#proposal').ajaxForm(options);
 
    function fakeInputChange() {
       rowcnt++;
@@ -32,15 +82,13 @@ $(function(){
       }
 
       cells[2].onclick = function() {
-         deleteRow(
-            parseInt(cells[2].parentNode.firstChild.innerHTML),
-            cells[2].parentNode.parentNode
-         );
+         deleteRow(parseInt(cells[2].parentNode.firstChild.innerHTML));
       };
       var parent = $(this).parent();
       $(this).appendTo(row);
       $(this).toggleClass("file_input");
       $(this).attr('id', 'fi' + rowcnt);
+      $(this).attr('name', 'fi' + rowcnt);
       $(this).onchange = function() {
          var fileName = document.getElementById("fi" + rowcnt).value;
          if (fileName) {
@@ -61,52 +109,5 @@ $(function(){
 
    $('#add_file').click(function() {
       $('#fake_input').click();
-   });
-   $('#send_send').click(function() {
-      $form = $('#proposal');
-      $.post(
-         "/handler/proposal",
-         {
-            mode: 'Insert',
-            params: {
-                  name: $form.find('#name').val(),
-                  email: $form.find('#email').val(),
-                  phone: $form.find('#phone').val(),
-                  task: $form.find('#text').val(),
-                  department_id: $form.find('#category').val()
-            }
-         },
-         function(data) {
-            if (data.result) {
-               $('#category_choose li').removeClass('active');
-               $form.find('.form-control').each(function() {
-                  $(this).val('');
-               });
-               $.fancybox(
-                  '<span style="color: green; font-weight: bold; display: block; margin: 30px;">Заявка отправлена! Спасибо!</span>',
-                  {
-                     'autoDimensions'  : false,
-                     'width'           : 360,
-                     'height'          : 'auto',
-                     'transitionIn'    : 'none',
-                     'transitionOut'   : 'none'
-                  }
-               );
-            } else {
-              $.fancybox(
-                  '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + data.message + '</span>',
-                  {
-                     'autoDimensions'  : false,
-                     'width'           : 360,
-                     'height'          : 'auto',
-                     'transitionIn'    : 'none',
-                     'transitionOut'   : 'none'
-                  }
-               );
-            }
-         },
-         "json"
-      );
-      return false;
    });
 });
