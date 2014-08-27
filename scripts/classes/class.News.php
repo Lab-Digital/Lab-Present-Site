@@ -278,7 +278,8 @@ class News extends EntityURL
                $this->GetFieldByName(static::PUBLICATION_DATE_FLD),
                $this->GetFieldByName(static::TITLE_FLD),
                $this->GetFieldByName(static::KEYWORDS_FLD),
-               $this->GetFieldByName(static::META_DESCRIPTION_FLD)
+               $this->GetFieldByName(static::META_DESCRIPTION_FLD),
+               $this->GetFieldByName(static::DESCRIPTION_FLD)
             ]);
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::BIG_PHOTO_FLD));

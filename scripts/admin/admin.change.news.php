@@ -12,7 +12,7 @@ if ($request->get('mode')) {
    $vars['mtitle']       = $request->get('title');
    $vars['mkeywords']    = $request->get('keywords');
    $vars['mdescription'] = $request->get('description');
-   HandleAdminData($_news->SetCategories($request->get('categories')), [
+   HandleAdminData($_news->SetCategories($request->get('categories', [])), [
       'mode'   => $request->get('mode'),
       'params' => [
          News::ID_FLD               => $request->get('id'),
