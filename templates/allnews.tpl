@@ -29,7 +29,7 @@
         </ul>
         {*{if $pagesInfo.amount > 0}
             <div id="nav_num">
-                {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<button class="{if $curPage == $t}active{/if}" onClick="javascript:location.assign('/departments/{$department.departments_url}/?page={$t}')">{$t}</button>{/if}{/foreach}
+                {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<a class="{if $curPage == $t}active{/if}" href="/departments/{$department.departments_url}/?page={$t}">{$t}</a>{/if}{/foreach}
             </div>
         {/if}*}
     </div>
