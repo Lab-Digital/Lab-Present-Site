@@ -21,7 +21,6 @@
             'sizes'       : 's#100#100'
          });
       });
-      $('a[rel^="gallery"]').fancybox();
       $('div.avatar_in a').fancybox();
    });
    {/literal}
@@ -69,15 +68,6 @@
                </div>
                <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
             </form>
-            {*<div class="in photos_in">
-               <h1 class="head_upload">Фото</h1>
-               <button class="upload" type="submit" data="{$d.projects_id}">Загрузить фото</button>
-               <ul>
-                  {if !empty($d.projects_photo_id)}
-                     <li><a href="/images/uploads/{$d.projects_photo_id.name}_b.{$d.projects_photo_id.ext}" rel="gallery_{$d.projects_id}"><img src="/images/uploads/{$d.projects_photo_id.name}_s.{$d.projects_photo_id.ext}" /></a><button class="x" data="{$d.projects_photo_id.name}">x</button></li>
-                  {/if}
-               </ul>
-            </div>*}
             <div class="in avatar_in">
                <h1 class="head_upload">Главное фото</h1>
                <button class="upload" type="submit" data="{$d.projects_id}">Загрузить главное фото</button>

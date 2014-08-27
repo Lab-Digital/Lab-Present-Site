@@ -15,13 +15,12 @@
             'uploadType'  : 'main_slider',
             'isAvatar'    : 'true',
             'item_id'     :  $data,
-            'width'       : '100',
-            'height'      : '100',
+            'width'       : '1024',
+            'height'      : '356',
             'count'       : '1',
-            'sizes'       : 's#100#100'
+            'sizes'       : 's#100#35,b#1024#356'
          });
       });
-      $('a[rel^="gallery"]').fancybox();
       $('div.avatar_in a').fancybox();
    });
    {/literal}
@@ -58,8 +57,8 @@
                   <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
                </form>
                <div class="in avatar_in">
-                  <h1 class="head_upload">Главное фото</h1>
-                  <button class="upload" type="submit" data="{$s.main_slider_id}">Загрузить главное фото</button>
+                  <h1 class="head_upload">Фото</h1>
+                  <button class="upload" type="submit" data="{$s.main_slider_id}">Загрузить фото</button>
                   <ul>
                   {if !empty($s.main_slider_avatar_id)}
                      <li><a href="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}"><img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" /></a><button class="x" data="{$s.main_slider_avatar_id.name}" data-ext="{$s.main_slider_avatar_id.ext}">x</button></li>
