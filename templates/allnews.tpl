@@ -10,9 +10,6 @@
 {/block}
 {block name='div.main'}
     {include file="header.tpl"}
-    <table class="menu">
-        <tr>{foreach from=$departments item=d}<td><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></td>{/foreach}</tr>
-    </table>
     <div class="wrap_news">
         <div class="lineh1">
             <h1>Новости</h1>
