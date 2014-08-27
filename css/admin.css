@@ -84,44 +84,8 @@ p.db_error {
 	font-weight: bold;
 }
 
-aside.menu {
-	font-size: 110%;
-	border-right: 2px #ccc solid;
-	width: 160px;
-	margin: 35px 40px 0 0;
-	float: left;
-	padding-right: 10px;
-	min-height: 300px;
-}
-
-aside.menu ul ul {
-	margin: 5px 0 12px 20px;
-	display: none;
-}
-
-aside.menu div.arrow {
-    background: url("/images/menu_sprite.png") no-repeat scroll 0 0 transparent;
-    display: inline-block;
-    height: 5px;
-    margin: 8px 0 0 5px;
-    vertical-align: top;
-    width: 11px;
-}
-
-aside.menu li a.open div.arrow {
-    background: url("/images/menu_sprite.png") no-repeat scroll 0 -5px transparent;
-}
-
 div.in h1.head_upload {
 	font-weight: bold;
-}
-
-#nav_num {
-  margin-top: 25px;
-}
-
-#nav_num a {
-  margin: 5px;
 }
 
 /*----table----*/

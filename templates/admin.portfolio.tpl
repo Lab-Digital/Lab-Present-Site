@@ -23,7 +23,7 @@
   </tr>
   {/foreach}
   </table>
-  {if $pagesInfo.amount > 0}
+  {if $pagesInfo.amount > 1}
   <div id="nav_num">
     {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<a class="{if $curPage == $t}active{/if}" href="/admin/portfolio/?page={$t}">{$t}</a>{/if}{/foreach}
   </div>

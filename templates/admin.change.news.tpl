@@ -41,7 +41,7 @@
             'width'        : '560',
             'height'       : '270',
             'count'        : '1',
-            'sizes'        : 's#560#270'
+            'sizes'        : 's#280#135,b#560#270'
          });
       });
       $('div.avatar_in a').fancybox();

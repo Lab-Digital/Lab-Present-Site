@@ -10,6 +10,9 @@
 {/block}
 {block name='div.main'}
    {include file="header.tpl"}
+   <table class="menu">
+      <tr>{foreach from=$departments item=d}<td><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></td>{/foreach}</tr>
+   </table>
    <div class="wrap_news">
       <div class="lineh1">
          <h1>Новости</h1>
@@ -29,14 +32,16 @@
             <ul>
             {foreach from=$other_articles item=a}
                <li>
-               <a href='/news/{$a.news_url}'>
-                  <article>
-                     {if !empty($a.news_other_photo_id)}<img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" class="photo" />{/if}
-                     <h1>{$a.news_head}</h1>
-                     <span>Добавлено:</span>
-                     <time>{$a.news_publication_date}</time>
-                  </article>
-               </a>
+                  
+                     <article>
+                        <a href='/news/{$a.news_url}'>
+                           {if !empty($a.news_other_photo_id)}<img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" class="photo" />{/if}
+                           <h1>{$a.news_head}</h1>
+                        </a>
+                        <span>Добавлено:</span>
+                        <time>{$a.news_publication_date}</time>
+                     </article>
+                  </a>
                </li>
             {/foreach}
             </ul>

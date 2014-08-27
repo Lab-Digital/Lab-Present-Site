@@ -10,6 +10,9 @@
 {/block}
 {block name='div.main'}
    {include file="header.tpl"}
+   <table class="menu">
+    <tr>{foreach from=$departments item=d}<td><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></td>{/foreach}</tr>
+   </table>
    <div class="wrap_deps">
       <div class="main_block">
          <div class="left">
@@ -32,7 +35,7 @@
             <li>
                <article>
                   {if !empty($a.news_other_photo_id)}
-                     <img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" alt="{$a.news_head}" class="photo" />
+                     <a href="/news/{$a.news_url}"><img src="/images/uploads/{$a.news_other_photo_id.name}_b.{$a.news_other_photo_id.ext}" alt="{$a.news_head}" class="photo" /></a>
                   {/if}
                   <h1>{$a.news_head}</h1>
                   <div class="text">{$a.news_description}</div>
@@ -41,12 +44,12 @@
                </article>
             </li>
          {/foreach}
-         {if $pagesInfo.amount > 0}
+         {if $pagesInfo.amount > 1}
             <div id="nav_num">
                 {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<a class="{if $curPage == $t}active{/if}" href="/departments/{$department.departments_url}/?page={$t}">{$t}</a>{/if}{/foreach}
             </div>
          {/if}
-         <a href="#" id="go_news">Новости</a>
+         <a href="/news" id="go_news">Новости</a>
          </ul>
       </div>
    </div>

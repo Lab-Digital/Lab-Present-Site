@@ -58,7 +58,7 @@ header nav li {
 
 header nav li a {
 	background: #989998;
-	color: white;
+	color: white !important;
 	border-right: 1px white solid;
 	border-bottom: 1px white solid;
 	display: block;

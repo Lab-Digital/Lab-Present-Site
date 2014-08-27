@@ -166,8 +166,10 @@ section.news ul li article img {
 #go_news_button {
 	background: #989998;
 	font-weight: bold;
+	font-size: 140%;
 	width: 370px;
-	height: 38px;
+	height: 31px;
+	padding-top: 7px;
 	border-radius: 20px;
 	text-align: center;
 	color: white;

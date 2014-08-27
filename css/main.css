@@ -16,10 +16,22 @@ a {
     text-decoration: underline;
 }
 
+a:hover, a.active {
+    color: #ed2327;
+}
+
 button {
     background: #37b0fa;
     font-family: Arial, Helvetica, Verdana, Tahoma, sans-serif;
     cursor: pointer;
     color: white;
     border: 0;
+}
+
+#nav_num {
+  margin-top: 25px;
+}
+
+#nav_num a {
+  margin: 5px;
 }

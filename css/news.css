@@ -1,3 +1,19 @@
+table.menu {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.menu td {
+	border: 1px #cdcdcd solid;
+	text-align: center;
+}
+
+table.menu td a {
+	text-decoration: none;
+	padding: 7px 18px;
+	display: block;
+}
+
 div.wrap_news {
 	padding: 0 20px;
 }
@@ -79,7 +95,7 @@ div.watch_other ul li:last-child {
 
 div.watch_other ul li article img {
 	width: 280px;
-	height: 210px;
+	height: 135px;
 	border: 1px black solid;
 	margin-bottom: 13px;
 }
