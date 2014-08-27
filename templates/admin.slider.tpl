@@ -12,7 +12,7 @@
       $('div.avatar_in button.upload').each(function(){
          $data = $(this).attr('data');
          $(this).getUpload({
-            'uploadType'  : 'projects',
+            'uploadType'  : 'main_slider',
             'isAvatar'    : 'true',
             'item_id'     :  $data,
             'width'       : '100',
@@ -32,37 +32,61 @@
    <h1>Слайдер</h1>
    {if isset($error_txt)}<p class="db_error">{$error_txt}</p>{/if}
    <div class="right_block">
-      <label for="choose">Выберите слайд</label>
-      <select id="choose_item">
-         <option value="1">Слайд 1</option>   
-      </select>
-      <script type="text/javascript">
-         //$('#choose_item option[value=""]').attr('selected', 'selected');
-      </script>
-      <h2>Редактирование слайда</h2>
-      <div class="edit">
-         <form action="" method="post" class="item_edit" id="">
-            <input type="hidden" name="id" value="" />
+      {if $sliders|@count}
+         <label for="choose">Выберите слайд</label>
+         <select id="choose_item">
+            {foreach from=$sliders item=s}
+               <option value="{$s.main_slider_id}">Слайдер {$s.main_slider_number}</option>
+            {/foreach}
+         </select>
+         <script type="text/javascript">
+            $('#choose_item option[value="{$item_id}"]').attr('selected', 'selected');
+         </script>
+         <h2>Редактирование слайда</h2>
+         {foreach from=$sliders item=s name=f}
+            <div class="edit">
+               <form action="/admin/slider" method="post" class="item_edit" id="item{$s.main_slider_id}">
+                  <input type="hidden" name="id" value="{$s.main_slider_id}" />
+                  <div class="form_block">
+                     <label for="num_{$smarty.foreach.f.index}">Порядковый номер</label>
+                     <input type="number" min="1" name="number" id="num_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_number}{else}{$number|default:$s.main_slider_number}{/if}" />
+                  </div>
+                  <div class="form_block">
+                     <label for="url_{$smarty.foreach.f.index}">URL</label>
+                     <input type="url" name="url" id="url_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}" />
+                  </div>
+                  <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
+               </form>
+               <div class="in avatar_in">
+                  <h1 class="head_upload">Главное фото</h1>
+                  <button class="upload" type="submit" data="{$s.main_slider_id}">Загрузить главное фото</button>
+                  <ul>
+                  {if !empty($s.main_slider_avatar_id)}
+                     <li><a href="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}"><img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" /></a><button class="x" data="{$s.main_slider_avatar_id.name}">x</button></li>
+                  {/if}
+                  </ul>
+               </div>
+            </div>
+         {/foreach}
+         {include file='admin.set_select.tpl'}
+      {/if}
+      {if !$isInsert}
+         {assign var='url' value=''}
+         {assign var='number' value=''}
+      {/if}
+      <div class="add">
+         <form action="/admin/slider" method="post">
+            <input type="hidden" name="id" value="{$s.main_slider_id}" />
             <div class="form_block">
-               <label for="num_1">Порядковый номер</label>
-               <input type="number" max="4" min="1" name="num" id="num_1" value="" />
+               <label for="number_new">Порядковый номер</label>
+               <input type="number" min="1" name="number" id="number_new" value="{$number}" />
             </div>
             <div class="form_block">
-               <label for="url_1">URL</label>
-               <input type="url" name="url" id="url_1" value="" />
+               <label for="url_new">URL</label>
+               <input type="url" name="url" id="url_new" value="{$url}" />
             </div>
-            <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
+            <div class="buttons"><button id="add" name="mode" value="Insert">Добавить</button></div>
          </form>
-         <div class="in avatar_in">
-            <h1 class="head_upload">Главное фото</h1>
-            <button class="upload" type="submit" data="">Загрузить главное фото</button>
-            <ul>
-               
-                  <li><a href="/images/uploads/{$d.projects_avatar_id}_s.jpg"><img src="/images/uploads/_s.jpg" /></a><button class="x" data="">x</button></li>
-               
-            </ul>
-         </div>
       </div>
-      {include file='admin.set_select.tpl'}
    </div>
 {/block}

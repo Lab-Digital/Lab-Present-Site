@@ -60,6 +60,7 @@ class ProposalHandler extends Handler
                    ->ValidateEmail(!empty($params['email']) ? $params['email'] : null)
                    ->ValidateDepartment(!empty($params['department_id']) ? $params['department_id'] : null);
       try {
+         $params[Proposal::FILE_FLD] = $zip_name;
          $this->entity->SetFields($params);
          return $getLastInsertId ? $this->entity->Insert(true) : $this->entity->Insert(false);
       } catch (DBException $e) {

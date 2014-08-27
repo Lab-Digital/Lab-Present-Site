@@ -117,6 +117,15 @@ CREATE TABLE IF NOT EXISTS `projects` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `main_slider` (
+   `id`        INT          NOT NULL AUTO_INCREMENT,
+   `number`    INT          NOT NULL DEFAULT 1,
+   `avatar_id` INT          DEFAULT NULL,
+   `url`       VARCHAR(300) DEFAULT '',
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+);
+
 DELIMITER //
 
 DROP TRIGGER IF EXISTS `update_admin`//

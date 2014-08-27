@@ -7,14 +7,18 @@ try {
       case 'projects':
       case 'portfolio':
       case 'departments':
+      case 'main_slider':
          require_once CLASSES_ROOT . 'class.Project.php';
          require_once CLASSES_ROOT . 'class.Portfolio.php';
          require_once CLASSES_ROOT . 'class.Department.php';
+         require_once CLASSES_ROOT . 'class.MainSlider.php';
          $uploadType = $request->get('uploadType');
          if ($uploadType == 'projects') {
             $obj = $_project;
          } elseif ($uploadType == 'departments') {
             $obj = $_department;
+         } elseif ($uploadType == 'main_slider') {
+            $obj = $_mainSlider;
          } else {
             $obj = $_portfolio;
          }
