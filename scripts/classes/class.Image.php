@@ -32,6 +32,10 @@ class Image extends Entity
       @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_b.jpg');
       @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_s.jpg');
       @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_m.jpg');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '.png');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_b.png');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_s.png');
+      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_m.png');
    }
 
    public function Delete($id)
