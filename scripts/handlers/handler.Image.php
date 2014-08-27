@@ -17,7 +17,7 @@ $ajaxResult = Array('result' => true, 'message' => 'Операция прошл�
 
 try {
    $handler = new ImageHandler();
-   $handler->Handle($_POST);
+   $handler->Handle($request->request->all());
 } catch (Exception $e) {
    $ajaxResult['result'] = false;
    $ajaxResult['message'] = $e->getMessage();

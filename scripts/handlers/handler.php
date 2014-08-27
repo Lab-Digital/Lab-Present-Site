@@ -48,6 +48,7 @@ class Handler
    public function Delete($params)
    {
       try {
+         $this->entity->SetFields($params);
          $this->entity->Delete($params['id']);
       } catch (DBException $e) {
          throw new Exception("Возникли проблемы при удалении записи.");

@@ -26,7 +26,8 @@ $(function(){
         type: 'Image',
         mode: 'Delete',
         params: {
-          id: $button.attr('data')
+          id: $button.attr('data'),
+          ext: $button.attr('data-ext')
         }
       },
       function(data) {

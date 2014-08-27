@@ -98,7 +98,7 @@
          <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для главной</button>
          <ul>
             {if !empty($article.news_photo_id)}
-               <li><a href="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}"><img src="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}" /></a><button class="x" data="{$article.news_photo_id.name}">x</button></li>
+               <li><a href="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}"><img src="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}" /></a><button class="x" data="{$article.news_photo_id.name}" data-ext="{$article.news_photo_id.ext}">x</button></li>
             {/if}
          </ul>
       </div>
@@ -107,7 +107,7 @@
          <button class="upload" type="submit" data="{$article.news_id}">Загрузить большое фото</button>
          <ul>
             {if !empty($article.news_bigphoto_id)}
-               <li><a href="/images/uploads/{$article.news_bigphoto_id.name}_b.{$article.news_bigphoto_id.ext}"><img src="/images/uploads/{$article.news_bigphoto_id.name}_s.{$article.news_bigphoto_id.ext}" /></a><button class="x" data="{$article.news_bigphoto_id.name}">x</button></li>
+               <li><a href="/images/uploads/{$article.news_bigphoto_id.name}_b.{$article.news_bigphoto_id.ext}"><img src="/images/uploads/{$article.news_bigphoto_id.name}_s.{$article.news_bigphoto_id.ext}" /></a><button class="x" data="{$article.news_bigphoto_id.name}" data-ext="{$article.news_bigphoto_id.ext}">x</button></li>
             {/if}
          </ul>
       </div>
@@ -116,7 +116,7 @@
          <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для "читайте также"</button>
          <ul>
             {if !empty($article.news_other_photo_id)}
-               <li><a href="/images/uploads/{$article.news_other_photo_id.name}_s.{$article.news_other_photo_id.ext}"><img src="/images/uploads/{$article.news_other_photo_id.name}_s.{$article.news_other_photo_id.ext}" /></a><button class="x" data="{$article.news_other_photo_id.name}">x</button></li>
+               <li><a href="/images/uploads/{$article.news_other_photo_id.name}_s.{$article.news_other_photo_id.ext}"><img src="/images/uploads/{$article.news_other_photo_id.name}_s.{$article.news_other_photo_id.ext}" /></a><button class="x" data="{$article.news_other_photo_id.name}" data-ext="{$article.news_other_photo_id.ext}">x</button></li>
             {/if}
          </ul>
       </div>

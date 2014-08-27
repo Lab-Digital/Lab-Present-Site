@@ -48,7 +48,7 @@
        <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить главное фото</button>
        <ul>
           {if !empty($portfolio.portfolio_avatar_id)}
-             <li><a href="/images/uploads/{$portfolio.portfolio_avatar_id.name}_b.{$portfolio.portfolio_avatar_id.ext}" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_avatar_id.name}_s.{$portfolio.portfolio_avatar_id.ext}" /></a><button class="x" data="{$portfolio.portfolio_avatar_id.name}">x</button></li>
+             <li><a href="/images/uploads/{$portfolio.portfolio_avatar_id.name}_b.{$portfolio.portfolio_avatar_id.ext}" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_avatar_id.name}_s.{$portfolio.portfolio_avatar_id.ext}" /></a><button class="x" data="{$portfolio.portfolio_avatar_id.name}" data-ext="{$portfolio.portfolio_avatar_id.ext}">x</button></li>
           {/if}
        </ul>
     </div>

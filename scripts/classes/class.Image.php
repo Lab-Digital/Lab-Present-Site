@@ -26,25 +26,23 @@ class Image extends Entity
       );
    }
 
-   public function DeleteImg($id)
+   public function DeleteImg($id, $ext)
    {
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_b.jpg');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_s.jpg');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_m.jpg');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_b.png');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_s.png');
-      @unlink($_SERVER['DOCUMENT_ROOT'] . '/images/uploads/' . $id . '_m.png');
+      $r = ['', '_b', '_s', '_m'];
+      foreach ($r as $v) {
+         @unlink(sprintf('%s/images/uploads/%s%s.%s', $_SERVER['DOCUMENT_ROOT'], $id, $v, $ext));
+      }
    }
 
    public function Delete($id)
    {
       parent::Delete($id);
-      $this->DeleteImg($id);
+      $this->DeleteImg($id, $this->GetFieldByName(static::EXT_FLD)->GetValue());
       global $db;
       try {
          $db->link->beginTransaction();
          $query = SQL::SimpleQuerySelect(
-            $this->ToTblNm(static::ID_FLD),
+            sprintf('%s, %s', $this->ToTblNm(static::ID_FLD), $this->ToTblNm(static::EXT_FLD)),
             static::TABLE,
             new Clause(
                CCond(
@@ -56,7 +54,7 @@ class Image extends Entity
          $sample = $db->Query($query);
          $db->Query('DELETE FROM ' . static::TABLE . ' WHERE ' . static::IS_RESIZED_FLD . ' = 0');
          foreach ($sample as &$set) {
-            $this->DeleteImg($set[static::ID_FLD]);
+            $this->DeleteImg($set[static::ID_FLD], substr($set[static::EXT_FLD], strpos($set[static::EXT_FLD], '.') + 1));
          }
          $db->link->commit();
       } catch (DBException $e) {

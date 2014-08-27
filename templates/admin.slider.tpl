@@ -62,7 +62,7 @@
                   <button class="upload" type="submit" data="{$s.main_slider_id}">Загрузить главное фото</button>
                   <ul>
                   {if !empty($s.main_slider_avatar_id)}
-                     <li><a href="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}"><img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" /></a><button class="x" data="{$s.main_slider_avatar_id.name}">x</button></li>
+                     <li><a href="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}"><img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" /></a><button class="x" data="{$s.main_slider_avatar_id.name}" data-ext="{$s.main_slider_avatar_id.ext}">x</button></li>
                   {/if}
                   </ul>
                </div>

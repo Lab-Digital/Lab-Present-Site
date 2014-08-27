@@ -27,7 +27,7 @@ class MainSlider extends Entity
             IntType(),
             true,
             'Порядковый номер слайда',
-            [Validate::IS_NOT_EMPTY]
+            [Validate::IS_NOT_EMPTY, Validate::IS_NUMERIC]
          ),
          new Field(
             static::AVATAR_FLD,
