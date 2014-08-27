@@ -14,6 +14,7 @@ class Entity
    const LAST_VIEWED_ID = 'last_viewed_';
 
    protected
+      $isDistinctSelect = false,
       $idField,
       $selectFields,
       $samplingScheme = self::USUAL_SCHEME;
@@ -160,7 +161,9 @@ class Entity
    public function GetQuery($specific, $table, $where = null, $join = null, $order = null, $limit = false)
    {
       $group = !empty($this->groupField) ? $this->groupField : null;
-      return   "SELECT $specific "
+      return   'SELECT '
+             .  ($this->isDistinctSelect ? 'DISTINCT ' : '')
+             .  $specific
              . ' FROM '
              . $table
              . (!empty($join)  ? " $join "           : '')

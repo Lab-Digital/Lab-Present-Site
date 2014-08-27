@@ -301,6 +301,7 @@ class News extends EntityURL
    public function GetOtherNews($id, $categories = [])
    {
       $result = [];
+      $this->isDistinctSelect = true;
       $this->CreateSearch()->SetSamplingScheme(static::WATH_OTHER_SCHEME);
       $this->search->AddClause(CCond(
          CF(static::TABLE, $this->idField),
