@@ -81,6 +81,7 @@ if (isset($after_resize) && $after_resize > 0) {
    }
 }
 
+@unlink(UPLOAD_DIR . $image_name . $request->get('ext'));
 
 require_once CLASSES_ROOT . 'class.Image.php';
 
