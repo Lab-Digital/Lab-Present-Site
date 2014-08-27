@@ -17,8 +17,8 @@
       <div class="wrap_news_inner">
          <article class="main">
             <h1>{$article.news_head}</h1>
-            {if !empty($article.news_photo_id)}
-               <img src="/images/uploads/{$article.news_photo_id.name}_b.{$article.news_photo_id.ext}" alt="{$article.news_head}" class="main_photo" />
+            {if !empty($article.news_bigphoto_id)}
+               <img src="/images/uploads/{$article.news_bigphoto_id.name}_b.{$article.news_bigphoto_id.ext}" alt="{$article.news_head}" class="main_photo" />
             {/if}
             <div class="text">{$article.news_body}</div>
             <time>{$article.news_publication_date}</time>
@@ -31,7 +31,7 @@
                <li>
                <a href='/news/{$a.news_url}'>
                   <article>
-                     {if !empty($a.news_photo_id)}<img src="/images/uploads/{$a.news_photo_id.name}_s.{$a.news_photo_id.ext}" class="photo" />{/if}
+                     {if !empty($a.news_other_photo_id)}<img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" class="photo" />{/if}
                      <h1>{$a.news_head}</h1>
                      <span>Добавлено:</span>
                      <time>{$a.news_publication_date}</time>

@@ -36,13 +36,17 @@ CREATE TABLE IF NOT EXISTS `news` (
    `body`             TEXT         NOT NULL,
    `description`      TEXT         NOT NULL,
    `photo_id`         INT          DEFAULT NULL,
+   `bigphoto_id`      INT          DEFAULT NULL,
+   `other_photo_id`   INT          DEFAULT NULL,
    `meta_title`       VARCHAR(130) NOT NULL,
    `meta_keywords`    TEXT,
    `meta_description` TEXT,
    `publication_date` TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (`id`),
    UNIQUE KEY(`url`),
-   FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+   FOREIGN KEY (`photo_id`)       REFERENCES `images` (`id`) ON DELETE SET NULL,
+   FOREIGN KEY (`bigphoto_id`)    REFERENCES `images` (`id`) ON DELETE SET NULL,
+   FOREIGN KEY (`other_photo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS `news_images` (

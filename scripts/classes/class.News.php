@@ -9,9 +9,12 @@ class News extends EntityURL
    const MAIN_SCHEME         = 3;
    const ARTICLE_SCHEME      = 4;
    const ADMIN_INFO_SCHEME   = 5;
-   const ADMIN_CHANGE_SCHEME = 6;
+   const WATH_OTHER_SCHEME   = 6;
+   const ADMIN_CHANGE_SCHEME = 7;
 
    const PHOTO_FLD            = 'photo_id';
+   const BIG_PHOTO_FLD        = 'bigphoto_id';
+   const OTHER_PHOTO_FLD      = 'other_photo_id';
    const TITLE_FLD            = 'meta_title';
    const PHOTOS_FLD           = 'photos';
    const KEYWORDS_FLD         = 'meta_keywords';
@@ -71,6 +74,16 @@ class News extends EntityURL
             true
          ),
          new Field(
+            static::OTHER_PHOTO_FLD,
+            IntType(),
+            true
+         ),
+         new Field(
+            static::BIG_PHOTO_FLD,
+            IntType(),
+            true
+         ),
+         new Field(
             static::KEYWORDS_FLD,
             TextType(),
             true
@@ -98,10 +111,11 @@ class News extends EntityURL
       return $this;
    }
 
-   private function _NotNullImageClause()
+   private function _NotNullImageClause($field = null)
    {
+      $field = !empty($field) ? $field : static::PHOTO_FLD;
       $this->CheckSearch()->search->AddClause(CCond(
-         CF(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD)),
+         CF(static::TABLE, $this->GetFieldByName(static::OTHER_PHOTO_FLD)),
          CVS('NULL'),
          cAND,
          'IS NOT'
@@ -115,6 +129,7 @@ class News extends EntityURL
          case static::MAIN_SCHEME:
          case static::INFO_SCHEME:
          case static::ARTICLE_SCHEME:
+         case static::WATH_OTHER_SCHEME:
             $key = $this->ToPrfxNm(static::PHOTOS_FLD);
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
@@ -151,7 +166,11 @@ class News extends EntityURL
                }
                $set[$catKey] = $a;
             }
-            ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
+            ModifySampleWithImage($sample, [
+               $this->ToPrfxNm(static::PHOTO_FLD),
+               $this->ToPrfxNm(static::BIG_PHOTO_FLD),
+               $this->ToPrfxNm(static::OTHER_PHOTO_FLD)
+            ]);
             break;
       }
       if ($this->samplingScheme == static::MAIN_SCHEME) {
@@ -165,7 +184,9 @@ class News extends EntityURL
          $sample = $a;
          ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
       } elseif ($this->samplingScheme == static::ARTICLE_SCHEME) {
-         ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
+         ModifySampleWithImage($sample, [$this->ToPrfxNm(static::BIG_PHOTO_FLD)]);
+      } elseif ($this->samplingScheme == static::WATH_OTHER_SCHEME) {
+         ModifySampleWithImage($sample, [$this->ToPrfxNm(static::OTHER_PHOTO_FLD)]);
       }
    }
 
@@ -209,7 +230,7 @@ class News extends EntityURL
                ]
             );
             $fields[] = $this->_SelectCategories();
-            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::BIG_PHOTO_FLD));
             break;
 
          case static::MAIN_SCHEME:
@@ -225,6 +246,21 @@ class News extends EntityURL
             );
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
             $this->_NotNullImageClause();
+            break;
+
+         case static::WATH_OTHER_SCHEME:
+            $fields = SQL::PrepareFieldsForSelect(
+               static::TABLE,
+               [
+                  $this->idField,
+                  $this->urlField,
+                  $this->GetFieldByName(static::TEXT_HEAD_FLD),
+                  $this->GetFieldByName(static::DESCRIPTION_FLD),
+                  $this->GetFieldByName(static::PUBLICATION_DATE_FLD)
+               ]
+            );
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::OTHER_PHOTO_FLD));
+            $this->_NotNullImageClause(static::OTHER_PHOTO_FLD);
             break;
 
          case static::ADMIN_INFO_SCHEME:
@@ -243,7 +279,9 @@ class News extends EntityURL
                $this->GetFieldByName(static::KEYWORDS_FLD),
                $this->GetFieldByName(static::META_DESCRIPTION_FLD)
             ]);
-            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD), false);
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::BIG_PHOTO_FLD));
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::OTHER_PHOTO_FLD));
             $fields[] = $this->_SelectCategories();
             break;
 
@@ -260,7 +298,7 @@ class News extends EntityURL
    public function GetOtherNews($id, $categories = [])
    {
       $result = [];
-      $this->CreateSearch()->SetSamplingScheme(static::MAIN_SCHEME);
+      $this->CreateSearch()->SetSamplingScheme(static::WATH_OTHER_SCHEME);
       $this->search->AddClause(CCond(
          CF(static::TABLE, $this->idField),
          CVP($id),
@@ -357,13 +395,13 @@ class News extends EntityURL
       }
    }
 
-   public function UpdatePhoto($id)
+   public function UpdatePhoto($id, $field)
    {
       global $db, $_image;
       try {
          $db->link->beginTransaction();
          $__file = $_image->Insert(true);
-         $this->SetFieldByName(News::ID_FLD, $id)->SetFieldByName(News::PHOTO_FLD, $__file);
+         $this->SetFieldByName(News::ID_FLD, $id)->SetFieldByName($field, $__file);
          parent::Update();
          $db->link->commit();
       } catch (DBException $e) {

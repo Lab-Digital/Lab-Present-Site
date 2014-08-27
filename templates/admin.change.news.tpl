@@ -97,8 +97,8 @@
          <h1 class="head_upload">Фото для главной</h1>
          <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для главной</button>
          <ul>
-            {if !empty($article.news_avatar_id)}
-               <li><a href="/images/uploads/{$article.news_avatar_id.name}_b.{$article.news_avatar_id.ext}"><img src="/images/uploads/{$article.news_avatar_id.name}_s.{$article.news_avatar_id.ext}" /></a><button class="x" data="{$article.news_avatar_id.name}">x</button></li>
+            {if !empty($article.news_photo_id)}
+               <li><a href="/images/uploads/{$article.news_photo_id.name}_b.{$article.news_photo_id.ext}"><img src="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}" /></a><button class="x" data="{$article.news_photo_id.name}">x</button></li>
             {/if}
          </ul>
       </div>
@@ -115,8 +115,8 @@
          <h1 class="head_upload">Фото для "читайте также"</h1>
          <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для "читайте также"</button>
          <ul>
-            {if !empty($article.news_watchother_id)}
-               <li><a href="/images/uploads/{$article.news_watchother_id.name}_s.{$article.news_watchother_id.ext}"><img src="/images/uploads/{$article.news_watchother_id.name}_s.{$article.news_watchother_id.ext}" /></a><button class="x" data="{$article.news_watchother_id.name}">x</button></li>
+            {if !empty($article.news_other_photo_id)}
+               <li><a href="/images/uploads/{$article.news_other_photo_id.name}_s.{$article.news_other_photo_id.ext}"><img src="/images/uploads/{$article.news_other_photo_id.name}_s.{$article.news_other_photo_id.ext}" /></a><button class="x" data="{$article.news_other_photo_id.name}">x</button></li>
             {/if}
          </ul>
       </div>
