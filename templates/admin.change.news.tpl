@@ -13,14 +13,40 @@
          $(this).getUpload({
             'uploadType'  : 'news',
             'isAvatar'    : 'true',
-            'item_id'     :  $data,
+            'item_id'     : $data,
+            'width'       : '150',
+            'height'      : '150',
+            'count'       : '1',
+            'sizes'       : 's#150#150'
+         });
+      });
+      $('div.bigphoto_in button.upload').each(function(){
+         $data = $(this).attr('data');
+         $(this).getUpload({
+            'uploadType'  : 'news',
+            'isBigphoto'  : 'true',
+            'item_id'     : $data,
             'width'       : '900',
             'height'      : '300',
             'count'       : '1',
-            'sizes'       : 's#150#150,b#900#300'
+            'sizes'       : 's#102#34,b#900#300'
+         });
+      });
+      $('div.watchother_in button.upload').each(function(){
+         $data = $(this).attr('data');
+         $(this).getUpload({
+            'uploadType'   : 'news',
+            'isWatchother' : 'true',
+            'item_id'      : $data,
+            'width'        : '560',
+            'height'       : '270',
+            'count'        : '1',
+            'sizes'        : 's#560#270'
          });
       });
       $('div.avatar_in a').fancybox();
+      $('div.bigphoto_in a').fancybox();
+      $('div.watchother_in a').fancybox();
    });
    {/literal}
    </script>
@@ -68,11 +94,29 @@
     </form>
     {if !$isAdd|default:false}
       <div class="in avatar_in">
-         <h1 class="head_upload">Главное фото</h1>
-         <button class="upload" type="submit" data="{$article.news_id}">Загрузить главное фото</button>
+         <h1 class="head_upload">Фото для главной</h1>
+         <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для главной</button>
          <ul>
-            {if !empty($article.news_photo_id)}
-               <li><a href="/images/uploads/{$article.news_photo_id.name}_b.{$article.news_photo_id.ext}" rel="gallery_{$article.news_id}"><img src="/images/uploads/{$article.news_photo_id.name}_s.{$article.news_photo_id.ext}" /></a><button class="x" data="{$article.news_photo_id.name}">x</button></li>
+            {if !empty($article.news_avatar_id)}
+               <li><a href="/images/uploads/{$article.news_avatar_id.name}_b.{$article.news_avatar_id.ext}"><img src="/images/uploads/{$article.news_avatar_id.name}_s.{$article.news_avatar_id.ext}" /></a><button class="x" data="{$article.news_avatar_id.name}">x</button></li>
+            {/if}
+         </ul>
+      </div>
+      <div class="in bigphoto_in">
+         <h1 class="head_upload">Большое фото</h1>
+         <button class="upload" type="submit" data="{$article.news_id}">Загрузить большое фото</button>
+         <ul>
+            {if !empty($article.news_bigphoto_id)}
+               <li><a href="/images/uploads/{$article.news_bigphoto_id.name}_b.{$article.news_bigphoto_id.ext}"><img src="/images/uploads/{$article.news_bigphoto_id.name}_s.{$article.news_bigphoto_id.ext}" /></a><button class="x" data="{$article.news_bigphoto_id.name}">x</button></li>
+            {/if}
+         </ul>
+      </div>
+      <div class="in watchother_in">
+         <h1 class="head_upload">Фото для "читайте также"</h1>
+         <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для "читайте также"</button>
+         <ul>
+            {if !empty($article.news_watchother_id)}
+               <li><a href="/images/uploads/{$article.news_watchother_id.name}_s.{$article.news_watchother_id.ext}"><img src="/images/uploads/{$article.news_watchother_id.name}_s.{$article.news_watchother_id.ext}" /></a><button class="x" data="{$article.news_watchother_id.name}">x</button></li>
             {/if}
          </ul>
       </div>

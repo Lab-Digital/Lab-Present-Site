@@ -14,7 +14,7 @@
          $(this).getUpload({
             'uploadType'  : 'departments',
             'isAvatar'    : 'true',
-            'item_id'     :  $data,
+            'item_id'     : $data,
             'width'       : '235',
             'height'      : '140',
             'count'       : '1',
@@ -25,14 +25,14 @@
          $data = $(this).attr('data');
          $(this).getUpload({
             'uploadType'  : 'departments',
-            'item_id'     :  $data,
+            'item_id'     : $data,
             'width'       : '375',
             'height'      : '385',
             'count'       : '1',
             'sizes'       : 's#375#385'
          });
       });
-      $('a[rel^="gallery"]').fancybox();
+      $('div.photos_in a').fancybox();
       $('div.avatar_in a').fancybox();
    });
    {/literal}
@@ -85,7 +85,7 @@
                <button class="upload" type="submit" data="{$d.departments_id}">Загрузить фото</button>
                <ul>
                   {if !empty($d.departments_photo_id)}
-                     <li><a href="/images/uploads/{$d.departments_photo_id.name}_b.{$d.departments_photo_id.ext}" rel="gallery_{$d.departments_id}"><img src="/images/uploads/{$d.departments_photo_id.name}_s.{$d.departments_photo_id.ext}" /></a><button class="x" data="{$d.departments_photo_id.name}">x</button></li>
+                     <li><a href="/images/uploads/{$d.departments_photo_id.name}_s.{$d.departments_photo_id.ext}"><img src="/images/uploads/{$d.departments_photo_id.name}_s.{$d.departments_photo_id.ext}" /></a><button class="x" data="{$d.departments_photo_id.name}">x</button></li>
                   {/if}
                </ul>
             </div>

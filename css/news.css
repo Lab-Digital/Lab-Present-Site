@@ -8,15 +8,20 @@ div.wrap_news_inner {
 
 div.wrap_news div.lineh1 {
 	margin: 30px 0 40px;
+	background: url('/images/blackline.jpg') center center repeat-x;
+	text-align: center;
 }
 
 div.wrap_news div.lineh1 h1 {
-	font-size: 150%;
-	text-align: center;
+	font-size: 280%;
+	display: inline-block;
+	background: white;
+	padding: 0 12px;
 } 
 
 article.main h1 {
-	font-size: 140%;
+	font-size: 180%;
+	font-weight: bold;
 	margin-bottom: 28px;
 	text-align: center;
 }
@@ -25,6 +30,7 @@ article.main img {
 	width: 900px;
 	height: 300px;
 	margin-bottom: 25px;
+	border: 1px black solid;
 }
 
 article.main div.text p {

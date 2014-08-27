@@ -76,7 +76,7 @@ section.menu_first ul li img {
 
 section.news {
 	height: 385px;
-	background: lightblue;
+	background: url('/images/newsbg.jpg');
 }
 
 section.news ul {
