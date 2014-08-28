@@ -73,6 +73,7 @@
          {assign var='url' value=''}
          {assign var='number' value=''}
       {/if}
+      <h2>Добавление слайдера</h2>
       <div class="add">
          <h2>Добавление слайда</h2>
          <form action="/admin/slider" method="post">

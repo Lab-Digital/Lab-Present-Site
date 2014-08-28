@@ -51,6 +51,12 @@ class MainSlider extends Entity
    {
       ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
    }
+
+   public function GetAll()
+   {
+      $this->AddOrder(static::NUMBER_FLD);
+      return parent::GetAll();
+   }
 }
 
 $_mainSlider = new MainSlider();

@@ -3,8 +3,10 @@
 // require_once CLASSES_ROOT . 'class.Slider.php';
 require_once CLASSES_ROOT . 'class.Meta.php';
 require_once CLASSES_ROOT . 'class.Project.php';
+require_once CLASSES_ROOT . 'class.MainSlider.php';
 
 $smarty->assign('meta', $_meta->SetSamplingScheme(Meta::PAGE_SCHEME)->GetById(Meta::INDEX_META_ID))
+       ->assign('sliders', $_mainSlider->GetAll())
        ->assign('projects', $_project->SetSamplingScheme(Project::MAIN_SCHEME)->GetAll())
        // ->assign('sliders',  $_slider->GetAll())
        // ->assign('services', $_service->SetSamplingScheme(Service::MAIN_SCHEME)->GetAll())

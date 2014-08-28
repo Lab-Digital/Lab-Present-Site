@@ -29,9 +29,15 @@
 {block name='div.main'}
    {include file="header.tpl"}
    <!-- slider -->
+   {if $sliders|@count}
    <div class="slider">
       <ul class="bxslider">
+        {foreach from=$sliders item=s name=f}
          <li>
+            <img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" />
+         </li>
+        {/foreach}
+<!--          <li>
             <img src="/images/slider_1.jpg" />
          </li>
          <li>
@@ -42,12 +48,14 @@
          </li>
          <li>
             <img src="/images/slider_4.jpg" />
-         </li>
+         </li> -->
       </ul>
       <div id="sliderCtrl">
-         <li><a class="active" data-slide-index="0">1</a></li><li><a data-slide-index="1">2</a></li><li><a data-slide-index="2">3</a></li><li><a data-slide-index="3">4</a></li>
+        {foreach from=$sliders item=s name=f}<li><a class="active" data-slide-index="{$smarty.foreach.f.index}">{$smarty.foreach.f.iteration}</a></li>{/foreach}
+<!--          <li><a class="active" data-slide-index="0">1</a></li><li><a data-slide-index="1">2</a></li><li><a data-slide-index="2">3</a></li><li><a data-slide-index="3">4</a></li> -->
       </div>
    </div>
+   {/if}
    <!-- slider end -->
    <!-- menu_first -->
    <section class="menu_first">
