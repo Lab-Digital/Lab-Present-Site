@@ -13,7 +13,6 @@ div.slider {
 	position: absolute;
 	bottom: 6px;
 	left: 50%;
-	margin-left: -56px;
 }
 
 #sliderCtrl li {
@@ -35,19 +34,19 @@ div.slider {
 	border-radius: 17px;
 }
 
-#sliderCtrl li:nth-child(1) a {
+#sliderCtrl li:nth-child(4n+1) a {
 	background-color: #c31c27;
 }
 
-#sliderCtrl li:nth-child(2) a {
+#sliderCtrl li:nth-child(4n+2) a {
 	background-color: #7fbd51;
 }
 
-#sliderCtrl li:nth-child(3) a {
+#sliderCtrl li:nth-child(4n+3) a {
 	background-color: #e27dbc;
 }
 
-#sliderCtrl li:nth-child(4) a {
+#sliderCtrl li:nth-child(4n+4) a {
 	background-color: #5e6cbc;
 }
 
@@ -94,26 +93,33 @@ section.news .button_left {
 	position: absolute;
 }
 
+section.news button.disabled {
+	display: none !important;
+}
+
 section.news .button_left, section.news .button_right {
 	overflow: hidden;
 }
 
 section.news .button_left button {
 	padding-left: 40px;
+	background: #ffbf5e url('/images/left_news.png') 33px center no-repeat;
+	-webkit-box-shadow: -6px 4px 7px 0 rgba(3,0,0,0.5);
+	box-shadow: -6px 4px 7px 0 rgba(3,0,0,0.5);
 }
 
 section.news .button_right button {
 	padding-right: 40px;
+	background: #ffbf5e url('/images/right_news.png') 7px center no-repeat;
+	-webkit-box-shadow: 6px 4px 7px 0 rgba(3,0,0,0.5);
+	box-shadow: 6px 4px 7px 0 rgba(3,0,0,0.5);
 }
 
 section.news .button_left button, section.news .button_right button {
 	width: 66px;
 	height: 66px;
 	border-radius: 66px;
-	color: #783800;
-	background: #ffbf5e;
 	font-weight: bold;
-	font-size: 150%;
 }
 
 section.news .button_left button.hidden, section.news .button_right button.hidden {
@@ -142,16 +148,24 @@ section.news ul li a {
 section.news ul li article h1 {
 	font-weight: bold;
 	margin-bottom: 5px;
-	text-align: center;
+	font-size: 90%;
+}
+
+section.news ul li article div.head {
+	height: 100px;
+	overflow: hidden;
 }
 
 section.news ul li article div.text {
-	text-align: justify;
+	text-align: left;
+	line-height: 1.3;
+	font-size: 80%;
 }
 
 section.news ul li article time {
 	margin-top: 20px;
 	display: block;
+	font-size: 80%;
 }
 
 section.news ul li article img {
@@ -210,8 +224,4 @@ section.menu_second ul li article h1 {
 	font-size: 150%;
 	margin-bottom: 20px;
 	text-align: center;
-}
-
-section.news ul li article div.text {
-	text-align: justify;
 }

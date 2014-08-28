@@ -9,8 +9,8 @@ $(function(){
          $ul.append(
             "<li><a href='/news/" + articles[i].news_url + "'><article>" +
             (articles[i].news_photo_id ? "<img src='/images/uploads/" + articles[i].news_photo_id.name + "_s." + articles[i].news_photo_id.ext +"' />" : "") +
-            "<h1>" + articles[i].news_head + "</h1>" +
-            "<div class='text'>" + articles[i].news_description + "</div>" +
+            "<div class='head'><h1>" + articles[i].news_head + "</h1>" +
+            "<div class='text'>" + articles[i].news_description + "</div></div>" +
             "<time>" + articles[i].news_publication_date + "</time>" +
             "</article></a></li>"
          );

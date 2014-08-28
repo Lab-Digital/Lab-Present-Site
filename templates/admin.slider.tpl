@@ -73,14 +73,13 @@
          {assign var='url' value=''}
          {assign var='number' value=''}
       {/if}
-      <h2>Добавление слайдера</h2>
       <div class="add">
          <h2>Добавление слайда</h2>
          <form action="/admin/slider" method="post">
             <input type="hidden" name="id" value="{$s.main_slider_id}" />
             <div class="form_block">
                <label for="number_new">Порядковый номер</label>
-               <input type="number" min="1" name="number" id="number_new" value="{$number}" />
+               <input type="number" min="1" name="number" id="number_new" value="{$number|default:1}" />
             </div>
             <div class="form_block">
                <label for="url_new">URL</label>

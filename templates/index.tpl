@@ -34,25 +34,12 @@
       <ul class="bxslider">
         {foreach from=$sliders item=s name=f}
          <li>
-            <img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" />
+            <img src="/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}" />
          </li>
         {/foreach}
-<!--          <li>
-            <img src="/images/slider_1.jpg" />
-         </li>
-         <li>
-            <img src="/images/slider_2.jpg" />
-         </li>
-         <li>
-            <img src="/images/slider_3.jpg" />
-         </li>
-         <li>
-            <img src="/images/slider_4.jpg" />
-         </li> -->
       </ul>
-      <div id="sliderCtrl">
+      <div id="sliderCtrl" style="margin-left: -{14 * $sliders|@count - 3}px;">
         {foreach from=$sliders item=s name=f}<li><a class="active" data-slide-index="{$smarty.foreach.f.index}">{$smarty.foreach.f.iteration}</a></li>{/foreach}
-<!--          <li><a class="active" data-slide-index="0">1</a></li><li><a data-slide-index="1">2</a></li><li><a data-slide-index="2">3</a></li><li><a data-slide-index="3">4</a></li> -->
       </div>
    </div>
    {/if}
@@ -68,7 +55,7 @@
    <!-- menu_first end -->
    <!-- news -->
    <section class="news">
-      <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled hidden"><</button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="disabled hidden">></button></div>
+      <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled"></button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="disabled"></button></div>
       <ul>
       </ul>
       <a href="/news" id="go_news_button">Новости</a>
