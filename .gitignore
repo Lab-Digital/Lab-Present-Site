@@ -9,3 +9,4 @@ user_consts.php
 connect_params.php
 *.log
 mails
+files/*

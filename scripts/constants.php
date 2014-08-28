@@ -5,6 +5,7 @@ define('ADMIN_START_PAGE', '/admin/meta');
 define('GENERAL_DATE_FORMAT', 'Y-m-d H:i:s');
 define('MAX_SHORT_DESC_LEN', 180);
 define('UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'] . '/images/uploads/');
+define('UPLOAD_ZIP_DIR', $_SERVER['DOCUMENT_ROOT'] . '/files/');
 
 //errors messages
 define('ERROR_QUERY', 'В данный момент невозможно подключение к базе данных.');
