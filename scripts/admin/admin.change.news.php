@@ -3,16 +3,17 @@ require_once CLASSES_ROOT  . 'class.News.php';
 require_once CLASSES_ROOT  . 'class.Department.php';
 require_once HANDLERS_ROOT . 'handler.php';
 
-$vars['head'] = $vars['body'] = $vars['desc'] = $vars['mtitle'] = $vars['mkeywords'] = $vars['mdescription'] = null;
+$vars['head'] = $vars['body'] = $vars['desc'] = $vars['mtitle'] = $vars['mkeywords'] = $vars['mdescription'] = $vars['cats'] = null;
 
 if ($request->get('mode')) {
    $vars['head']         = $request->get('head');
    $vars['body']         = $request->get('body');
    $vars['desc']         = $request->get('desc');
+   $vars['cats']         = $request->get('categories', []);
    $vars['mtitle']       = $request->get('title');
    $vars['mkeywords']    = $request->get('keywords');
    $vars['mdescription'] = $request->get('description');
-   HandleAdminData($_news->SetCategories($request->get('categories', [])), [
+   HandleAdminData($_news->SetCategories($vars['cats']), [
       'mode'   => $request->get('mode'),
       'params' => [
          News::ID_FLD               => $request->get('id'),

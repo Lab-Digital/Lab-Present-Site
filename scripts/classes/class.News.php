@@ -116,7 +116,7 @@ class News extends EntityURL
    {
       $field = !empty($field) ? $field : static::PHOTO_FLD;
       $this->CheckSearch()->search->AddClause(CCond(
-         CF(static::TABLE, $this->GetFieldByName(static::OTHER_PHOTO_FLD)),
+         CF(static::TABLE, $this->GetFieldByName($field)),
          CVS('NULL'),
          cAND,
          'IS NOT'
@@ -126,6 +126,7 @@ class News extends EntityURL
    public function ModifySample(&$sample)
    {
       if (empty($sample)) return $sample;
+      $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
       switch ($this->samplingScheme) {
          case static::MAIN_SCHEME:
          case static::INFO_SCHEME:
@@ -133,10 +134,9 @@ class News extends EntityURL
          case static::WATH_OTHER_SCHEME:
             $key = $this->ToPrfxNm(static::PHOTOS_FLD);
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
-            $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
             foreach ($sample as &$set) {
                $date_var = new DateTime($set[$dateKey]);
-               $set[$dateKey] = $date_var->format('d-m-Y');
+               $set[$dateKey] = $date_var->format('d.m.Y');
                switch ($this->samplingScheme) {
                   case static::INFO_SCHEME:
                      $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
@@ -152,6 +152,8 @@ class News extends EntityURL
          case static::ADMIN_INFO_SCHEME:
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             foreach ($sample as &$set) {
+               $date_var = new DateTime($set[$dateKey]);
+               $set[$dateKey] = $date_var->format('d.m.Y');
                $set[$catKey] = !empty($set[$catKey]) ? explode(',', $set[$catKey]) : [];
             }
             break;
