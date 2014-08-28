@@ -93,8 +93,10 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
    `id`               INT          NOT NULL AUTO_INCREMENT,
    `head`             VARCHAR(150) NOT NULL,
    `avatar_id`        INT          DEFAULT NULL,
+   `photo_id`         INT          DEFAULT NULL,
    `description`      TEXT,
    PRIMARY KEY (`id`),
+   FOREIGN KEY (`photo_id`)  REFERENCES `images` (`id`) ON DELETE SET NULL,
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 

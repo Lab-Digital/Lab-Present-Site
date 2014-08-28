@@ -6,6 +6,7 @@ class Portfolio extends Entity
    const INFO_SCHEME         = 2;
 
    const HEAD_FLD        = 'head';
+   const PHOTO_FLD       = 'photo_id';
    const AVATAR_FLD      = 'avatar_id';
    const DESCRIPTION_FLD = 'description';
 
@@ -36,23 +37,29 @@ class Portfolio extends Entity
             static::AVATAR_FLD,
             IntType(),
             true
+         ),
+         new Field(
+            static::PHOTO_FLD,
+            IntType(),
+            true
          )
       );
    }
 
-   private function _NotNullImageClause()
+   private function _NotNullImageClause($fieldName)
    {
       $this->CreateSearch()->search->AddClause(CCond(
-         CF(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD)),
+         CF(static::TABLE, $this->GetFieldByName($fieldName)),
          CVS('NULL'),
          cAND,
          'IS NOT'
       ));
+      return $this;
    }
 
    public function GetAllAmountWithPhoto()
    {
-      $this->_NotNullImageClause();
+      $this->_NotNullImageClause(staitc::PHOTO_FLD)->_NotNullImageClause(staitc::AVATAR_FLD);
       return $this->GetAllAmount();
    }
 
@@ -71,13 +78,17 @@ class Portfolio extends Entity
       $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
       $this->selectFields = SQL::GetListFieldsForSelect(array_merge(
          $fields,
-         [ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD))]
+         [
+            ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD)),
+            ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD))
+         ]
       ));
    }
 
    public function ModifySample(&$sample)
    {
       if (empty($sample)) return $sample;
+      ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
       ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
    }
 

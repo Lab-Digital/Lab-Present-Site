@@ -20,6 +20,17 @@
             'sizes'       : 's#200#200'
          });
       });
+      $('div.photos_in button.upload').each(function(){
+         $data = $(this).attr('data');
+         $(this).getUpload({
+            'uploadType'  : 'portfolio',
+            'item_id'     :  $data,
+            'width'       : '400',
+            'height'      : '200',
+            'count'       : '1',
+            'sizes'       : 's#400#200'
+         });
+      });
       $('div.avatar_in a').fancybox();
       $('div.photos_in a').fancybox();
    });
@@ -44,7 +55,7 @@
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>
     {if !$isAdd|default:false}
-    <div class="in avatar_in">
+      <div class="in avatar_in">
        <h1 class="head_upload">Главное фото</h1>
        <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить главное фото</button>
        <ul>
@@ -58,7 +69,7 @@
        <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить фото</button>
        <ul>
           {if !empty($portfolio.portfolio_photo_id)}
-             <li><a href="/images/uploads/{$portfolio.portfolio_photo_id.name}_b.{$portfolio.portfolio_photo_id.ext}" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_avatar_id.name}_s.{$portfolio.portfolio_photo_id.ext}" /></a><button class="x" data="{$portfolio.portfolio_photo_id.name}" data-ext="{$portfolio.portfolio_photo_id.ext}">x</button></li>
+             <li><a href="/images/uploads/{$portfolio.portfolio_photo_id.name}_b.{$portfolio.portfolio_photo_id.ext}" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_photo_id.name}_s.{$portfolio.portfolio_photo_id.ext}" /></a><button class="x" data="{$portfolio.portfolio_photo_id.name}" data-ext="{$portfolio.portfolio_photo_id.ext}">x</button></li>
           {/if}
        </ul>
     </div>
