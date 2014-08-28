@@ -19,7 +19,7 @@
 {block name='div.main'}
    {include file="header.tpl"}
    <table class="menu">
-    <tr>{foreach from=$departments item=d}<td><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></td>{/foreach}</tr>
+    <tr>{foreach from=$departments item=d}<td><a href="/departments/{$d.departments_url}" {if $d.departments_id==$department.departments_id}class="active"{/if}>{$d.departments_head}</a></td>{/foreach}</tr>
    </table>
    <div class="wrap_deps">
       <div class="main_block">
