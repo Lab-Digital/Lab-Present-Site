@@ -45,9 +45,7 @@ class Proposal extends Entity
          new Field(
             static::TASK_FLD,
             TextType(),
-            true,
-            'Задача',
-            Array(Validate::IS_NOT_EMPTY)
+            true
          ),
          new Field(
             static::DEPARTMENT_FLD,

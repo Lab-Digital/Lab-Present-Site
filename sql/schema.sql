@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `proposal` (
    `name`           VARCHAR(180) NOT NULL,
    `email`          VARCHAR(180) NOT NULL,
    `phone`          VARCHAR(32)  NOT NULL,
-   `task`           TEXT         NOT NULL,
+   `task`           TEXT         DEFAULT '',
    `is_express`     INT          NOT NULL DEFAULT 0,
    `department_id`  INT          NOT NULL,
    `zip_name`       TEXT,
