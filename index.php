@@ -17,7 +17,10 @@ switch ($request_parts[0]) {
 
    case 'resume':
       require_once CLASSES_ROOT . 'class.Meta.php';
-      $smarty->assign('meta', $_meta->SetSamplingScheme(Meta::PAGE_SCHEME)->GetById(Meta::RESUME_META_ID))->display('resume.tpl');
+      require_once CLASSES_ROOT . 'class.Resume.php';
+      $smarty->assign('sliders', $_resume->SetSamplingScheme(Resume::PAGE_SCHEME)->GetAll())
+             ->assign('meta', $_meta->SetSamplingScheme(Meta::PAGE_SCHEME)->GetById(Meta::RESUME_META_ID))
+             ->display('resume.tpl');
       break;
 
    case 'contacts':
@@ -93,6 +96,10 @@ switch ($request_parts[0]) {
 
          case 'slider':
             require_once ADMIN_ROOT . 'admin.slider.php';
+            break;
+
+         case 'resume':
+            require_once ADMIN_ROOT . 'admin.resume.php';
             break;
 
          case 'portfolio':

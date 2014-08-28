@@ -4,6 +4,7 @@ try {
    $ajaxOtherResult = Array('result' => true, 'message' => 'Загрузка прошла успешно!');
    $item_id = $request->get('item_id');
    switch ($request->get('uploadType')) {
+      case 'resume':
       case 'projects':
       case 'portfolio':
       case 'departments':
@@ -12,6 +13,7 @@ try {
          require_once CLASSES_ROOT . 'class.Portfolio.php';
          require_once CLASSES_ROOT . 'class.Department.php';
          require_once CLASSES_ROOT . 'class.MainSlider.php';
+         require_once CLASSES_ROOT . 'class.Resume.php';
          $uploadType = $request->get('uploadType');
          if ($uploadType == 'projects') {
             $obj = $_project;
@@ -19,6 +21,8 @@ try {
             $obj = $_department;
          } elseif ($uploadType == 'main_slider') {
             $obj = $_mainSlider;
+         } elseif ($uploadType == 'resume') {
+            $obj = $_resume;
          } else {
             $obj = $_portfolio;
          }

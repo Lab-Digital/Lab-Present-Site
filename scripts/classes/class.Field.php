@@ -173,7 +173,6 @@ class Field
          }
       }
       if ($isException) {
-         echo $value . 'f';
          throw new ValidateException($exceptionStr);
       }
       return $this;

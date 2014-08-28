@@ -133,6 +133,16 @@ CREATE TABLE IF NOT EXISTS `main_slider` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `resume` (
+   `id`        INT          NOT NULL AUTO_INCREMENT,
+   `head`      VARCHAR(200) NOT NULL,
+   `number`    INT          NOT NULL DEFAULT 1,
+   `photo_id`  INT          DEFAULT NULL,
+   `body`      TEXT         DEFAULT '',
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+);
+
 DELIMITER //
 
 DROP TRIGGER IF EXISTS `update_admin`//
@@ -150,7 +160,7 @@ INSERT INTO `admin`(`login`, `pass_md5`) VALUES('admin', '21232f297a57a5a743894a
 INSERT INTO `meta`(`head`, `title`, `keywords`, `description`) VALUES
    ('Главная страница', 'Lab Present - Главная', 'main page keywords', 'main page description'),
    ('Все новости', 'Lab Present - Новости', 'news page keywords', 'news page description'),
-   ('Резюме', 'Lab Present - Резюме', 'rezume page keywords', 'rezume page description'),
+   ('Резюме', 'Lab Present - Резюме', 'resume page keywords', 'resume page description'),
    ('Контакты', 'Lab Present - Контакты', 'contacts page keywords', 'contacts page description');
 
 INSERT INTO `departments` (`id`, `url`, `head`, `body`, `meta_title`, `meta_keywords`, `meta_description`) VALUES

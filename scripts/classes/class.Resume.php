@@ -2,17 +2,18 @@
 require_once CLASSES_ROOT . 'class.Entity.php';
 require_once CLASSES_ROOT . 'class.Image.php';
 
-class MainSlider extends Entity
+class Resume extends Entity
 {
-   const URL_FLD = 'url';
+   const HEAD_FLD   = 'head';
+   const BODY_FLD   = 'body';
+   const PHOTO_FLD  = 'photo_id';
    const NUMBER_FLD = 'number';
-   const AVATAR_FLD = 'avatar_id';
 
    const PAGE_SCHEME = 2;
 
-   const TABLE = 'main_slider';
+   const TABLE = 'resume';
 
-   const LAST_VIEWED_ID = 'last_viewed_main_slider_id';
+   const LAST_VIEWED_ID = 'last_viewed_resume_id';
 
    public function __construct()
    {
@@ -20,8 +21,15 @@ class MainSlider extends Entity
       $this->fields = Array(
          $this->idField,
          new Field(
-            static::URL_FLD,
-            StrType(300),
+            static::HEAD_FLD,
+            StrType(200),
+            true,
+            'Заголовок слайда',
+            [Validate::IS_NOT_EMPTY]
+         ),
+         new Field(
+            static::BODY_FLD,
+            TextType(),
             true
          ),
          new Field(
@@ -32,7 +40,7 @@ class MainSlider extends Entity
             [Validate::IS_NOT_EMPTY, Validate::IS_NUMERIC]
          ),
          new Field(
-            static::AVATAR_FLD,
+            static::PHOTO_FLD,
             IntType(),
             true
          ),
@@ -45,11 +53,11 @@ class MainSlider extends Entity
       $this->AddOrder(static::NUMBER_FLD);
       $this->selectFields = SQL::GetListFieldsForSelect(array_merge(
          SQL::PrepareFieldsForSelect(static::TABLE, $this->fields),
-         [ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD))]
+         [ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD))]
       ));
       if ($this->samplingScheme == static::PAGE_SCHEME) {
          $this->CreateSearch()->search->AddClause(CCond(
-            CF(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD)),
+            CF(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD)),
             CVS('NULL'),
             cAND,
             'IS NOT'
@@ -59,7 +67,7 @@ class MainSlider extends Entity
 
    public function ModifySample(&$sample)
    {
-      ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
+      ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
    }
 
    public function GetAll()
@@ -69,4 +77,4 @@ class MainSlider extends Entity
    }
 }
 
-$_mainSlider = new MainSlider();
+$_resume = new Resume();

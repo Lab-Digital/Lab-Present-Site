@@ -76,7 +76,7 @@
       <div class="add">
          <h2>Добавление слайда</h2>
          <form action="/admin/slider" method="post">
-            <input type="hidden" name="id" value="{$s.main_slider_id}" />
+            <input type="hidden" name="id" value="" />
             <div class="form_block">
                <label for="number_new">Порядковый номер</label>
                <input type="number" min="1" name="number" id="number_new" value="{$number|default:1}" />

@@ -9,11 +9,10 @@
    <script>
    {literal}
    $(function(){
-      $('div.avatar_in button.upload').each(function(){
+      $('div.photos_in button.upload').each(function(){
          $data = $(this).attr('data');
          $(this).getUpload({
-            'uploadType'  : 'main_slider',                    //////////////////////////////////// tut
-            'isAvatar'    : 'true',
+            'uploadType'  : 'resume',
             'item_id'     :  $data,
             'width'       : '355',
             'height'      : '695',
@@ -21,7 +20,7 @@
             'sizes'       : 's#100#196,b#355#695'
          });
       });
-      $('div.avatar_in a').fancybox();
+      $('div.photos_in a').fancybox();
    });
    {/literal}
    </script>
@@ -35,7 +34,7 @@
          <label for="choose">Выберите слайд</label>
          <select id="choose_item">
             {foreach from=$sliders item=s}
-               <option value="{$s.main_slider_id}">Слайд {$s.main_slider_number}</option>
+               <option value="{$s.resume_id}">Слайд {$s.resume_number}</option>
             {/foreach}
          </select>
          <script type="text/javascript">
@@ -44,28 +43,28 @@
          <h2>Редактирование слайда</h2>
          {foreach from=$sliders item=s name=f}
             <div class="edit">
-               <form action="/admin/slider" method="post" class="item_edit" id="item{$s.main_slider_id}">
-                  <input type="hidden" name="id" value="{$s.main_slider_id}" />
+               <form action="/admin/resume" method="post" class="item_edit" id="item{$s.resume_id}">
+                  <input type="hidden" name="id" value="{$s.resume_id}" />
+                  <div class="form_block">
+                     <label for="head_{$smarty.foreach.f.index}">Заголовок слайда</label>
+                     <input type="text" name="head" id="head_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.resume_head}{else}{$head|default:$s.resume_head}{/if}" />
+                  </div>
                   <div class="form_block">
                      <label for="num_{$smarty.foreach.f.index}">Порядковый номер</label>
-                     <input type="number" min="1" name="number" id="num_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_number}{else}{$number|default:$s.main_slider_number}{/if}" />
+                     <input type="number" min="1" name="number" id="num_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.resume_number}{else}{$number|default:$s.resume_number}{/if}" />
                   </div>
                   <div class="form_block">
-                     <label for="head_{$smarty.foreach.f.index}">Заголовок</label>
-                     <input name="head" id="head_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}" />
-                  </div>
-                  <div class="form_block">
-                     <label for="text_{$smarty.foreach.f.index}">Текст</label>
-                     <textarea name="text" id="text_{$smarty.foreach.f.index}">{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}</textarea>
+                    <label for="body_{$smarty.foreach.f.index}">Текст к слайду</label>
+                    <textarea name="body" id="body_{$smarty.foreach.f.index}" rows="20" cols="90">{$body|default:$s.resume_body|default:''}</textarea>
                   </div>
                   <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
                </form>
-               <div class="in avatar_in">
+               <div class="in photos_in">
                   <h1 class="head_upload">Фото</h1>
-                  <button class="upload" type="submit" data="{$s.main_slider_id}">Загрузить фото</button>
+                  <button class="upload" type="submit" data="{$s.resume_id}">Загрузить фото</button>
                   <ul>
-                  {if !empty($s.main_slider_avatar_id)}
-                     <li><a href="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}"><img src="/images/uploads/{$s.main_slider_avatar_id.name}_s.{$s.main_slider_avatar_id.ext}" /></a><button class="x" data="{$s.main_slider_avatar_id.name}" data-ext="{$s.main_slider_avatar_id.ext}">x</button></li>
+                  {if !empty($s.resume_photo_id)}
+                     <li><a href="/images/uploads/{$s.resume_photo_id.name}_s.{$s.resume_photo_id.ext}"><img src="/images/uploads/{$s.resume_photo_id.name}_s.{$s.resume_photo_id.ext}" /></a><button class="x" data="{$s.resume_photo_id.name}" data-ext="{$s.resume_photo_id.ext}">x</button></li>
                   {/if}
                   </ul>
                </div>
@@ -74,24 +73,25 @@
          {include file='admin.set_select.tpl'}
       {/if}
       {if !$isInsert}
-         {assign var='url' value=''}
+         {assign var='head' value=''}
          {assign var='number' value=''}
+         {assign var='body' value=''}
       {/if}
       <div class="add">
          <h2>Добавление слайда</h2>
-         <form action="/admin/slider" method="post">                                <!--////////////////////////////////tut-->
-            <input type="hidden" name="id" value="{$s.main_slider_id}" />
+         <form action="/admin/resume" method="post">
+            <input type="hidden" name="id" value="" />
+            <div class="form_block">
+               <label for="head_new">Заголовок слайда</label>
+               <input type="text" name="head" id="head_new" value="{$head}" />
+            </div>
             <div class="form_block">
                <label for="number_new">Порядковый номер</label>
-               <input type="number" min="1" name="number" id="number_new" value="{$number}" />
+               <input type="number" min="1" name="number" id="number_new" value="{$number|default:1}" />
             </div>
             <div class="form_block">
-               <label for="head_new">Заголовок</label>
-               <input name="head" id="head_new" value="{$url}" />
-            </div>
-            <div class="form_block">
-               <label for="text_new">Текст</label>
-               <textarea name="text" id="text_new">{$url}</textarea>
+              <label for="body_new">Текст к слайду</label>
+              <textarea name="body" id="body_new" rows="20" cols="90">{$body|default:''}</textarea>
             </div>
             <div class="buttons"><button id="add" name="mode" value="Insert">Добавить</button></div>
          </form>
