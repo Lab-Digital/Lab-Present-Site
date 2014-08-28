@@ -21,9 +21,10 @@ CREATE TABLE IF NOT EXISTS `admin` (
    PRIMARY KEY (`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `index_meta` (
+CREATE TABLE IF NOT EXISTS `meta` (
    `id`           INT          NOT NULL AUTO_INCREMENT,
-   `title`        VARCHAR(130) NOT NULL,
+   `head`         VARCHAR(130) NOT NULL,
+   `title`        VARCHAR(200) NOT NULL,
    `keywords`     TEXT,
    `description`  TEXT,
    PRIMARY KEY (`id`)
@@ -144,7 +145,11 @@ DELIMITER ;
 
 INSERT INTO `admin`(`login`, `pass_md5`) VALUES('admin', '21232f297a57a5a743894a0e4a801fc3');
 
-INSERT INTO `index_meta`(`title`, `keywords`, `description`) VALUES('Lab Present - Главная', '', '');
+INSERT INTO `meta`(`head`, `title`, `keywords`, `description`) VALUES
+   ('Главная страница', 'Lab Present - Главная', 'main page keywords', 'main page description'),
+   ('Все новости', 'Lab Present - Новости', 'news page keywords', 'news page description'),
+   ('Резюме', 'Lab Present - Резюме', 'rezume page keywords', 'rezume page description'),
+   ('Контакты', 'Lab Present - Контакты', 'contacts page keywords', 'contacts page description');
 
 INSERT INTO `departments` (`id`, `url`, `head`, `body`, `meta_title`, `meta_keywords`, `meta_description`) VALUES
 (1, 'internet', 'Интернет', 'Интернет', 'Интернет', 'Интернет', 'Интернет'),

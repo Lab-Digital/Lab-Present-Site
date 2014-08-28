@@ -1,24 +1,29 @@
 <?php
-require_once CLASSES_ROOT  . 'class.IndexMeta.php';
+require_once CLASSES_ROOT  . 'class.Meta.php';
 require_once HANDLERS_ROOT . 'handler.php';
+
+SetLastViewedID(Meta::LAST_VIEWED_ID);
 
 $vars['meta_title'] = $vars['meta_keywords'] = $vars['meta_description'] = null;
 
 if ($request->get('mode')) {
+   $id                       = $request->get('id');
    $vars['meta_title']       = $request->get('title');
    $vars['meta_keywords']    = $request->get('keywords');
    $vars['meta_description'] = $request->get('description');
-   HandleAdminData($_indexMeta, [
-      'mode' => $request->get('mode'),
+   $_meta->SetLastViewedID($id);
+   HandleAdminData($_meta, [
+      'mode'   => 'Update',
       'params' => [
-         IndexMeta::ID_FLD          => IndexMeta::META_ID,
-         IndexMeta::TITLE_FLD       => $vars['meta_title'],
-         IndexMeta::KEYWORDS_FLD    => $vars['meta_keywords'],
-         IndexMeta::DESCRIPTION_FLD => $vars['meta_description']
+         Meta::ID_FLD          => $id,
+         Meta::TITLE_FLD       => $vars['meta_title'],
+         Meta::KEYWORDS_FLD    => $vars['meta_keywords'],
+         Meta::DESCRIPTION_FLD => $vars['meta_description']
       ]
-   ], 'other');
+   ], 'meta');
+   SetLastViewedID(Meta::LAST_VIEWED_ID);
 }
 
 $smarty->assign($vars)
-       ->assign('meta', $_indexMeta->GetById(IndexMeta::META_ID))
+       ->assign('meta', $_meta->SetSamplingScheme(Meta::ADMIN_SCHEME)->GetAll())
        ->display('admin.other.tpl');

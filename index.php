@@ -16,7 +16,13 @@ switch ($request_parts[0]) {
       break;
 
    case 'resume':
-      require_once SCRIPTS_ROOT . 'resume.php';
+      require_once CLASSES_ROOT . 'class.Meta.php';
+      $smarty->assign('meta', $_meta->SetSamplingScheme(Meta::PAGE_SCHEME)->GetById(Meta::RESUME_META_ID))->display('resume.tpl');
+      break;
+
+   case 'contacts':
+      require_once CLASSES_ROOT . 'class.Meta.php';
+      $smarty->assign('meta', $_meta->SetSamplingScheme(Meta::PAGE_SCHEME)->GetById(Meta::CONTACTS_META_ID))->display('contacts.tpl');
       break;
 
    case 'portfolio':
@@ -26,9 +32,9 @@ switch ($request_parts[0]) {
    case 'news':
       require_once CLASSES_ROOT . 'class.News.php';
       if (empty($request_parts[1])) {
-         require_once CLASSES_ROOT . 'class.IndexMeta.php';
+         require_once CLASSES_ROOT . 'class.Meta.php';
          $smarty->assign($_news->GetAllNews())
-                ->assign('meta', $_indexMeta->GetById(IndexMeta::META_ID))
+                ->assign('meta', $_meta->SetSamplingScheme(Meta::PAGE_SCHEME)->GetById(Meta::NEWS_META_ID))
                 ->display('allnews.tpl');
       } else {
          $data = $_news->SetSamplingScheme(News::ARTICLE_SCHEME)->GetByURL($request_parts[1]);
