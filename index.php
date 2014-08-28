@@ -19,6 +19,10 @@ switch ($request_parts[0]) {
       require_once SCRIPTS_ROOT . 'resume.php';
       break;
 
+   case 'portfolio':
+      require_once SCRIPTS_ROOT . 'portfolio.php';
+      break;
+
    case 'news':
       require_once CLASSES_ROOT . 'class.News.php';
       if (empty($request_parts[1])) {

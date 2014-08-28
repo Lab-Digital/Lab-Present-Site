@@ -21,6 +21,7 @@
          });
       });
       $('div.avatar_in a').fancybox();
+      $('div.photos_in a').fancybox();
    });
    {/literal}
    </script>
@@ -53,10 +54,10 @@
        </ul>
     </div>
     <div class="in photos_in">
-       <h1 class="head_upload">Главное фото</h1>
-       <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить главное фото</button>
+       <h1 class="head_upload">Фото</h1>
+       <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить фото</button>
        <ul>
-          {if !empty($portfolio.portfolio_avatar_id)}
+          {if !empty($portfolio.portfolio_photo_id)}
              <li><a href="/images/uploads/{$portfolio.portfolio_photo_id.name}_b.{$portfolio.portfolio_photo_id.ext}" rel="gallery_{$portfolio.portfolio_id}"><img src="/images/uploads/{$portfolio.portfolio_avatar_id.name}_s.{$portfolio.portfolio_photo_id.ext}" /></a><button class="x" data="{$portfolio.portfolio_photo_id.name}" data-ext="{$portfolio.portfolio_photo_id.ext}">x</button></li>
           {/if}
        </ul>

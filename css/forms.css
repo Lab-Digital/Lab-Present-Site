@@ -23,6 +23,12 @@ input {
   min-width: 200px;
 }
 
+input[type="number"] {
+  min-width: 40px; 
+  width: 40px; 
+  padding-right: 0;
+}
+
 form div.form_block {
   margin-bottom: 9px;
 }

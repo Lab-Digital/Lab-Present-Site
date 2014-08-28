@@ -12,13 +12,13 @@
       $('div.avatar_in button.upload').each(function(){
          $data = $(this).attr('data');
          $(this).getUpload({
-            'uploadType'  : 'main_slider',
+            'uploadType'  : 'main_slider',                    //////////////////////////////////// tut
             'isAvatar'    : 'true',
             'item_id'     :  $data,
-            'width'       : '1024',
-            'height'      : '356',
+            'width'       : '355',
+            'height'      : '695',
             'count'       : '1',
-            'sizes'       : 's#100#35,b#1024#356'
+            'sizes'       : 's#100#196,b#355#695'
          });
       });
       $('div.avatar_in a').fancybox();
@@ -28,7 +28,7 @@
    <script src="/js/images.js"></script>
 {/block}
 {block name='main'}
-   <h1>Слайдер</h1>
+   <h1>Резюме</h1>
    {if isset($error_txt)}<p class="db_error">{$error_txt}</p>{/if}
    <div class="right_block">
       {if $sliders|@count}
@@ -51,8 +51,12 @@
                      <input type="number" min="1" name="number" id="num_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_number}{else}{$number|default:$s.main_slider_number}{/if}" />
                   </div>
                   <div class="form_block">
-                     <label for="url_{$smarty.foreach.f.index}">URL</label>
-                     <input type="url" name="url" id="url_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}" />
+                     <label for="head_{$smarty.foreach.f.index}">Заголовок</label>
+                     <input name="head" id="head_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}" />
+                  </div>
+                  <div class="form_block">
+                     <label for="text_{$smarty.foreach.f.index}">Текст</label>
+                     <textarea name="text" id="text_{$smarty.foreach.f.index}">{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}</textarea>
                   </div>
                   <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
                </form>
@@ -75,15 +79,19 @@
       {/if}
       <div class="add">
          <h2>Добавление слайда</h2>
-         <form action="/admin/slider" method="post">
+         <form action="/admin/slider" method="post">                                <!--////////////////////////////////tut-->
             <input type="hidden" name="id" value="{$s.main_slider_id}" />
             <div class="form_block">
                <label for="number_new">Порядковый номер</label>
                <input type="number" min="1" name="number" id="number_new" value="{$number}" />
             </div>
             <div class="form_block">
-               <label for="url_new">URL</label>
-               <input type="url" name="url" id="url_new" value="{$url}" />
+               <label for="head_new">Заголовок</label>
+               <input name="head" id="head_new" value="{$url}" />
+            </div>
+            <div class="form_block">
+               <label for="text_new">Текст</label>
+               <textarea name="text" id="text_new">{$url}</textarea>
             </div>
             <div class="buttons"><button id="add" name="mode" value="Insert">Добавить</button></div>
          </form>

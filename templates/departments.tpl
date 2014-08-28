@@ -6,7 +6,15 @@
   <link href="/css/header.css" rel="stylesheet" />
   <link href="/css/footer.css" rel="stylesheet" />
   <link href="/css/departaments.css" rel="stylesheet" />
+  <link href="/css/portfolio.css" rel="stylesheet" />
   <link href="/css/forms.css" rel="stylesheet" />
+  <script>
+    {literal}
+      $(function(){
+        $('#portfolio_button').fancybox({'iframe': true, 'href': '/portfolio'});
+      });
+    {/literal}
+  </script>
 {/block}
 {block name='div.main'}
    {include file="header.tpl"}

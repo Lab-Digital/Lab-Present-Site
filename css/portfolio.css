@@ -1,0 +1,21 @@
+#portfolio {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#portfolio ul {
+	text-align: center;
+}
+
+#portfolio ul li {
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	margin: 6px;
+}
+
+#portfolio ul li img {
+	width: 200px;
+	height: 200px;
+	background: red;
+}
