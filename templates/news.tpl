@@ -29,14 +29,14 @@
             <ul>
             {foreach from=$other_articles item=a}
                <li>
-                  <article>
-                     <a href='/news/{$a.news_url}'>
+                  <a href='/news/{$a.news_url}'>
+                     <article>
                         {if !empty($a.news_other_photo_id)}<img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" class="photo" />{/if}
                         <h1>{$a.news_head}</h1>
-                     </a>
-                     <span>Добавлено:</span>
-                     <time>{$a.news_publication_date}</time>
-                  </article>
+                        <span>Добавлено:</span>
+                        <time>{$a.news_publication_date}</time>
+                     </article>
+                  </a>
                </li>
             {/foreach}
             </ul>

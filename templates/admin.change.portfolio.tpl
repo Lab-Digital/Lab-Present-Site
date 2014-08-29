@@ -25,10 +25,10 @@
          $(this).getUpload({
             'uploadType'  : 'portfolio',
             'item_id'     :  $data,
-            'width'       : '400',
-            'height'      : '200',
+            'width'       : '806',
+            'height'      : '300',
             'count'       : '1',
-            'sizes'       : 's#400#200'
+            'sizes'       : 's#100#37,b#806#300'
          });
       });
       $('div.avatar_in a').fancybox();
