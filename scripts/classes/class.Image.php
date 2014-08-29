@@ -129,12 +129,17 @@ function ImageWithFlagSelectSQL($table, $field, $withFlag = true)
    );
 }
 
+function ModifySetWithImage(&$set, $image_fields)
+{
+   foreach ($image_fields as $field_name) {
+      $tmp = !empty($set[$field_name]) ? explode('.', $set[$field_name]) : [];
+      $set[$field_name] = !empty($tmp) ? ['name' => $tmp[0], 'ext' => $tmp[1]] : null;
+   }
+}
+
 function ModifySampleWithImage(&$sample, $image_fields)
 {
    foreach ($sample as &$set) {
-      foreach ($image_fields as $field_name) {
-         $tmp = !empty($set[$field_name]) ? explode('.', $set[$field_name]) : [];
-         $set[$field_name] = !empty($tmp) ? ['name' => $tmp[0], 'ext' => $tmp[1]] : null;
-      }
+      ModifySetWithImage($set, $image_fields);
    }
 }

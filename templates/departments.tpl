@@ -11,7 +11,7 @@
   <script>
     {literal}
       $(function(){
-        $('#portfolio_button').fancybox({'iframe': true, 'href': '/portfolio'});
+        $('#portfolio_button').fancybox({'iframe': true, 'href':{/literal} '/portfolio/{$department.departments_id}'{literal}});
       });
     {/literal}
   </script>

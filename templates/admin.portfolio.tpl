@@ -9,12 +9,20 @@
   <table>
   <tr class="head">
     <td>Название</td>
+    <td>Категория</td>
     <td>Описание</td>
     <td></td>
   </tr>
   {foreach from=$portfolio item=p}
   <tr>
     <td>{$p.portfolio_head}</td>
+    <td>
+    {foreach from=$p.portfolio_categories item=c}
+      <span class="li">{$departments[$c]}</span>
+    {foreachelse}
+      -
+    {/foreach}
+    </td>
     <td>{$p.portfolio_description}</td>
     <td class="buttons">
       <button title="Редактировать" class="edit" onClick="javascript:location.assign('/admin/edit/{$p.portfolio_id}/portfolio')"></button>

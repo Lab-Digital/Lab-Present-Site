@@ -101,6 +101,16 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `portfolio_departments` (
+   `id`            INT NOT NULL AUTO_INCREMENT,
+   `portfolio_id`  INT NOT NULL,
+   `department_id` INT NOT NULL,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY  (`portfolio_id`, `department_id`),
+   FOREIGN KEY (`portfolio_id`)  REFERENCES `portfolio`   (`id`) ON DELETE CASCADE,
+   FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS `news_departments` (
    `id`            INT NOT NULL AUTO_INCREMENT,
    `news_id`       INT NOT NULL,
