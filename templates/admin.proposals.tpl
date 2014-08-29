@@ -3,7 +3,7 @@
 {block name='links' append}
 {/block}
 {block name='main'}
-  <h1>Новости</h1>
+  <h1>Заявки</h1>
   <table>
   <tr class="head">
     <td>Информация о заказчике</td>
