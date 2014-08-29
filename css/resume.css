@@ -31,6 +31,7 @@ ul.bxslider > li article.slider_text {
 	display: inline-block;
 	vertical-align: top;
 	background: #f9f9f9;
+	height: 575px;
 }
 
 ul.bxslider > li article.slider_text div.text {
@@ -45,5 +46,6 @@ ul.bxslider > li article.slider_text h1 {
 }
 
 ul.bxslider > li img {
+	width: 365px;
 	display: inline-block;
 }

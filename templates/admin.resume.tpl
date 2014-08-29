@@ -14,10 +14,10 @@
          $(this).getUpload({
             'uploadType'  : 'resume',
             'item_id'     :  $data,
-            'width'       : '355',
+            'width'       : '365',
             'height'      : '695',
             'count'       : '1',
-            'sizes'       : 's#100#196,b#355#695'
+            'sizes'       : 's#100#190,b#365#695'
          });
       });
       $('div.photos_in a').fancybox();
