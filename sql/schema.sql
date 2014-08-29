@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `proposal` (
    `is_express`     INT          NOT NULL DEFAULT 0,
    `department_id`  INT          NOT NULL,
    `zip_name`       TEXT,
+   `date`           TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
    CHECK (`is_express` >= 0 AND `is_express` <= 1),
    PRIMARY KEY (`id`),
    FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE

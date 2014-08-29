@@ -6,15 +6,18 @@ class Proposal extends Entity
 {
    const ABOUT_TEXT_ID = 1;
 
+   const ZIP_FLD        = 'zip_name';
+   const DATE_FLD       = 'date';
    const NAME_FLD       = 'name';
    const TASK_FLD       = 'task';
    const EMAIL_FLD      = 'email';
    const PHONE_FLD      = 'phone';
    const EXPRESS_FLD    = 'is_express';
    const DEPARTMENT_FLD = 'department_id';
-   const ZIP_FLD        = 'zip_name';
 
    const TABLE = 'proposal';
+
+   const AMOUNT_ON_PAGE = 1;
 
    public function __construct()
    {
@@ -80,6 +83,26 @@ class Proposal extends Entity
          $this->GetFieldByName(static::TASK_FLD)->GetValue()
       );
       $db->Insert($query, $params);
+   }
+
+   public function ModifySample(&$sample)
+   {
+      if (empty($sample)) return;
+      $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
+      foreach ($sample as &$set) {
+         $date_var = new DateTime($set[$dateKey]);
+         $set[$dateKey] = $date_var->format('d.m.Y H:m');
+      }
+   }
+
+   public function GetProposals()
+   {
+      list($pageNum, $pagesInfo) = _GeneratePages($this->GetAllAmount(), static::AMOUNT_ON_PAGE);
+      return [
+         'curPage'   => $pageNum + 1,
+         'pagesInfo' => $pagesInfo,
+         'proposals' => $this->AddLimit(static::AMOUNT_ON_PAGE, $pageNum * static::AMOUNT_ON_PAGE)->GetAll()
+      ];
    }
 
    public function ValidatePhone($phone)
