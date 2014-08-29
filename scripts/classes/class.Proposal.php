@@ -17,7 +17,7 @@ class Proposal extends Entity
 
    const TABLE = 'proposal';
 
-   const AMOUNT_ON_PAGE = 1;
+   const AMOUNT_ON_PAGE = 20;
 
    public function __construct()
    {
@@ -30,6 +30,11 @@ class Proposal extends Entity
             true,
             'Имя',
             Array(Validate::IS_NOT_EMPTY)
+         ),
+         new Field(
+            static::DATE_FLD,
+            TimestampType(),
+            false
          ),
          new Field(
             static::EMAIL_FLD,
@@ -69,6 +74,8 @@ class Proposal extends Entity
             'Прикрепления'
          )
       );
+      $this->orderFields =
+         [static::DATE_FLD => new OrderField(static::TABLE, $this->GetFieldByName(static::DATE_FLD))];
    }
 
    public function Insert($getLastInsertId = false)
@@ -85,10 +92,16 @@ class Proposal extends Entity
       $db->Insert($query, $params);
    }
 
+   public function SetSelectValues()
+   {
+      $this->AddOrder(static::DATE_FLD, OT_DESC);
+      parent::SetSelectValues();
+   }
+
    public function ModifySample(&$sample)
    {
       if (empty($sample)) return;
-      $dateKey = $this->ToPrfxNm(static::PUBLICATION_DATE_FLD);
+      $dateKey = $this->ToPrfxNm(static::DATE_FLD);
       foreach ($sample as &$set) {
          $date_var = new DateTime($set[$dateKey]);
          $set[$dateKey] = $date_var->format('d.m.Y H:m');
@@ -128,7 +141,6 @@ class Proposal extends Entity
       }
       return $this;
    }
-
 }
 
 $_proposal = new Proposal();

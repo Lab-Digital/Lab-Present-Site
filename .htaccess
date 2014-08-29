@@ -6,6 +6,7 @@ RewriteCond %{REQUEST_FILENAME} !index.php
 RewriteCond %{REQUEST_URI} !^/css/*
 RewriteCond %{REQUEST_URI} !^/js/*
 RewriteCond %{REQUEST_URI} !^/images/*
+RewriteCond %{REQUEST_URI} !^/files/*
 RewriteCond %{REQUEST_URI} !^/fancybox/*
 RewriteCond %{REQUEST_URI} !^/upload_photo/*
 RewriteCond %{REQUEST_URI} !^/scripts/uploads/*

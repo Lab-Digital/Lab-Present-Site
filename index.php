@@ -128,7 +128,7 @@ switch ($request_parts[0]) {
 
          case 'proposals':
             require_once CLASSES_ROOT . 'class.Proposal.php';
-            $smarty->assign('proposals', $_proposal->GetProposals())->display('admin.proposal.tpl');
+            $smarty->assign($_proposal->GetProposals())->display('admin.proposals.tpl');
             break;
 
          case 'logout':

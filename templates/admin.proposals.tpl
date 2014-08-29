@@ -1,40 +1,28 @@
 {extends file='admin.tpl'}
-{block name='title' append} - Новости{/block}
+{block name='title' append} - Заявки{/block}
 {block name='links' append}
 {/block}
 {block name='main'}
   <h1>Новости</h1>
-  {if isset($error_txt)}<p class="db_error">{$error_txt}</p>{/if}
-  <button onClick="javascript:location.assign('/admin/add/news')" class="table_top_button">Добавить</button>
   <table>
   <tr class="head">
     <td>Информация о заказчике</td>
     <td>Дата заявки</td>
     <td>Задача</td>
     <td>Файлы</td>
-    <td></td>
   </tr>
-  {foreach from=$news item=article}
+  {foreach from=$proposals item=p}
   <tr>
-    <td>{$article.news_head}</td>
-    <td>{$article.news_publication_date}</td>
-    <td>
-    {foreach from=$article.news_categories item=c}
-      <span class="li">{$departments[$c]}</span>
-    {foreachelse}
-      -
-    {/foreach}
-    </td>
-    <td class="buttons">
-      <button title="Редактировать" class="edit" onClick="javascript:location.assign('/admin/edit/{$article.news_id}/news')"></button>
-      <button title="Удалить" class="delete" onClick="javascript:location.assign('/admin/delete/{$article.news_id}/news')"></button>
-    </td>
+    <td>Имя: {$p.proposal_name}<br />Телефон: {$p.proposal_phone}<br />E-mail: {$p.proposal_email}<br /></td>
+    <td>{$p.proposal_date}</td>
+    <td>{$p.proposal_task}</td>
+    <td>{if !empty($p.proposal_zip_name)}<a href="/files/{$p.proposal_zip_name}.zip">ссылка на zip архив если есть. сделай пожалуйста иконочку зип архива</a>{/if}</td>
   </tr>
   {/foreach}
   </table>
   {if $pagesInfo.amount > 1}
   <div id="nav_num">
-    {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<a class="{if $curPage == $t}active{/if}" href="/admin/news/?page={$t}">{$t}</a>{/if}{/foreach}
+    {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<a class="{if $curPage == $t}active{/if}" href="/admin/proposals/?page={$t}">{$t}</a>{/if}{/foreach}
   </div>
   {/if}
 {/block}
