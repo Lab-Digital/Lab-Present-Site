@@ -126,6 +126,11 @@ switch ($request_parts[0]) {
             require_once ADMIN_ROOT . 'admin.meta.php';
             break;
 
+         case 'proposals':
+            require_once CLASSES_ROOT . 'class.Proposal.php';
+            $smarty->assign('proposals', $_proposal->GetProposals())->display('admin.proposal.tpl');
+            break;
+
          case 'logout':
             unset($_SESSION['admin_login']);
             unset($_SESSION['admin_pass']);
