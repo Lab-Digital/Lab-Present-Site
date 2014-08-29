@@ -22,7 +22,7 @@ try {
          } elseif ($uploadType == 'resume') {
             $obj = $_resume;
          }
-         if (!empty($request->get('image_id'))) {
+         if (!$request->get('image_id')) {
             $_image->Delete($request->get('image_id'));
          }
          try {
