@@ -94,6 +94,14 @@ class Portfolio extends Entity
             $this->_NotNullImageClause(static::AVATAR_FLD);
             break;
 
+         case static::INFO_SCHEME:
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, [
+               $this->GetFieldByName(static::HEAD_FLD),
+               $this->GetFieldByName(static::DESCRIPTION_FLD)
+            ]);
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+            break;
+
          case static::ADMIN_INFO_SCHEME:
             $fields = SQL::PrepareFieldsForSelect(static::TABLE, [
                $this->idField,
@@ -149,6 +157,10 @@ class Portfolio extends Entity
    {
       if (empty($sample)) return;
       switch ($this->samplingScheme) {
+         case static::INFO_SCHEME:
+            ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
+            break;
+
          case static::GRID_SCHEME:
             $avatarField = $this->ToPrfxNm(static::AVATAR_FLD);
             $result = $tmp = [];
