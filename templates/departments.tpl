@@ -6,8 +6,8 @@
   <link href="/css/header.css" rel="stylesheet" />
   <link href="/css/footer.css" rel="stylesheet" />
   <link href="/css/departaments.css" rel="stylesheet" />
-  <link href="/css/portfolio.css" rel="stylesheet" />
   <link href="/css/forms.css" rel="stylesheet" />
+  <link href="/css/portfolio.css" rel="stylesheet" />
   <script>
     {literal}
       $(function(){

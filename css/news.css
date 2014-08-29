@@ -83,6 +83,7 @@ div.watch_other ul li {
 	display: inline-block;
 	margin-right: 20px;
 	text-align: left;
+	vertical-align: top;
 }
 
 div.watch_other ul li article {

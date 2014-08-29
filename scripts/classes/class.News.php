@@ -31,7 +31,7 @@ class News extends EntityURL
 
    const SEE_ALSO_AMOUNT = 3;
    const NEWS_ON_INDEX_PAGE = 4;
-   const NEWS_ON_DEPARTMENT_PAGE = 2;
+   const NEWS_ON_DEPARTMENT_PAGE = 3;
    const NEWS_ON_ADMIN_PAGE = 20;
    const NEWS_ON_ALLNEWS_PAGE = 5;
 

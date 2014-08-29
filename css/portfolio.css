@@ -3,19 +3,71 @@
 	margin: 0 auto;
 }
 
-#portfolio ul {
+#portfolio {
 	text-align: center;
 }
 
-#portfolio ul li {
+#portfolio div.li {
 	width: 200px;
 	height: 200px;
 	display: inline-block;
 	margin: 6px;
 }
 
-#portfolio ul li img {
+#portfolio div.li img {
 	width: 200px;
 	height: 200px;
 	background: red;
+}
+
+#open_image {
+	width: 806px;
+	padding: 15px;
+	margin: 4px auto 0;
+	background: #222;
+	color: white;
+	position: relative;
+	display: none;
+}
+
+#open_image img {
+	width: 806px;
+	height: 300px;
+}
+
+#open_image h1 {
+	font-size: 180%;
+	margin: 20px 0 30px;
+}
+
+#open_image div.text p {
+	margin: 20px 0;
+	line-height: 1.4;
+	text-align: justify;
+}
+
+#open_image div.arrow {
+	width: 0px;
+	height: 0px;
+    border: 10px solid transparent;
+	border-bottom-color: #222;
+	border-top: 0;
+	position: absolute;
+	top: -10px;
+}
+
+#close_image {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background: #222;
+	color: #eee;
+	font-size: 150%;
+	border: 1px white solid;
+	border-top: 0;
+	border-right: 0;
+	width: 40px;
+	height: 40px;
+	padding: 0;
 }
