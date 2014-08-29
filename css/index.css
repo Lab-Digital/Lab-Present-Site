@@ -184,12 +184,15 @@ section.news ul li article img {
 	width: 370px;
 	height: 31px;
 	padding-top: 7px;
+	position: absolute;
+	bottom: 13px;
+	left: 50%;
+	margin-left: -185px;
 	border-radius: 20px;
 	text-align: center;
 	color: white;
 	text-decoration: none;
 	display: block;
-	margin: 0 auto;
 }
 
 section.menu_second {
@@ -204,6 +207,11 @@ section.menu_second ul li {
 	vertical-align: top;
 }
 
+section.menu_second ul li div.text {
+	color: black;
+	line-height: 1.4;
+}
+
 section.menu_second ul li article img {
 	display: block;
 	width: 210px;
@@ -215,13 +223,8 @@ section.menu_second ul li article img {
 	text-align: center;
 }
 
-section.menu_second ul li a {
-	text-decoration: none;
-	color: black;
-}
-
 section.menu_second ul li article h1 {
-	font-size: 150%;
+	font-size: 160%;
 	margin-bottom: 20px;
 	text-align: center;
 }

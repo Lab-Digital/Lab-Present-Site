@@ -8,35 +8,11 @@
 		<button id="top_send">Отправить заявку</button>
 		<nav>
 			<ul>
-				<li><a href="/resume">Агенство</a></li><li><a href="#">Услуги</a><ul>{foreach from=$departments item=d}<li><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></li>{/foreach}</ul></li><li><a href="#">Контакты</a></li>
+				<li><a href="/resume">Резюме</a></li><li><a href="javascript:void(0);">Услуги</a><ul>{foreach from=$departments item=d}<li><a href="/departments/{$d.departments_url}">{$d.departments_head}</a></li>{/foreach}</ul></li><li><a href="#">Контакты</a></li>
 			</ul>
 		</nav>
 	</div>
 </header>
-<script src="/js/send_send.js"></script>
-<script src="/js/send_to_mail.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
-<script type="text/javascript">
-	$('header a[data="{$active_item|default:'main'}"]').addClass('active');
-	{literal}
-	$('#top_send').click(function(){
-	  	$.fancybox([
-			{
-				href       : '#send_window',
-				autoCenter : false
-			}
-		],
-			{
-				'autoDimensions'  : true,
-				'width'           : 886,
-				'height'          : 'auto',
-				'transitionIn'    : 'none',
-				'transitionOut'   : 'none'
-			}
-		);
-	});
-	{/literal}
-</script>
 <div style="display: none">
 	<section id="send_window">
 		<form id="proposal" action="handler/proposal" method="post" enctype=multipart/form-data>

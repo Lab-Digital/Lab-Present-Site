@@ -40,8 +40,10 @@ header div.right .top_info a.tel {
 	width: 320px;
 	height: 85px;
 	font-size: 180%;
-	background: #5292f7;
-	border-radius: 6px;
+	background-image: url('/images/button.png');
+	background-repeat: repeat-x;
+	background-position: top center;
+	border-radius: 10px;
 	margin: 43px 15px 29px;
 	display: inline-block;
 	vertical-align: top;

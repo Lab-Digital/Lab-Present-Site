@@ -28,6 +28,17 @@ button {
     border: 0;
 }
 
+a.button, button {
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+a.button:hover, button:hover {
+    opacity: 0.8;
+}
+
 #nav_num {
   margin-top: 25px;
 }

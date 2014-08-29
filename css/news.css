@@ -55,6 +55,7 @@ article.main div.text p {
 
 article.main div.text {
 	margin-bottom: 40px;
+	line-height: 1.4;
 }
 
 article.main time {

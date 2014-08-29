@@ -34,7 +34,7 @@
          </div>
          <article class="text">
           <h1>{$department.departments_head}</h1>
-          {$department.departments_body}
+          <div class="text">{$department.departments_body}</div>
          </article>
       </div>
       <div class="watch_other">
@@ -57,7 +57,7 @@
                 {foreach from=$pagesInfo.num item=t}{if $t == '...'}<span class="between">. . .</span>{else}<a class="{if $curPage == $t}active{/if}" href="/departments/{$department.departments_url}/?page={$t}">{$t}</a>{/if}{/foreach}
             </div>
          {/if}
-         <a href="/news" id="go_news">Новости</a>
+         <a href="/news" class="button" id="go_news">Новости</a>
          </ul>
       </div>
    </div>

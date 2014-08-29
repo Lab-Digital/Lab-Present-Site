@@ -58,14 +58,14 @@
       <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled"></button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="disabled"></button></div>
       <ul>
       </ul>
-      <a href="/news" id="go_news_button">Новости</a>
+      <a href="/news" class="button" id="go_news_button">Новости</a>
    </section>
    <!-- news end -->
    <!-- menu_second -->
    <section class="menu_second">
       <ul>
       {foreach from=$projects item=p}
-      <li><a href="#"><article><img src="/images/uploads/{$p.projects_avatar_id.name}_s.{$p.projects_avatar_id.ext}" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_body}</div></article></a></li>
+      <li><article><img src="/images/uploads/{$p.projects_avatar_id.name}_s.{$p.projects_avatar_id.ext}" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_body}</div></article></li>
       {/foreach}
       </ul>
    </section>

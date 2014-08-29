@@ -62,7 +62,11 @@ div.main_block article.text {
 	padding-left: 15px;
 }
 
-div.main_block article.text p {
+div.main_block article.text div.text {
+	line-height: 1.4;
+}
+
+div.main_block article.text div.text p {
 	margin-bottom: 33px;
 }
 
@@ -77,6 +81,10 @@ div.watch_other li {
 div.watch_other li article {
 	height: 270px;
 	position: relative;
+}
+
+div.watch_other li article div.text {
+	line-height: 1.4;
 }
 
 div.watch_other li article img {
@@ -94,6 +102,7 @@ div.watch_other li article h1 {
 
 div.watch_other li article a.go {
 	display: block;
+	margin-top: 4px;
 	color: #a6a6a6;
 }
 
