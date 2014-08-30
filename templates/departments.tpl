@@ -31,6 +31,30 @@
             </div>
             <button id="portfolio_button">Портфолио</button>
             <button id="send_parts_button">Отправить заявку</button>
+            {literal}
+            <script type="text/javascript">
+               $('#send_parts_button').click(function() {
+                  department_id = {/literal}{$department.departments_id}{literal};
+                  $.fancybox([
+                     {
+                        href       : '#send_window',
+                        autoCenter : false
+                     }
+                  ],
+                     {
+                        'autoDimensions'  : true,
+                        'width'           : 886,
+                        'height'          : 'auto',
+                        'transitionIn'    : 'none',
+                        'transitionOut'   : 'none'
+                     }
+                  );
+                  $("#category_choose li").removeClass('active');
+                  $("#category").val(department_id);
+                  $("#category_choose li[data=" + department_id + "]").addClass('active');
+               });
+            </script>
+            {/literal}
          </div>
          <article class="text">
           <h1>{$department.departments_head}</h1>
