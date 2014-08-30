@@ -20,6 +20,8 @@
 #send_window div.main_send_block div.left label {
 	display: block;
 	margin-bottom: 10px;
+	font-weight: normal;
+	font-size: 120%;
 }
 
 #send_window div.main_send_block div.left input {
@@ -51,18 +53,24 @@
 	vertical-align: top;
 }
 
+#send_window div.main_send_block div.right ul {
+	text-align: center;
+}
+
 #send_window div.main_send_block div.right ul li {
 	display: inline-block;
-	width: 150px;
-	height: 20px;
+	min-width: 134px;
+	padding: 4px 8px;
+	font-size: 80%;
 	border: 1px #c1c1c1 solid;
 	text-align: center;
 	margin-right: 3px;
 	margin-bottom: 6px;
+	cursor: pointer;
 }
 
 #send_window div.main_send_block div.right ul li.active, #send_window div.main_send_block div.right ul li:hover {
-	background: #5889aa;
+	background: #5392f7;
 	color: white;
 }
 
@@ -73,7 +81,9 @@
 #send_window div.main_send_block div.right div.textarea label {
 	display: block;
 	text-align: center;
+	font-weight: normal;
 	margin-bottom: 10px;
+	font-size: 120%;
 }
 
 #send_window div.main_send_block div.right div.textarea textarea {
@@ -99,7 +109,7 @@
 	border: 0;
 	border-radius: 50px;
 	color: white;
-	font-weight: bold;
+	font-size: 160%;
 }
 
 #send_window div.buttons input {

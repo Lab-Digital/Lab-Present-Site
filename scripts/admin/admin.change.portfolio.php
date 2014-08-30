@@ -1,13 +1,15 @@
 <?php
 require_once CLASSES_ROOT  . 'class.Portfolio.php';
+require_once CLASSES_ROOT  . 'class.Department.php';
 require_once HANDLERS_ROOT . 'handler.php';
 
-$vars['head'] = $vars['desc'] = null;
+$vars['head'] = $vars['desc'] = $vars['cats'] = null;
 
 if ($request->get('mode')) {
-   $vars['head']         = $request->get('head');
-   $vars['desc']         = $request->get('desc');
-   HandleAdminData($_portfolio, [
+   $vars['head'] = $request->get('head');
+   $vars['desc'] = $request->get('desc');
+   $vars['cats'] = $request->get('categories', []);
+   HandleAdminData($_portfolio->SetCategories($vars['cats']), [
       'mode'   => $request->get('mode'),
       'params' => [
          Portfolio::ID_FLD          => $request->get('id'),
@@ -17,4 +19,6 @@ if ($request->get('mode')) {
    ], 'portfolio');
 }
 
-$smarty->assign($vars)->display('admin.change.portfolio.tpl');
+$smarty->assign($vars)
+       ->assign('departments', $_department->SetSamplingScheme(Department::SHORT_INFO_SCHEME)->GetAll())
+       ->display('admin.change.portfolio.tpl');

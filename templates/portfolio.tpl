@@ -1,7 +1,2 @@
-<div id="portfolio">
-	<div id="tr0" class="tr" data="0"><div class="li"><img src="#" data="1" /></div><div class="li"><img src="#" data="2" /></div><div class="li"><img src="#" data="3" /></div><div class="li"><img src="#" data="4" /></div></div>
-	<div id="tr1" class="tr" data="1"><div class="li"><img src="#" data="1" /></div><div class="li"><img src="#" data="2" /></div><div class="li"><img src="#" data="3" /></div><div class="li"><img src="#" data="4" /></div></div>
-	<div id="tr2" class="tr" data="2"><div class="li"><img src="#" data="1" /></div><div class="li"><img src="#" data="2" /></div><div class="li"><img src="#" data="3" /></div><div class="li"><img src="#" data="4" /></div></div>
-	<div id="tr3" class="tr" data="3"><div class="li"><img src="#" data="1" /></div><div class="li"><img src="#" data="2" /></div><div class="li"><img src="#" data="3" /></div><div class="li"><img src="#" data="4" /></div></div>
-</div>
+<div id="portfolio">{foreach from=$portfolio item=row name=f}<div id="tr{$smarty.foreach.f.index}" class="tr" data="{$smarty.foreach.f.index}">{foreach from=$row item=p}<div class="li"><img src="/images/uploads/{$p.portfolio_avatar_id.name}_s.{$p.portfolio_avatar_id.ext}" data="{$p.portfolio_id}" /></div>{/foreach}</div>{foreachelse}Нет портфолио!{/foreach}</div>
 <script src="/js/portfolio.js"></script>

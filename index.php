@@ -29,7 +29,9 @@ switch ($request_parts[0]) {
       break;
 
    case 'portfolio':
-      require_once SCRIPTS_ROOT . 'portfolio.php';
+      if (empty($request_parts[1]) || !is_numeric($request_parts[1])) Redirect();
+      require_once CLASSES_ROOT . 'class.Portfolio.php';
+      $smarty->assign('portfolio', $_portfolio->GetDepartmentPortfolio($request_parts[1]))->display('portfolio.tpl');
       break;
 
    case 'news':
@@ -65,9 +67,10 @@ switch ($request_parts[0]) {
 
    case 'handler':
       $possible_handlers = [
-         'news'     => HANDLERS_ROOT . 'handler.News.php',
-         'image'    => HANDLERS_ROOT . 'handler.Image.php',
-         'proposal' => HANDLERS_ROOT . 'handler.Proposal.php'
+         'news'      => HANDLERS_ROOT . 'handler.News.php',
+         'image'     => HANDLERS_ROOT . 'handler.Image.php',
+         'proposal'  => HANDLERS_ROOT . 'handler.Proposal.php',
+         'portfolio' => HANDLERS_ROOT . 'handler.Portfolio.php'
       ];
       if (empty($request_parts[1]) || empty($possible_handlers[$request_parts[1]])) Redirect('/404');
       require_once $possible_handlers[$request_parts[1]];
@@ -104,7 +107,9 @@ switch ($request_parts[0]) {
 
          case 'portfolio':
             require_once CLASSES_ROOT . 'class.Portfolio.php';
-            $smarty->assign($_portfolio->GetPortfolio($_portfolio->GetAllAmount(), Portfolio::ADMIN_AMOUNT))
+            require_once CLASSES_ROOT . 'class.Department.php';
+            $smarty->assign('departments', $_department->SetSamplingScheme(Department::ADMIN_NEWS_SCHEME)->GetAll())
+                   ->assign($_portfolio->GetPortfolio($_portfolio->SetSamplingScheme(Portfolio::ADMIN_INFO_SCHEME)->GetAllAmount(), Portfolio::ADMIN_AMOUNT))
                    ->display('admin.portfolio.tpl');
             break;
 
@@ -124,6 +129,11 @@ switch ($request_parts[0]) {
 
          case 'meta':
             require_once ADMIN_ROOT . 'admin.meta.php';
+            break;
+
+         case 'proposals':
+            require_once CLASSES_ROOT . 'class.Proposal.php';
+            $smarty->assign($_proposal->GetProposals())->display('admin.proposals.tpl');
             break;
 
          case 'logout':
@@ -180,7 +190,7 @@ switch ($request_parts[0]) {
                      $request->request->set('mode', 'Delete');
                   }
                   require_once CLASSES_ROOT . 'class.Portfolio.php';
-                  $data = $_portfolio->GetById($id);
+                  $data = $_portfolio->SetSamplingScheme(Portfolio::ADMIN_CHANGE_SCHEME)->GetById($id);
                   if (empty($data)) Redirect('/admin/add/portfolio');
                   $smarty->assign('portfolio', $data)->assign('handle_url', "edit/$id/portfolio");
                   require_once ADMIN_ROOT . 'admin.change.portfolio.php';

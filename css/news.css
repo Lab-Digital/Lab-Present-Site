@@ -33,7 +33,7 @@ div.wrap_news div.lineh1 h1 {
 	display: inline-block;
 	background: white;
 	padding: 0 12px;
-} 
+}
 
 article.main h1 {
 	font-size: 180%;
@@ -55,6 +55,7 @@ article.main div.text p {
 
 article.main div.text {
 	margin-bottom: 40px;
+	line-height: 1.4;
 }
 
 article.main time {
@@ -86,6 +87,10 @@ div.watch_other ul li {
 	vertical-align: top;
 }
 
+div.watch_other a {
+	text-decoration: none;
+}
+
 div.watch_other ul li article {
 	width: 285px;
 }
@@ -102,11 +107,17 @@ div.watch_other ul li article img {
 }
 
 div.watch_other ul li article h1 {
-	font-size: 150%;
+	font-size: 130%;
 	margin-bottom: 17px;
+	color: black !important;
+}
+
+div.watch_other ul li article h1 + span {
+	margin-bottom: 3px;
 }
 
 div.watch_other ul li article h1 + span, div.watch_other ul li article time {
 	display: block;
-	color: #ababab;
+	font-size: 90%;
+	color: #ababab !important;
 }

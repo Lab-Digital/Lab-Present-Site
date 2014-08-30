@@ -6,15 +6,18 @@ class Proposal extends Entity
 {
    const ABOUT_TEXT_ID = 1;
 
+   const ZIP_FLD        = 'zip_name';
+   const DATE_FLD       = 'date';
    const NAME_FLD       = 'name';
    const TASK_FLD       = 'task';
    const EMAIL_FLD      = 'email';
    const PHONE_FLD      = 'phone';
    const EXPRESS_FLD    = 'is_express';
    const DEPARTMENT_FLD = 'department_id';
-   const ZIP_FLD        = 'zip_name';
 
    const TABLE = 'proposal';
+
+   const AMOUNT_ON_PAGE = 20;
 
    public function __construct()
    {
@@ -27,6 +30,11 @@ class Proposal extends Entity
             true,
             'Имя',
             Array(Validate::IS_NOT_EMPTY)
+         ),
+         new Field(
+            static::DATE_FLD,
+            TimestampType(),
+            false
          ),
          new Field(
             static::EMAIL_FLD,
@@ -66,6 +74,8 @@ class Proposal extends Entity
             'Прикрепления'
          )
       );
+      $this->orderFields =
+         [static::DATE_FLD => new OrderField(static::TABLE, $this->GetFieldByName(static::DATE_FLD))];
    }
 
    public function Insert($getLastInsertId = false)
@@ -80,6 +90,32 @@ class Proposal extends Entity
          $this->GetFieldByName(static::TASK_FLD)->GetValue()
       );
       $db->Insert($query, $params);
+   }
+
+   public function SetSelectValues()
+   {
+      $this->AddOrder(static::DATE_FLD, OT_DESC);
+      parent::SetSelectValues();
+   }
+
+   public function ModifySample(&$sample)
+   {
+      if (empty($sample)) return;
+      $dateKey = $this->ToPrfxNm(static::DATE_FLD);
+      foreach ($sample as &$set) {
+         $date_var = new DateTime($set[$dateKey]);
+         $set[$dateKey] = $date_var->format('d.m.Y H:m');
+      }
+   }
+
+   public function GetProposals()
+   {
+      list($pageNum, $pagesInfo) = _GeneratePages($this->GetAllAmount(), static::AMOUNT_ON_PAGE);
+      return [
+         'curPage'   => $pageNum + 1,
+         'pagesInfo' => $pagesInfo,
+         'proposals' => $this->AddLimit(static::AMOUNT_ON_PAGE, $pageNum * static::AMOUNT_ON_PAGE)->GetAll()
+      ];
    }
 
    public function ValidatePhone($phone)
@@ -105,7 +141,6 @@ class Proposal extends Entity
       }
       return $this;
    }
-
 }
 
 $_proposal = new Proposal();

@@ -3,10 +3,10 @@ class Mail
 {
    private $isLocalhost = true;
 
-   const FROM_EMAIL    = 'labdigital@site.ru';
-   const COMPANY_NAME  = 'Lab Digital';
-   const COMPANY_SITE  = 'labdigital.local';
-   const COMPANY_EMAIL = '2lab.digital@gmail.com';
+   const FROM_EMAIL    = 'labpresent@site.ru';
+   const COMPANY_NAME  = 'Lab Present';
+   const COMPANY_SITE  = 'labpresent.local';
+   const COMPANY_EMAIL = '2lab.presentl@gmail.com';
 
    // const COMPANY_LOGO  = '<a href="http://camerapeople.com/"><img src="http://camerapeople.com/images/logo.png"></a><br><br>';
 

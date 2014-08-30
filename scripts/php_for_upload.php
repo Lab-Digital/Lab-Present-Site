@@ -6,11 +6,9 @@ try {
    switch ($request->get('uploadType')) {
       case 'resume':
       case 'projects':
-      case 'portfolio':
       case 'departments':
       case 'main_slider':
          require_once CLASSES_ROOT . 'class.Project.php';
-         require_once CLASSES_ROOT . 'class.Portfolio.php';
          require_once CLASSES_ROOT . 'class.Department.php';
          require_once CLASSES_ROOT . 'class.MainSlider.php';
          require_once CLASSES_ROOT . 'class.Resume.php';
@@ -23,10 +21,8 @@ try {
             $obj = $_mainSlider;
          } elseif ($uploadType == 'resume') {
             $obj = $_resume;
-         } else {
-            $obj = $_portfolio;
          }
-         if (!empty($request->get('image_id'))) {
+         if (!$request->get('image_id')) {
             $_image->Delete($request->get('image_id'));
          }
          try {
@@ -40,6 +36,12 @@ try {
             $db->link->rollback();
             throw new Exception($e->getMessage());
          }
+         break;
+
+      case 'portfolio':
+         require_once CLASSES_ROOT . 'class.Portfolio.php';
+         $_image->SetFieldByName(Image::EXT_FLD, $ext);
+         $__file = $_portfolio->UpdatePhoto($item_id, $request->get('isAvatar', false) ? Portfolio::AVATAR_FLD : Portfolio::PHOTO_FLD);
          break;
 
       case 'news':

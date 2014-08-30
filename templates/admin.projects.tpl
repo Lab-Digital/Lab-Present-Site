@@ -15,10 +15,10 @@
             'uploadType'  : 'projects',
             'isAvatar'    : 'true',
             'item_id'     :  $data,
-            'width'       : '100',
-            'height'      : '100',
+            'width'       : '210',
+            'height'      : '210',
             'count'       : '1',
-            'sizes'       : 's#100#100'
+            'sizes'       : 's#210#210'
          });
       });
       $('div.avatar_in a').fancybox();
