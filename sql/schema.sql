@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `proposal` (
    `phone`          VARCHAR(32)  NOT NULL,
    `task`           TEXT         DEFAULT '',
    `is_express`     INT          NOT NULL DEFAULT 0,
-   `department_id`  INT          NOT NULL,
+   `department_id`  INT          DEFAULT NULL,
    `zip_name`       TEXT,
    `date`           TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
    CHECK (`is_express` >= 0 AND `is_express` <= 1),

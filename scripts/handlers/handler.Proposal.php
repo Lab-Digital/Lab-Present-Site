@@ -12,13 +12,17 @@ class ProposalHandler extends Handler
 
    public function Handle($in)
    {
+      error_log("in <= " . json_encode($in));
       $params = [
          'name'          => $in['name'],
          'phone'         => $in['phone'],
          'email'         => $in['email'],
-         'department_id' => $in['category'],
-         'task'          => $in['text']
+         'is_express'    => $in['is_express']
       ];
+      if (!$in['is_express']) {
+         $params['department_id'] = $in['category'];
+         $params['task'] = $in['text'];
+      }
       try {
          return $this->Insert($params);
       } catch (ValidateException $e) {
@@ -37,7 +41,10 @@ class ProposalHandler extends Handler
          }
          $this->entity->ValidatePhone(!empty($params['phone']) ? $params['phone'] : null)
                       ->ValidateEmail(!empty($params['email']) ? $params['email'] : null)
-                      ->ValidateDepartment(!empty($params['department_id']) ? $params['department_id'] : null);
+                      ->ValidateDepartment(
+                           !empty($params['department_id']) ? $params['department_id'] : null,
+                           !empty($params['is_express'])    ? $params['is_express']    : null
+                        );
          $idx = 0;
          $file_names = [];
          $seed = new DateTime();

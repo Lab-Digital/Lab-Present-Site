@@ -59,8 +59,7 @@ class Proposal extends Entity
             static::DEPARTMENT_FLD,
             IntType(),
             true,
-            'Отдел',
-            Array(Validate::IS_NOT_EMPTY)
+            'Отдел'
          ),
          new Field(
             static::EXPRESS_FLD,
@@ -134,9 +133,10 @@ class Proposal extends Entity
       return $this;
    }
 
-   public function ValidateDepartment($department)
+   public function ValidateDepartment($department, $is_express)
    {
-      if (empty($department) || !is_numeric($department)) {
+      if ((empty($department) && !$is_express) || (!is_numeric($department) && !$is_express)) {
+         error_log("here!\n");
          throw new Exception(INCORRECT_DEPARTMENT);
       }
       return $this;
