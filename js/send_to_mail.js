@@ -14,9 +14,26 @@ $(function(){
    }
 
    var options = {
-      beforeSend: function() {
-         $('#proposal').find('#mode').val("Insert");
-         // console.log($('#proposal').find('#mode').val());
+      beforeSend: function(xhr) {
+         $('input[type=file][max-size]').each(function() {
+            if (this.id !== 'fake_input') {
+               fileSize = this.files[0].size;
+               maxSize = parseInt($(this).attr('max-size'), 10);
+               if (fileSize > maxSize) {
+                  $.fancybox(
+                     '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + 'Размер каждого файла должен быть меньше 15 мегабайт!' + '</span>',
+                     {
+                        'autoDimensions'  : false,
+                        'width'           : 360,
+                        'height'          : 'auto',
+                        'transitionIn'    : 'none',
+                        'transitionOut'   : 'none'
+                     }
+                  );
+                  xhr.abort();
+               }
+            }
+         });
       },
       uploadProgress: function(event, position, total, percentComplete) {
          console.log('upload progress');
@@ -65,6 +82,10 @@ $(function(){
 
    $('#proposal').ajaxForm(options);
 
+   // $('#proposal').submit(function() {
+
+   // });
+
    function fakeInputChange() {
       rowcnt++;
       var fileName = document.getElementById("fake_input").value;
@@ -100,6 +121,7 @@ $(function(){
       var fakeInput = document.createElement("input");
       fakeInput.type="file";
       fakeInput.setAttribute('id', 'fake_input');
+      fakeInput.setAttribute('max-size', 15728640);
       fakeInput.onchange = fakeInputChange;
       parent.append(fakeInput);
       $.fancybox.center();

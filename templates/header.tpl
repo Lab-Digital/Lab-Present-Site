@@ -15,8 +15,9 @@
 </header>
 <script src="/js/send_send.js"></script>
 <script src="/js/send_to_mail.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="/js/jquery.form.js"></script>
 <script type="text/javascript">
+	var department_id = 0;
 	$('header a[data="{$active_item|default:'main'}"]').addClass('active');
 	{literal}
 	$('#top_send').click(function(){
@@ -34,12 +35,13 @@
 				'transitionOut'   : 'none'
 			}
 		);
+		$("#category_choose li").removeClass('active');
 	});
 	{/literal}
 </script>
 <div style="display: none">
 	<section id="send_window">
-		<form id="proposal" action="handler/proposal" method="post" enctype=multipart/form-data>
+		<form id="proposal" action="/handler/proposal" method="post" enctype=multipart/form-data>
 			<div class="main_send_block">
 				<div class="left">
 					<h1>Заявка</h1>
@@ -49,8 +51,8 @@
 					<input id="phone" type="phone" name="phone" class="form-control" />
 					<label for="email">Ваш e-mail:</label>
 					<input id="email" type="email" name="email" class="form-control" />
-					<input id="params" type="hidden" name="params" class="form-control" />
-					<input id="mode" type="hidden" name="mode" class="form-control" />
+					<!-- <input id="params" type="hidden" name="params" class="form-control" />
+					<input id="mode" type="hidden" name="mode" class="form-control" /> -->
 				</div>
 				<div class="right">
 					<ul id="category_choose">
@@ -65,7 +67,7 @@
 			</div>
 			<div class="buttons">
 				<button id="add_file" type="button">Прикрепить</button>
-				<input  id="fake_input" type="file">
+				<input  id="fake_input" type="file" max-size=15728640>
 				<button id="send_send" type="sumbit">Отправить</button>
 			</div>
 			<div class="files_send_block">
