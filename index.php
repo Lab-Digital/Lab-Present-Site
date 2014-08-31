@@ -133,7 +133,10 @@ switch ($request_parts[0]) {
 
          case 'proposals':
             require_once CLASSES_ROOT . 'class.Proposal.php';
-            $smarty->assign($_proposal->GetProposals())->display('admin.proposals.tpl');
+            require_once CLASSES_ROOT . 'class.Department.php';
+            $smarty->assign($_proposal->GetProposals())
+                   ->assign('departments', $_department->SetSamplingScheme(Department::ADMIN_NEWS_SCHEME)->GetAll())
+                   ->display('admin.proposals.tpl');
             break;
 
          case 'logout':

@@ -9,6 +9,7 @@
     <td>Информация о заказчике</td>
     <td>Дата заявки</td>
     <td>Задача</td>
+    <td>Отдел</td>
     <td>Файлы</td>
   </tr>
   {foreach from=$proposals item=p}
@@ -16,6 +17,7 @@
     <td>Имя: {$p.proposal_name}<br />Телефон: {$p.proposal_phone}<br />E-mail: {$p.proposal_email}<br /></td>
     <td>{$p.proposal_date}</td>
     <td>{$p.proposal_task}</td>
+    <td>{$departments[$p.proposal_department_id]|default:'-'}</td>
     <td>{if !empty($p.proposal_zip_name)}<a href="/files/{$p.proposal_zip_name}.zip">ссылка на zip архив если есть. сделай пожалуйста иконочку зип архива</a>{/if}</td>
   </tr>
   {/foreach}
