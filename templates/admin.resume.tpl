@@ -1,5 +1,5 @@
 {extends file='admin.tpl'}
-{block name='title' append} - Услуги{/block}
+{block name='title' append} - Резюме{/block}
 {block name='links' append}
    <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
    <link rel="stylesheet" href="/css/styles_for_text.css" />

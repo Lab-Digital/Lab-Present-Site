@@ -1,5 +1,5 @@
 {extends file='admin.tpl'}
-{block name='title' append} - Новости{/block}
+{block name='title' append} - Портфолио{/block}
 {block name='links' append}
 {/block}
 {block name='main'}

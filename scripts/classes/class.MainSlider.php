@@ -4,9 +4,12 @@ require_once CLASSES_ROOT . 'class.Image.php';
 
 class MainSlider extends Entity
 {
-   const URL_FLD = 'url';
-   const NUMBER_FLD = 'number';
-   const AVATAR_FLD = 'avatar_id';
+   const URL_FLD      = 'url';
+   const HEAD_FLD     = 'head';
+   const TEXT_FLD     = 'text';
+   const NUMBER_FLD   = 'number';
+   const AVATAR_FLD   = 'avatar_id';
+   const POSITION_FLD = 'position';
 
    const PAGE_SCHEME = 2;
 
@@ -14,11 +17,26 @@ class MainSlider extends Entity
 
    const LAST_VIEWED_ID = 'last_viewed_main_slider_id';
 
+   public $positions = ['Слева', 'Справа', 'Вверху'];
+
    public function __construct()
    {
       parent::__construct();
       $this->fields = Array(
          $this->idField,
+         new Field(
+            static::HEAD_FLD,
+            StrType(150),
+            true,
+            'Заголовок слайдера',
+            Array(Validate::IS_NOT_EMPTY)
+         ),
+         new Field(
+            static::TEXT_FLD,
+            TextType(),
+            true,
+            'Текст слайдера'
+         ),
          new Field(
             static::URL_FLD,
             StrType(300),
@@ -36,6 +54,11 @@ class MainSlider extends Entity
             IntType(),
             true
          ),
+         new Field(
+            static::POSITION_FLD,
+            IntType(),
+            true
+         )
       );
       $this->orderFields = [static::NUMBER_FLD => new OrderField(static::TABLE, $this->GetFieldByName(static::NUMBER_FLD))];
    }

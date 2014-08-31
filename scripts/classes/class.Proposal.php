@@ -12,7 +12,6 @@ class Proposal extends Entity
    const TASK_FLD       = 'task';
    const EMAIL_FLD      = 'email';
    const PHONE_FLD      = 'phone';
-   const EXPRESS_FLD    = 'is_express';
    const DEPARTMENT_FLD = 'department_id';
 
    const TABLE = 'proposal';
@@ -60,11 +59,6 @@ class Proposal extends Entity
             IntType(),
             true,
             'Отдел'
-         ),
-         new Field(
-            static::EXPRESS_FLD,
-            IntType(),
-            true
          ),
          new Field(
             static::ZIP_FLD,
@@ -129,15 +123,6 @@ class Proposal extends Entity
    {
       if (!preg_match('/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/', $email)) {
          throw new Exception(INCORRECT_MAIL);
-      }
-      return $this;
-   }
-
-   public function ValidateDepartment($department, $is_express)
-   {
-      if ((empty($department) && !$is_express) || (!is_numeric($department) && !$is_express)) {
-         error_log("here!\n");
-         throw new Exception(INCORRECT_DEPARTMENT);
       }
       return $this;
    }

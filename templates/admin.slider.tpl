@@ -1,5 +1,5 @@
 {extends file='admin.tpl'}
-{block name='title' append} - Услуги{/block}
+{block name='title' append} - Слайдер{/block}
 {block name='links' append}
    <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
    <link rel="stylesheet" href="/css/styles_for_text.css" />
@@ -56,14 +56,14 @@
                   </div>
                   <div class="form_block">
                      <label for="text_{$smarty.foreach.f.index}">Текст</label>
-                     <textarea name="text" id="text_{$smarty.foreach.f.index}">{if $isInsert}{$s.main_slider_text}{else}{$text|default:$s.main_slider_text}{/if}</textarea>
+                     <textarea name="text" id="text_{$smarty.foreach.f.index}" cols="90" rows="10">{if $isInsert}{$s.main_slider_text}{else}{$text|default:$s.main_slider_text}{/if}</textarea>
                   </div>
                   <div class="form_block">
                      <label for="position_{$smarty.foreach.f.index}">Позиция</label>
                      <select name="position" id="position_{$smarty.foreach.f.index}">
-                        <option value="0">Слева</option>
-                        <option value="1" selected="selected">Справа</option> <!--вот так -->
-                        <option value="2">Вверху</option>
+                     {foreach from=$positions item=p key=k}
+                        <option value="{$k}" {if $position|default:$s.main_slider_position == $k}selected="selected"{/if}>{$p}</option>
+                     {/foreach}
                      </select>
                   </div>
                   <div class="form_block">
@@ -106,14 +106,14 @@
             </div>
             <div class="form_block">
                <label for="text_new">Текст</label>
-               <textarea name="text" id="text_new">{$text}</textarea>
+               <textarea name="text" id="text_new" cols="90" rows="10">{$text}</textarea>
             </div>
             <div class="form_block">
                <label for="position_new">Позиция</label>
                <select name="position" id="position_new">
-                  <option value="0">Слева</option>
-                  <option value="1" selected="selected">Справа</option> <!--вот так -->
-                  <option value="2">Вверху</option>
+               {foreach from=$positions item=p key=k}
+                  <option value="{$k}" {if $position == $k}selected="selected"{/if}>{$p}</option>
+               {/foreach}
                </select>
             </div>
             <div class="form_block">

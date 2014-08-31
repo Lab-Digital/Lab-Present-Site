@@ -81,7 +81,6 @@ CREATE TABLE IF NOT EXISTS `proposal` (
    `email`          VARCHAR(180) NOT NULL,
    `phone`          VARCHAR(32)  NOT NULL,
    `task`           TEXT         DEFAULT '',
-   `is_express`     INT          NOT NULL DEFAULT 0,
    `department_id`  INT          DEFAULT NULL,
    `zip_name`       TEXT,
    `date`           TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
@@ -140,9 +139,13 @@ CREATE TABLE IF NOT EXISTS `projects` (
 
 CREATE TABLE IF NOT EXISTS `main_slider` (
    `id`        INT          NOT NULL AUTO_INCREMENT,
+   `head`      VARCHAR(150) NOT NULL,
+   `text`      TEXT,
+   `position`  INT,
    `number`    INT          NOT NULL DEFAULT 1,
    `avatar_id` INT          DEFAULT NULL,
    `url`       VARCHAR(300) DEFAULT '',
+   CHECK (`position` >= 0 AND `position` <= 2),
    PRIMARY KEY (`id`),
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
