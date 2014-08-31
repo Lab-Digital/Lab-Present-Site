@@ -19,8 +19,9 @@
 			<div class="main_send_block">
 				<div class="left">
 					<h1>Заявка</h1>
+					<div class="error"></div>
 					<label for="name">Ваше имя:</label>
-					<input id="name" name="name" class="good" class="form-control" />
+					<input id="name" name="name" class="form-control" />
 					<label for="phone">Контактный телефон:</label>
 					<input id="phone" type="phone" name="phone" class="form-control" />
 					<label for="email">Ваш e-mail:</label>

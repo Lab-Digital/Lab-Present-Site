@@ -49,7 +49,7 @@ $(function(){
 
          if (data.result) {
             $('#category_choose li').removeClass('active');
-            $('#send_window').find('.form-control').each(function() {
+            $('#send_window .form-control').each(function() {
                $(this).val('');
             });
             while (rowcnt > 0) {
