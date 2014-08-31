@@ -14,7 +14,7 @@ require_once SCRIPTS_ROOT . 'utils.php';
 
 $request_parts = GetRequestParts($request);
 
-$ds = ['', 'departments', 'news', 'resume', 'contacts'];
+$ds = ['', 'departments', 'projects', 'news', 'resume', 'contacts'];
 
 foreach ($ds as $d) {
    if ($d == $request_parts[0]) {

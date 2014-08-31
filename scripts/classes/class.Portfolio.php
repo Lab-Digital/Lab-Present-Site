@@ -57,17 +57,6 @@ class Portfolio extends Entity
       return $this;
    }
 
-   private function _NotNullImageClause($fieldName)
-   {
-      $this->CheckSearch()->search->AddClause(CCond(
-         CF(static::TABLE, $this->GetFieldByName($fieldName)),
-         CVS('NULL'),
-         cAND,
-         'IS NOT'
-      ));
-      return $this;
-   }
-
    public function GetAllAmountWithPhoto()
    {
       $this->_NotNullImageClause(staitc::PHOTO_FLD)->_NotNullImageClause(staitc::AVATAR_FLD);

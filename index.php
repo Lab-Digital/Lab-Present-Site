@@ -15,6 +15,14 @@ switch ($request_parts[0]) {
       require_once SCRIPTS_ROOT . 'departments.php';
       break;
 
+   case 'projects':
+      require_once CLASSES_ROOT . 'class.Project.php';
+      if (empty($request_parts[1])) Redirect();
+      $data = $_project->SetSamplingScheme(Project::PROJECT_SCHEME)->GetByURL($request_parts[1]);
+      if (empty($data)) Redirect();
+      $smarty->assign('project', $data)->display('project.tpl');
+      break;
+
    case 'resume':
       require_once CLASSES_ROOT . 'class.Meta.php';
       require_once CLASSES_ROOT . 'class.Resume.php';

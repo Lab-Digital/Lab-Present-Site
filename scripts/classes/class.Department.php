@@ -8,8 +8,6 @@ class Department extends TextsBase
    const SHORT_INFO_SCHEME = 3;
    const ADMIN_NEWS_SCHEME = 4;
 
-   const PHOTO_FLD = 'photo_id';
-
    const TABLE = 'departments';
 
    const LAST_VIEWED_ID = 'last_viewed_department_id';
@@ -17,7 +15,8 @@ class Department extends TextsBase
    public function __construct()
    {
       parent::__construct();
-      $this->fields = array_merge($this->texts_fields, [new Field(static::PHOTO_FLD,  IntType(), true)]);
+      $this->GetFieldByName(static::TEXT_HEAD_FLD)->SetAlias('Название отдела');
+      $this->GetFieldByName(static::TEXT_BODY_FLD)->SetAlias('Текст про отдел');
    }
 
    public function SetSelectValues()

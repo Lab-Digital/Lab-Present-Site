@@ -90,6 +90,17 @@ class Entity
       return $this;
    }
 
+   protected function _NotNullImageClause($fieldName)
+   {
+      $this->CheckSearch()->search->AddClause(CCond(
+         CF(static::TABLE, $this->GetFieldByName($fieldName)),
+         CVS('NULL'),
+         cAND,
+         'IS NOT'
+      ));
+      return $this;
+   }
+
    public function GetFieldByName($name)
    {
       foreach ($this->fields as &$f) {
@@ -112,7 +123,9 @@ class Entity
    public function SetFieldByName($name, $value)
    {
       $field = $this->GetFieldByName($name);
-      $field->SetValue($value);
+      if (!empty($field)) {
+         $field->SetValue($value);
+      }
       return $this;
    }
 

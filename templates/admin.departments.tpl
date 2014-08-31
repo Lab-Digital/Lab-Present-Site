@@ -1,5 +1,5 @@
 {extends file='admin.tpl'}
-{block name='title' append} - Услуги{/block}
+{block name='title' append} - Отделы{/block}
 {block name='links' append}
    <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
    <link rel="stylesheet" href="/css/styles_for_text.css" />
@@ -67,7 +67,7 @@
                   <input name="title" id="title_{$smarty.foreach.f.index}" value="{if $isInsert}{$d.departments_meta_title}{else}{$mtitle|default:$d.departments_meta_title}{/if}" />
                </div>
                <div class="form_block">
-                  <label for="body_{$smarty.foreach.f.index}">Описание</label>
+                  <label for="body_{$smarty.foreach.f.index}">Текст</label>
                   <textarea name="body" id="body_{$smarty.foreach.f.index}" cols="90" rows="15">{if $isInsert}{$d.departments_body}{else}{$body|default:$d.departments_body}{/if}</textarea>
                </div>
                <div class="form_block">
@@ -122,7 +122,7 @@
                <input name="title" id="title_new" value="{$mtitle}" />
             </div>
             <div class="form_block">
-               <label for="body_new">Описание</label>
+               <label for="body_new">Текст</label>
                <textarea name="body" id="body_new" cols="90" rows="15">{$body}</textarea>
             </div>
             <div class="form_block">

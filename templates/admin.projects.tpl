@@ -21,7 +21,19 @@
             'sizes'       : 's#210#210'
          });
       });
+      $('div.photos_in button.upload').each(function(){
+         $data = $(this).attr('data');
+         $(this).getUpload({
+            'uploadType'  : 'projects',
+            'item_id'     : $data,
+            'width'       : '375',
+            'height'      : '385',
+            'count'       : '1',
+            'sizes'       : 's#375#385'
+         });
+      });
       $('div.avatar_in a').fancybox();
+      $('div.photos_in a').fancybox();
    });
    {/literal}
    </script>
@@ -55,8 +67,12 @@
                   <input name="title" id="title_{$smarty.foreach.f.index}" value="{if $isInsert}{$d.projects_meta_title}{else}{$mtitle|default:$d.projects_meta_title}{/if}" />
                </div>
                <div class="form_block">
-                  <label for="body_{$smarty.foreach.f.index}">Описание</label>
-                  <textarea name="body" id="body_{$smarty.foreach.f.index}" cols="90" rows="15">{if $isInsert}{$d.projects_body}{else}{$body|default:$d.projects_body}{/if}</textarea>
+                  <label for="desc_{$smarty.foreach.f.index}">Описание</label>
+                  <textarea name="desc" id="desc_{$smarty.foreach.f.index}" cols="90" rows="3">{if $isInsert}{$d.projects_description}{else}{$desc|default:$d.projects_description}{/if}</textarea>
+               </div>
+               <div class="form_block">
+                 <label for="body_{$smarty.foreach.f.index}">Текст</label>
+                 <textarea name="body" id="body_{$smarty.foreach.f.index}" rows="10" cols="90">{if $isInsert}{$d.projects_body}{else}{$body|default:$d.projects_body}{/if}</textarea>
                </div>
                <div class="form_block">
                   <label for="meta_description_{$smarty.foreach.f.index}">Meta description</label>
@@ -68,6 +84,15 @@
                </div>
                <div class="buttons"><button name="mode" value="Update">Сохранить</button><button class="red" name="mode" value="Delete">Удалить</button></div>
             </form>
+            <div class="in photos_in">
+               <h1 class="head_upload">Фото</h1>
+               <button class="upload" type="submit" data="{$d.projects_id}">Загрузить фото</button>
+               <ul>
+                  {if !empty($d.projects_photo_id)}
+                     <li><a href="/images/uploads/{$d.projects_photo_id.name}_s.{$d.projects_photo_id.ext}"><img src="/images/uploads/{$d.projects_photo_id.name}_s.{$d.projects_photo_id.ext}" /></a><button class="x" data="{$d.projects_photo_id.name}" data-ext="{$d.projects_photo_id.ext}">x</button></li>
+                  {/if}
+               </ul>
+            </div>
             <div class="in avatar_in">
                <h1 class="head_upload">Главное фото</h1>
                <button class="upload" type="submit" data="{$d.projects_id}">Загрузить главное фото</button>
@@ -101,8 +126,12 @@
                <input name="title" id="title_new" value="{$mtitle}" />
             </div>
             <div class="form_block">
-               <label for="body_new">Описание</label>
-               <textarea name="body" id="body_new" cols="90" rows="15">{$body}</textarea>
+               <label for="desc_new">Описание</label>
+               <textarea name="desc" id="desc_new" cols="90" rows="3">{$desc}</textarea>
+            </div>
+            <div class="form_block">
+              <label for="body_new">Текст</label>
+              <textarea name="body" id="body_new" rows="10" cols="90">{$body}</textarea>
             </div>
             <div class="form_block">
                <label for="description_new">Meta description</label>

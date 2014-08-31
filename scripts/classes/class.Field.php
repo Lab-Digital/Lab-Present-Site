@@ -204,4 +204,10 @@ class Field
    {
       return $this->name;
    }
+
+   public function SetAlias($alias)
+   {
+      $this->alias = $alias;
+      return $this;
+   }
 }

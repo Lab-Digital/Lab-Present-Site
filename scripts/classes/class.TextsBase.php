@@ -7,33 +7,38 @@ class TextsBase extends EntityURL
    const INFO_SCHEME = 2;
 
    const TITLE_FLD            = 'meta_title';
+   const PHOTO_FLD            = 'photo_id';
    const AVATAR_FLD           = 'avatar_id';
    const KEYWORDS_FLD         = 'meta_keywords';
    const TEXT_HEAD_FLD        = 'head';
    const TEXT_BODY_FLD        = 'body';
+   const DESCRIPTION_FLD      = 'description';
    const META_DESCRIPTION_FLD = 'meta_description';
-
-   protected $texts_fields = [];
 
    public function __construct()
    {
       parent::__construct();
-      $this->texts_fields = Array(
+      $this->fields = Array(
          $this->idField,
          $this->urlField,
          new Field(
             static::TEXT_HEAD_FLD,
             StrType(150),
             true,
-            'Название отдела',
+            '',
             [Validate::IS_NOT_EMPTY]
          ),
          new Field(
             static::TEXT_BODY_FLD,
             TextType(),
             true,
-            'Описание отдела',
+            '',
             [Validate::IS_NOT_EMPTY]
+         ),
+         new Field(
+            static::PHOTO_FLD,
+            IntType(),
+            true
          ),
          new Field(
             static::AVATAR_FLD,

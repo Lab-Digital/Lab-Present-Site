@@ -125,13 +125,16 @@ CREATE TABLE IF NOT EXISTS `projects` (
    `id`               INT          NOT NULL AUTO_INCREMENT,
    `url`              VARCHAR(150) NOT NULL,
    `head`             VARCHAR(150) NOT NULL,
+   `photo_id`         INT          DEFAULT NULL,
    `avatar_id`        INT          DEFAULT NULL,
    `body`             TEXT,
+   `description`      TEXT,
    `meta_title`       VARCHAR(130) NOT NULL,
    `meta_keywords`    TEXT,
    `meta_description` TEXT,
    PRIMARY KEY (`id`),
    UNIQUE KEY(`url`),
+   FOREIGN KEY (`photo_id`)  REFERENCES `images` (`id`) ON DELETE SET NULL,
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 

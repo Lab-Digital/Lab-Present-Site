@@ -65,7 +65,7 @@
    <section class="menu_second">
       <ul>
       {foreach from=$projects item=p}
-      <li><article><img src="/images/uploads/{$p.projects_avatar_id.name}_s.{$p.projects_avatar_id.ext}" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_body}</div></article></li>
+      <li><a href="/projects/{$p.projects_head}"><article><img src="/images/uploads/{$p.projects_avatar_id.name}_s.{$p.projects_avatar_id.ext}" /><h1>{$p.projects_head}</h1><div class="text">{$p.projects_description}</div></article></a></li>
       {/foreach}
       </ul>
    </section>

@@ -112,17 +112,6 @@ class News extends EntityURL
       return $this;
    }
 
-   private function _NotNullImageClause($field = null)
-   {
-      $field = !empty($field) ? $field : static::PHOTO_FLD;
-      $this->CheckSearch()->search->AddClause(CCond(
-         CF(static::TABLE, $this->GetFieldByName($field)),
-         CVS('NULL'),
-         cAND,
-         'IS NOT'
-      ));
-   }
-
    public function ModifySample(&$sample)
    {
       if (empty($sample)) return $sample;
@@ -248,7 +237,7 @@ class News extends EntityURL
                ]
             );
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
-            $this->_NotNullImageClause();
+            $this->_NotNullImageClause(static::PHOTO_FLD);
             break;
 
          case static::WATH_OTHER_SCHEME:
