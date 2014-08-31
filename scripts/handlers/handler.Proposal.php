@@ -17,12 +17,9 @@ class ProposalHandler extends Handler
          'name'          => $in['name'],
          'phone'         => $in['phone'],
          'email'         => $in['email'],
-         'is_express'    => $in['is_express']
       ];
-      if (!$in['is_express']) {
-         $params['department_id'] = $in['category'];
-         $params['task'] = $in['text'];
-      }
+      $params['department_id'] = !empty($in['category']) ? $in['category'] : null;
+      $params['task'] = !empty($in['text']) ? $in['text'] : null;
       try {
          return $this->Insert($params);
       } catch (ValidateException $e) {
@@ -40,11 +37,7 @@ class ProposalHandler extends Handler
             mkdir(UPLOAD_ZIP_DIR . 'tmp/');
          }
          $this->entity->ValidatePhone(!empty($params['phone']) ? $params['phone'] : null)
-                      ->ValidateEmail(!empty($params['email']) ? $params['email'] : null)
-                      ->ValidateDepartment(
-                           !empty($params['department_id']) ? $params['department_id'] : null,
-                           !empty($params['is_express'])    ? $params['is_express']    : null
-                        );
+                      ->ValidateEmail(!empty($params['email']) ? $params['email'] : null);
          $idx = 0;
          $file_names = [];
          $seed = new DateTime();

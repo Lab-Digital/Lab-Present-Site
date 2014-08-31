@@ -21,7 +21,7 @@
                     <input id="phone" type="phone" name="phone" class="form-control" />
                     <label for="email">Ваш e-mail:</label>
                     <input id="email" type="email" name="email" class="form-control" />
-                    <input id="is_express" name="is_express" type="hidden" value="1" />
+                    <!-- <input id="is_express" name="is_express" type="hidden" value="1" /> -->
                 </div>
                 <div class="buttons">
                     <button id="express_send" type="sumbit">Отправить</button>

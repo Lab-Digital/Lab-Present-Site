@@ -25,7 +25,7 @@
 					<input id="phone" type="phone" name="phone" class="form-control" />
 					<label for="email">Ваш e-mail:</label>
 					<input id="email" type="email" name="email" class="form-control" />
-					<input id="is_express" type="hidden" name="is_express" value="0" />
+					<!-- <input id="is_express" type="hidden" name="is_express" value="0" /> -->
 				</div>
 				<div class="right">
 					<ul id="category_choose">
