@@ -34,7 +34,7 @@
       <ul class="bxslider">
         {foreach from=$sliders item=s name=f}
          <li>
-            <img src="/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}" />
+            {if !empty($s.main_slider_url)}<a href="{$s.main_slider_url}">{/if}<img src="/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}" />{if !empty($s.main_slider_url)}</a>{/if}
          </li>
         {/foreach}
       </ul>

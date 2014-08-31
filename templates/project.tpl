@@ -5,16 +5,16 @@
 {block name='links' append}
   <link href="/css/header.css" rel="stylesheet" />
   <link href="/css/footer.css" rel="stylesheet" />
-  <link href="/css/news.css" rel="stylesheet" />
+  <link href="/css/project.css" rel="stylesheet" />
   <link href="/css/forms.css" rel="stylesheet" />
 {/block}
 {block name='div.main'}
    {include file="header.tpl"}
-   <div class="wrap_news">
+   <div class="wrap_project">
       <div class="lineh1">
          <h1>Проекты</h1>
       </div>
-      <div class="wrap_news_inner">
+      <div class="wrap_project_inner">
          <article class="main">
             <h1>{$project.projects_head}</h1>
             {if !empty($project.projects_photo_id)}

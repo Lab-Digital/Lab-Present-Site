@@ -200,6 +200,11 @@ section.menu_second {
 	text-align: center;
 }
 
+section.menu_second a {
+	text-decoration: none;
+	color: black;
+}
+
 section.menu_second ul li {
 	display: inline-block;
 	margin: 65px 25px 0;

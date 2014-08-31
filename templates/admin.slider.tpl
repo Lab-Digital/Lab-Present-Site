@@ -51,6 +51,22 @@
                      <input type="number" min="1" name="number" id="num_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_number}{else}{$number|default:$s.main_slider_number}{/if}" />
                   </div>
                   <div class="form_block">
+                     <label for="head_{$smarty.foreach.f.index}">Заголовок</label>
+                     <input name="head" id="head_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_head}{else}{$head|default:$s.main_slider_head}{/if}" />
+                  </div>
+                  <div class="form_block">
+                     <label for="text_{$smarty.foreach.f.index}">Текст</label>
+                     <textarea name="text" id="text_{$smarty.foreach.f.index}">{if $isInsert}{$s.main_slider_text}{else}{$text|default:$s.main_slider_text}{/if}</textarea>
+                  </div>
+                  <div class="form_block">
+                     <label for="position_{$smarty.foreach.f.index}">Позиция</label>
+                     <select name="position" id="position_{$smarty.foreach.f.index}">
+                        <option value="0">Слева</option>
+                        <option value="1" selected="selected">Справа</option> <!--вот так -->
+                        <option value="2">Вверху</option>
+                     </select>
+                  </div>
+                  <div class="form_block">
                      <label for="url_{$smarty.foreach.f.index}">URL</label>
                      <input type="url" name="url" id="url_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_url}{else}{$url|default:$s.main_slider_url}{/if}" />
                   </div>
@@ -72,6 +88,9 @@
       {if !$isInsert}
          {assign var='url' value=''}
          {assign var='number' value=''}
+         {assign var='head' value=''}
+         {assign var='text' value=''}
+         {assign var='position' value=''}
       {/if}
       <div class="add">
          <h2>Добавление слайда</h2>
@@ -80,6 +99,22 @@
             <div class="form_block">
                <label for="number_new">Порядковый номер</label>
                <input type="number" min="1" name="number" id="number_new" value="{$number|default:1}" />
+            </div>
+            <div class="form_block">
+               <label for="head_new">Заголовок</label>
+               <input name="head" id="head_new" value="{$head}" />
+            </div>
+            <div class="form_block">
+               <label for="text_new">Текст</label>
+               <textarea name="text" id="text_new">{$text}</textarea>
+            </div>
+            <div class="form_block">
+               <label for="position_new">Позиция</label>
+               <select name="position" id="position_new">
+                  <option value="0">Слева</option>
+                  <option value="1" selected="selected">Справа</option> <!--вот так -->
+                  <option value="2">Вверху</option>
+               </select>
             </div>
             <div class="form_block">
                <label for="url_new">URL</label>

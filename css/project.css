@@ -1,0 +1,54 @@
+div.wrap_project {
+	padding: 0 20px;
+}
+
+div.wrap_project_inner {
+	padding: 0 40px;
+}
+
+div.wrap_project div.lineh1 {
+	margin: 30px 0 40px;
+	background: url('/images/blackline.jpg') center center repeat-x;
+	text-align: center;
+}
+
+div.wrap_project div.lineh1 h1 {
+	font-size: 280%;
+	display: inline-block;
+	background: white;
+	padding: 0 12px;
+}
+
+article.main h1 {
+	font-size: 180%;
+	font-weight: bold;
+	margin-bottom: 28px;
+	text-align: center;
+}
+
+article.main img {
+	width: 900px;
+	height: 300px;
+	margin-bottom: 25px;
+	border: 1px black solid;
+}
+
+article.main div.text p {
+	margin-bottom: 25px;
+}
+
+article.main div.text {
+	margin-bottom: 40px;
+	line-height: 1.4;
+}
+
+article.main time {
+	color: #acacac;
+	display: block;
+	text-align: right;
+}
+
+article.main {
+	border-bottom: 3px black double;
+	margin-bottom: 20px;
+}

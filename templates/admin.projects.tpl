@@ -26,10 +26,10 @@
          $(this).getUpload({
             'uploadType'  : 'projects',
             'item_id'     : $data,
-            'width'       : '375',
-            'height'      : '385',
+            'width'       : '900',
+            'height'      : '300',
             'count'       : '1',
-            'sizes'       : 's#375#385'
+            'sizes'       : 's#102#34,b#900#300'
          });
       });
       $('div.avatar_in a').fancybox();
