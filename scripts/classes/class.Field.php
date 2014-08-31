@@ -22,6 +22,11 @@ abstract class FieldType
    {
 
    }
+
+   public function GetLength()
+   {
+
+   }
 }
 
 class StrFieldType extends FieldType
@@ -38,6 +43,11 @@ class StrFieldType extends FieldType
       if (strlen($value) > $this->length) {
          throw new ValidateException("$alias слишком длинное!");
       }
+   }
+
+   public function GetLength()
+   {
+      return $this->length;
    }
 }
 
@@ -176,6 +186,11 @@ class Field
          throw new ValidateException($exceptionStr);
       }
       return $this;
+   }
+
+   public function GetType()
+   {
+      return $this->type;
    }
 
    public function ResetField()

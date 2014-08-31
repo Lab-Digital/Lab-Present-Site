@@ -15,6 +15,9 @@ $(function(){
 
    var options = {
       beforeSend: function(xhr) {
+         $('#send_window').find('.form-control').each(function() {
+            $(this).removeClass('wrong')
+         });
          $('input[type=file][max-size]').each(function() {
             if (this.id !== 'fake_input') {
                fileSize = this.files[0].size;
@@ -66,16 +69,20 @@ $(function(){
                }
             );
          } else {
-           $.fancybox(
-               '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + data.message + '</span>',
-               {
-                  'autoDimensions'  : false,
-                  'width'           : 360,
-                  'height'          : 'auto',
-                  'transitionIn'    : 'none',
-                  'transitionOut'   : 'none'
-               }
-            );
+            if (data.error_field) {
+               $('#send_window #' + data.error_field).addClass('wrong')
+            }
+            $('#send_window div.error').text(data.message);
+            // $.fancybox(
+            //    '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + data.message + '</span>',
+            //    {
+            //       'autoDimensions'  : false,
+            //       'width'           : 360,
+            //       'height'          : 'auto',
+            //       'transitionIn'    : 'none',
+            //       'transitionOut'   : 'none'
+            //    }
+            // );
          }
       }
    };

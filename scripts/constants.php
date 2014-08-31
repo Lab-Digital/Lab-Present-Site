@@ -11,6 +11,7 @@ define('UPLOAD_ZIP_DIR', $_SERVER['DOCUMENT_ROOT'] . '/files/');
 define('ERROR_QUERY', 'В данный момент невозможно подключение к базе данных.');
 define('ERROR_LOGIN', 'Неверное имя пользователя или пароль.');
 define('ERROR_PASS', 'Неверный пароль.');
+define('ERROR_NAME', 'Неправильно указано имя.');
 define('ERROR_CONTACT_PHONE', 'Введен неверный номер телефона.');
 define('INCORRECT_MAIL', 'Введен неверный e-mail.');
 define('INCORRECT_DEPARTMENT', 'Неверно указан отдел.');

@@ -119,6 +119,17 @@ class Proposal extends Entity
       return $this;
    }
 
+   public function ValidateName($name)
+   {
+      if (empty($name)) {
+         throw new Exception(ERROR_NAME);
+      }
+      if (strlen($name) > $this->GetFieldByName(static::NAME_FLD)->GetType()->GetLength()) {
+         throw new Exception('Имя слишком длинное.');
+      }
+      return $this;
+   }
+
    public function ValidateEmail($email)
    {
       if (!preg_match('/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/', $email)) {

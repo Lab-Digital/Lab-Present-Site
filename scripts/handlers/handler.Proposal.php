@@ -3,6 +3,8 @@ require_once SCRIPTS_ROOT  . 'utils.php';
 require_once CLASSES_ROOT  . 'class.Proposal.php';
 require_once HANDLERS_ROOT . 'handler.php';
 
+$ajaxResult['error_field'] = null;
+
 class ProposalHandler extends Handler
 {
    public function __construct()
@@ -27,8 +29,24 @@ class ProposalHandler extends Handler
       }
    }
 
+   private function Validate($field, $func, $param)
+   {
+      global $ajaxResult;
+      try {
+         $this->entity->$func($param);
+      } catch (Exception $e) {
+         $ajaxResult['error_field'] = $field;
+         throw new Exception($e->getMessage());
+      }
+      return $this;
+   }
+
    public function Insert($params, $getLastInsertId = true)
    {
+      global $ajaxResult;
+      $this->Validate('name',  'ValidateName',  !empty($params['name'])  ? $params['name']  : null)
+           ->Validate('phone', 'ValidatePhone', !empty($params['phone']) ? $params['phone'] : null)
+           ->Validate('email', 'ValidateEmail', !empty($params['email']) ? $params['email'] : null);
       if (count($_FILES) > 0) {
          if (!file_exists(UPLOAD_ZIP_DIR)) {
             mkdir(UPLOAD_ZIP_DIR);
@@ -36,8 +54,6 @@ class ProposalHandler extends Handler
          if (!file_exists(UPLOAD_ZIP_DIR . 'tmp/')) {
             mkdir(UPLOAD_ZIP_DIR . 'tmp/');
          }
-         $this->entity->ValidatePhone(!empty($params['phone']) ? $params['phone'] : null)
-                      ->ValidateEmail(!empty($params['email']) ? $params['email'] : null);
          $idx = 0;
          $file_names = [];
          $seed = new DateTime();
