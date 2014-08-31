@@ -91,6 +91,7 @@
 	height: 214px;
 	resize: none;
 	padding: 3px 9px;
+	margin-bottom: 15px;
 	border: 1px #e1e1e1 solid;
 }
 
@@ -130,6 +131,7 @@
 
 #send_window div.files_send_block table.attachments tr td {
 	height: 30px;
+	vertical-align: middle;
 }
 
 #send_window div.files_send_block table.attachments tr td.num {
@@ -148,6 +150,7 @@
 	width: 128px;
 	background: #aaaaaa;
 	text-align: center;
+	cursor: pointer;
 	color: white;
 }
 

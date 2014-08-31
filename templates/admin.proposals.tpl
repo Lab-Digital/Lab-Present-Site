@@ -14,11 +14,11 @@
   </tr>
   {foreach from=$proposals item=p}
   <tr>
-    <td>Имя: {$p.proposal_name}<br />Телефон: {$p.proposal_phone}<br />E-mail: {$p.proposal_email}<br /></td>
+    <td><span class="li">Имя: {$p.proposal_name}</span><span class="li">Телефон: {$p.proposal_phone}</span><span class="li">E-mail: {$p.proposal_email}</span></td>
     <td>{$p.proposal_date}</td>
     <td>{$p.proposal_task}</td>
     <td>{$departments[$p.proposal_department_id]|default:'-'}</td>
-    <td>{if !empty($p.proposal_zip_name)}<a href="/files/{$p.proposal_zip_name}.zip">ссылка на zip архив если есть. сделай пожалуйста иконочку зип архива</a>{/if}</td>
+    <td>{if !empty($p.proposal_zip_name)}<a href="/files/{$p.proposal_zip_name}.zip">Скачать</a>{/if}</td>
   </tr>
   {/foreach}
   </table>

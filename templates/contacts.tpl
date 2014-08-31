@@ -7,10 +7,12 @@
     <link href="/css/footer.css" rel="stylesheet" />
     <link href="/css/contacts.css" rel="stylesheet" />
     <link href="/css/forms.css" rel="stylesheet" />
+    <script src="/js/overlay.js"></script>
 {/block}
 {block name='div.main'}
     {include file="header.tpl"}
     <div id="map">
+        <img id="overlay" src="/images/overlay.png" />
         <div class="right">
             <form id="express_proposal" action="/handler/proposal" method="post" enctype=multipart/form-data>
                 <div class="top">

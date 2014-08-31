@@ -3,6 +3,39 @@ div.slider {
 	position: relative;
 }
 
+div.slider div.slide {
+	height: 355px;
+	width: 1024px;
+	overflow: hidden;
+}
+
+div.slider div.slide div.circle {
+	background: #fefd62;
+	width: 310px;
+	height: 225px;
+	padding: 255px 100px 220px 270px;
+	margin-left: -200px;
+	margin-top: -200px;
+	z-index: 3;
+	border-radius: 700px; 
+	overflow: hidden;
+}
+
+div.slider div.slide div.circle div.text {
+	font-size: 130%;
+	line-height: 1.2;
+}
+
+div.slider div.slide div.circle h1 {
+	margin-bottom: 25px;
+	font-size: 220%;
+}
+
+div.slider a {
+	color: black;
+	text-decoration: none;
+}
+
 #sliderCtrl {
 	text-align: center;
 	font-size: .85em;
