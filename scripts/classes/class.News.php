@@ -67,7 +67,9 @@ class News extends EntityURL
          new Field(
             static::PUBLICATION_DATE_FLD,
             TimestampType(),
-            false
+            true,
+            'Дата публикации',
+            [Validate::IS_NOT_EMPTY]
          ),
          new Field(
             static::PHOTO_FLD,
@@ -150,6 +152,8 @@ class News extends EntityURL
          case static::ADMIN_CHANGE_SCHEME:
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             foreach ($sample as &$set) {
+               $date_var = new DateTime($set[$dateKey]);
+               $set[$dateKey] = $date_var->format('d.m.Y');
                $a = [];
                if (!empty($set[$catKey])) {
                   foreach (explode(',', $set[$catKey]) as $category_id) {

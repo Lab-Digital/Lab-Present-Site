@@ -66,6 +66,10 @@
          <label for="title_new">Meta title</label>
          <input name="title" id="title_new" value="{$mtitle|default:$article.news_meta_title|default:''}" />
       </div>
+      <div class="form_block">
+        <label for="article_date_new">Дата публикации</label>
+        <input name="date" id="article_date_new" value="{$date|default:$article.news_publication_date|default:''}" />
+      </div>
       <div class="form_block div_checkbox">
         <label for="category_new">Категория</label>
         <div class="checkbox_in">

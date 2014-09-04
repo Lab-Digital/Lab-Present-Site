@@ -5,6 +5,12 @@ function SetActiveItem($item = 'main')
    $smarty->assign('active_item', $item);
 }
 
+function DateToMySqlDate($date_str)
+{
+   $date_var = new DateTime($date_str);
+   return !empty($date_str) ? $date_var->format('Y-m-d H:i:s') : '';
+}
+
 function GetPage()
 {
    global $request;
