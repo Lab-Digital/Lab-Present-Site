@@ -19,7 +19,7 @@
                     <h1>Экспресс-заявка</h1>
                     <div class="error"></div>
                     <label for="name">Ваше имя:</label>
-                    <input id="name" name="name" class="good" class="form-control" />
+                    <input id="name" name="name" class="form-control" />
                     <label for="phone">Контактный телефон:</label>
                     <input id="phone" type="phone" name="phone" class="form-control" />
                     <label for="email">Ваш e-mail:</label>
@@ -31,9 +31,18 @@
                 </div>
             </form>
             <script type="text/javascript">
+
+               function clearForm() {
+                  $('#express_proposal').find('.form-control').each(function() {
+                     $(this).removeClass('wrong');
+                  });
+                  $('#express_proposal div.error').text('')
+               }
+
                $('#express_send').click(function() {
                   var options = {
                      beforeSend: function() {
+                        clearForm()
                      },
                      uploadProgress: function(event, position, total, percentComplete) {
                      },
@@ -49,6 +58,7 @@
                            $('#express_proposal').find('.form-control').each(function() {
                               $(this).val('');
                            });
+                           clearForm();
                            $.fancybox(
                               '<span style="color: green; font-weight: bold; display: block; margin: 30px;">Заявка отправлена! Спасибо!</span>',
                               {
@@ -60,16 +70,20 @@
                               }
                            );
                         } else {
-                          $.fancybox(
-                              '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + data.message + '</span>',
-                              {
-                                 'autoDimensions'  : false,
-                                 'width'           : 360,
-                                 'height'          : 'auto',
-                                 'transitionIn'    : 'none',
-                                 'transitionOut'   : 'none'
-                              }
-                           );
+                           if (data.error_field) {
+                              $('#express_proposal #' + data.error_field).addClass('wrong')
+                           }
+                           $('#express_proposal div.error').text(data.message);
+                          // $.fancybox(
+                          //     '<span style="color: red; font-weight: bold; display: block; margin: 30px;">' + data.message + '</span>',
+                          //     {
+                          //        'autoDimensions'  : false,
+                          //        'width'           : 360,
+                          //        'height'          : 'auto',
+                          //        'transitionIn'    : 'none',
+                          //        'transitionOut'   : 'none'
+                          //     }
+                          //  );
                         }
                      }
                   };

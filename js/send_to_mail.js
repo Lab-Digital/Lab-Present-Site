@@ -1,6 +1,13 @@
 var rowcnt = 0;
 $(function(){
 
+   function clearProposalForm() {
+      $('#send_window').find('.form-control').each(function() {
+         $(this).removeClass('wrong');
+      });
+      $('#send_window div.error').text('');
+   }
+
    function deleteRow(num) {
       $('#row' + num).remove();
       for (var j = num + 1; j <= rowcnt; j++) {
@@ -15,9 +22,7 @@ $(function(){
 
    var options = {
       beforeSend: function(xhr) {
-         $('#send_window').find('.form-control').each(function() {
-            $(this).removeClass('wrong')
-         });
+         clearProposalForm();
          $('input[type=file][max-size]').each(function() {
             if (this.id !== 'fake_input') {
                fileSize = this.files[0].size;
@@ -52,6 +57,7 @@ $(function(){
 
          if (data.result) {
             $('#category_choose li').removeClass('active');
+            clearProposalForm();
             $('#send_window .form-control').each(function() {
                $(this).val('');
             });
