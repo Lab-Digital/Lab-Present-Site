@@ -17,6 +17,7 @@
             <form id="express_proposal" action="/handler/proposal" method="post" enctype=multipart/form-data>
                 <div class="top">
                     <h1>Экспресс-заявка</h1>
+                    <div class="error"></div>
                     <label for="name">Ваше имя:</label>
                     <input id="name" name="name" class="good" class="form-control" />
                     <label for="phone">Контактный телефон:</label>

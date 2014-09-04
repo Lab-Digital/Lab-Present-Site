@@ -2,6 +2,13 @@
 	width: 886px;
 }
 
+#send_window div.error {
+	margin: 25px 0 10px;
+	color: red;
+	font-size: 90%;
+	font-style: italic;
+}
+
 #send_window div.main_send_block div.left {
 	display: inline-block;
 	margin-right: 55px;
@@ -13,7 +20,7 @@
 }
 
 #send_window div.main_send_block div.left h1 {
-	margin: 36px 0;
+	margin: 36px 0 0;
 	font-size: 180%;
 }
 

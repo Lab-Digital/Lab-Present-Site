@@ -29,9 +29,15 @@
 }
 
 #map div.right div.top h1 {
-	margin-bottom: 40px;
 	font-size: 180%;
 	text-align: center;
+}
+
+#map div.right div.top div.error {
+	margin: 20px 0 15px;
+	color: red;
+	font-size: 90%;
+	font-style: italic;
 }
 
 #map div.right div.top label {
@@ -43,7 +49,7 @@
 
 #map div.right div.top input {
 	display: block;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 	width: 277px;
 	height: 24px;
 	border: 1px #e1e1e1 solid;
