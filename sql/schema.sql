@@ -141,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `main_slider` (
    `id`        INT          NOT NULL AUTO_INCREMENT,
    `head`      VARCHAR(150) NOT NULL,
    `text`      TEXT,
-   `position`  INT          DEFAULT 0,
+   `color`     VARCHAR(10)  NOT NULL,
    `number`    INT          NOT NULL DEFAULT 1,
    `avatar_id` INT          DEFAULT NULL,
    `url`       VARCHAR(300) DEFAULT '',

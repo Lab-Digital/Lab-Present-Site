@@ -105,8 +105,8 @@
                <textarea name="text" id="text_new" cols="90" rows="10">{$text}</textarea>
             </div>
             <div class="form_block">
-               <label for="color_new">Позиция</label>
-               <inout name="color" id="color_new" value="{$color}" />
+               <label for="color_new">Цвет</label>
+               <input name="color" id="color_new" value="{$color}" />
             </div>
             <div class="form_block">
                <label for="url_new">URL</label>

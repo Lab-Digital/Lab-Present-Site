@@ -31,17 +31,20 @@ abstract class FieldType
 
 class StrFieldType extends FieldType
 {
-   private $length;
+   private
+      $length,
+      $message;
 
-   public function __construct($length)
+   public function __construct($length, $message = null)
    {
       $this->length = $length;
+      $this->message = $message;
    }
 
    public function Validate($value, $alias)
    {
       if (strlen($value) > $this->length) {
-         throw new ValidateException("$alias слишком длинное!");
+         throw new ValidateException(!empty($this->message) ? $this->message : "$alias слишком длинное!");
       }
    }
 
@@ -74,9 +77,9 @@ class TextFieldType extends FieldType
 {
 }
 
-function StrType($length)
+function StrType($length, $message = null)
 {
-   return new StrFieldType($length);
+   return new StrFieldType($length, $message);
 }
 
 function IntType($digitAmount = null)

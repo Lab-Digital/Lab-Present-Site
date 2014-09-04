@@ -7,9 +7,9 @@ class MainSlider extends Entity
    const URL_FLD      = 'url';
    const HEAD_FLD     = 'head';
    const TEXT_FLD     = 'text';
+   const COLOR_FLD    = 'color';
    const NUMBER_FLD   = 'number';
    const AVATAR_FLD   = 'avatar_id';
-   const POSITION_FLD = 'position';
 
    const PAGE_SCHEME = 2;
 
@@ -17,7 +17,6 @@ class MainSlider extends Entity
 
    const LAST_VIEWED_ID = 'last_viewed_main_slider_id';
 
-   public $positions = ['Слева', 'Справа', 'Вверху'];
 
    public function __construct()
    {
@@ -55,9 +54,11 @@ class MainSlider extends Entity
             true
          ),
          new Field(
-            static::POSITION_FLD,
-            IntType(),
-            true
+            static::COLOR_FLD,
+            StrType(9, 'Неправильно указан цвет!'),
+            true,
+            'Цвет слайдера',
+            [Validate::IS_NOT_EMPTY]
          )
       );
       $this->orderFields = [static::NUMBER_FLD => new OrderField(static::TABLE, $this->GetFieldByName(static::NUMBER_FLD))];
