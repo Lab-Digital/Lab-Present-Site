@@ -59,12 +59,8 @@
                      <textarea name="text" id="text_{$smarty.foreach.f.index}" cols="90" rows="10">{if $isInsert}{$s.main_slider_text}{else}{$text|default:$s.main_slider_text}{/if}</textarea>
                   </div>
                   <div class="form_block">
-                     <label for="position_{$smarty.foreach.f.index}">Позиция</label>
-                     <select name="position" id="position_{$smarty.foreach.f.index}">
-                     {foreach from=$positions item=p key=k}
-                        <option value="{$k}" {if $position|default:$s.main_slider_position == $k}selected="selected"{/if}>{$p}</option>
-                     {/foreach}
-                     </select>
+                     <label for="color_{$smarty.foreach.f.index}">Цвет</label>
+                     <input name="color" id="color_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_color}{else}{$color|default:$s.main_slider_color}{/if}" />
                   </div>
                   <div class="form_block">
                      <label for="url_{$smarty.foreach.f.index}">URL</label>
@@ -90,7 +86,7 @@
          {assign var='number' value=''}
          {assign var='head' value=''}
          {assign var='text' value=''}
-         {assign var='position' value=''}
+         {assign var='color' value=''}
       {/if}
       <div class="add">
          <h2>Добавление слайда</h2>
@@ -109,12 +105,8 @@
                <textarea name="text" id="text_new" cols="90" rows="10">{$text}</textarea>
             </div>
             <div class="form_block">
-               <label for="position_new">Позиция</label>
-               <select name="position" id="position_new">
-               {foreach from=$positions item=p key=k}
-                  <option value="{$k}" {if $position == $k}selected="selected"{/if}>{$p}</option>
-               {/foreach}
-               </select>
+               <label for="color_new">Позиция</label>
+               <inout name="color" id="color_new" value="{$color}" />
             </div>
             <div class="form_block">
                <label for="url_new">URL</label>
