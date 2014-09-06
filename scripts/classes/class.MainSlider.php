@@ -4,12 +4,13 @@ require_once CLASSES_ROOT . 'class.Image.php';
 
 class MainSlider extends Entity
 {
-   const URL_FLD      = 'url';
-   const HEAD_FLD     = 'head';
-   const TEXT_FLD     = 'text';
-   const COLOR_FLD    = 'color';
-   const NUMBER_FLD   = 'number';
-   const AVATAR_FLD   = 'avatar_id';
+   const URL_FLD        = 'url';
+   const HEAD_FLD       = 'head';
+   const TEXT_FLD       = 'text';
+   const COLOR_FLD      = 'color';
+   const NUMBER_FLD     = 'number';
+   const AVATAR_FLD     = 'avatar_id';
+   const TEXT_COLOR_FLD = 'text_color';
 
    const PAGE_SCHEME = 2;
 
@@ -58,6 +59,13 @@ class MainSlider extends Entity
             StrType(9, 'Неправильно указан цвет!'),
             true,
             'Цвет слайдера',
+            [Validate::IS_NOT_EMPTY]
+         ),
+         new Field(
+            static::TEXT_COLOR_FLD,
+            StrType(9, 'Неправильно указан цвет текста!'),
+            true,
+            'Цвет текста',
             [Validate::IS_NOT_EMPTY]
          )
       );
