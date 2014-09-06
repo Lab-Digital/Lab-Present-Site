@@ -8,6 +8,7 @@
    <script src="/upload_photo/js/plugin.js"></script>
    <script src="/ckeditor/ckeditor.js"></script>
    <script src="/ckeditor/adapters/jquery.js"></script>
+   <script src="/js/copy_url.js"></script>
    <script>
    {literal}
    $(function(){
@@ -125,7 +126,7 @@
                <h1 class="head_upload">Фото для текста</h1>
                <button class="upload" type="submit" data="{$d.projects_id}">Загрузить фото для текста</button>
                <ul>
-                  {foreach from=$d.projects_photos item=photo}<li><a href="/images/uploads/{$photo.name}_b.{$photo.ext}"><img src="/images/uploads/{$photo.name}_s.{$photo.ext}" /></a><button class="x" data="{$photo.name}" data-ext="{$photo.ext}">x</button></li>{/foreach}
+                  {foreach from=$d.projects_photos item=photo}<li><a href="/images/uploads/{$photo.name}_b.{$photo.ext}"><img src="/images/uploads/{$photo.name}_s.{$photo.ext}" /></a><button class="x" data="{$photo.name}" data-ext="{$photo.ext}">x</button><button class="url" data="{$server_root}/images/uploads/{$photo.name}_b.{$photo.ext}">URL</button></li>{/foreach}
                </ul>
             </div>
          </div>
