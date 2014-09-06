@@ -34,7 +34,7 @@
       <ul class="bxslider">
         {foreach from=$sliders item=s name=f}
          <li>
-            {if !empty($s.main_slider_url)}<a href="{$s.main_slider_url}">{/if}<div class="slide" style="background: url('/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}')"><div class="circle" style="background: #{$s.main_slider_color}"><h1>{$s.main_slider_head}</h1><div class="text">{$s.main_slider_text}</div></div></div>{if !empty($s.main_slider_url)}</a>{/if}
+            {if !empty($s.main_slider_url)}<a href="{$s.main_slider_url}">{/if}<div class="slide" style="background: url('/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}')"><div class="circle" style="background: #{$s.main_slider_color}; color: #{$s.main_slider_text_color}"><h1>{$s.main_slider_head}</h1><div class="text">{$s.main_slider_text}</div></div></div>{if !empty($s.main_slider_url)}</a>{/if}
          </li>
         {/foreach}
       </ul>

@@ -117,7 +117,7 @@
 	height: 70px;
 	border-radius: 70px;
 	text-indent: -9999px;
-	z-index: 9999;
+	z-index: 9000;
 }
 
 .bx-wrapper .bx-controls-direction a.disabled {

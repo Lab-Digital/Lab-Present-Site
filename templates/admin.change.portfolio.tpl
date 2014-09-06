@@ -36,7 +36,17 @@
       $('div.avatar_in a').fancybox();
       $('div.photos_in a').fancybox();
 
-      $("textarea[name='desc']").ckeditor();
+      CKEDITOR.replace('article_description', {
+        toolbar: [
+          { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo' ] },
+          { name: 'links', items: [ 'Link', 'Unlink' ] },
+          { name: 'insert', items: [ 'SpecialChar' ] },
+          { name: 'document', items: [ 'Source' ] },
+          '/',
+          { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+          { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent' ] }
+        ]
+      });
    });
    {/literal}
    </script>
@@ -45,7 +55,6 @@
 {block name='main'}
    <h1>{if $isAdd|default:false}Добавление{else}Редактирование{/if} портфолио</h1>
    {if isset($error_txt)}<p class="db_error">{$error_txt}</p>{/if}
-   <div class="right_block">
     <form action="/admin/{$handle_url}" method="post" id="add_article">
       <input type="hidden" class="article_id" name="id" value="{$portfolio.portfolio_id|default:''}" />
       <div class="form_block">
@@ -68,12 +77,12 @@
       </div>
       <div class="form_block">
         <label for="article_description">Описание портфолио</label>
-        <textarea name="desc" id="article_description" rows="3" cols="90">{$desc|default:$portfolio.portfolio_description|default:''}</textarea>
+        <textarea name="desc" id="article_description">{$desc|default:$portfolio.portfolio_description|default:''}</textarea>
       </div>
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>
     {if !$isAdd|default:false}
-      <div class="in avatar_in">
+    <div class="in avatar_in">
        <h1 class="head_upload">Главное фото</h1>
        <button class="upload" type="submit" data="{$portfolio.portfolio_id}">Загрузить главное фото</button>
        <ul>
@@ -92,5 +101,4 @@
        </ul>
     </div>
     {/if}
-  </div>
 {/block}
