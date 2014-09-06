@@ -6,6 +6,8 @@
    <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.js"></script>
    <script type="text/javascript" src="/js/select_plugin.js"></script>
    <script src="/upload_photo/js/plugin.js"></script>
+   <script src="/ckeditor/ckeditor.js"></script>
+   <script src="/ckeditor/adapters/jquery.js"></script>
    <script>
    {literal}
    $(function(){
@@ -34,6 +36,10 @@
       });
       $('div.photos_in a').fancybox();
       $('div.avatar_in a').fancybox();
+
+      $("textarea[name='body']").each(function(){
+         $(this).ckeditor();
+      });
    });
    {/literal}
    </script>

@@ -5,6 +5,11 @@
    <link rel="stylesheet" href="/css/styles_for_text.css" />
    <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.js"></script>
    <script src="/upload_photo/js/plugin.js"></script>
+   <script src="/ckeditor/ckeditor.js"></script>
+   <script src="/ckeditor/adapters/jquery.js"></script>
+   <link rel="stylesheet" href="/css/jquery-ui.css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+   <script src="/js/jquery-ui.js"></script>
    <script>
    {literal}
    $(function(){
@@ -47,6 +52,8 @@
       $('div.avatar_in a').fancybox();
       $('div.bigphoto_in a').fancybox();
       $('div.watchother_in a').fancybox();
+      $('#article_date').datepicker({dateFormat: "dd.mm.yy"});
+      $("textarea[name='body']").ckeditor();
    });
    {/literal}
    </script>
@@ -59,19 +66,19 @@
     <form action="/admin/{$handle_url}" method="post" id="add_article">
       <input type="hidden" class="article_id" name="id" value="{$article.news_id|default:''}" />
       <div class="form_block">
-        <label for="article_head_new">Заголовок</label>
-        <input name="head" id="article_head_new" value="{$head|default:$article.news_head|default:''}" />
+        <label for="article_head">Заголовок</label>
+        <input name="head" id="article_head" value="{$head|default:$article.news_head|default:''}" />
       </div>
       <div class="form_block">
-         <label for="title_new">Meta title</label>
-         <input name="title" id="title_new" value="{$mtitle|default:$article.news_meta_title|default:''}" />
+         <label for="title">Meta title</label>
+         <input name="title" id="title" value="{$mtitle|default:$article.news_meta_title|default:''}" />
       </div>
       <div class="form_block">
-        <label for="article_date_new">Дата публикации</label>
-        <input name="date" id="article_date_new" value="{$date|default:$article.news_publication_date|default:''}" />
+        <label for="article_date">Дата публикации</label>
+        <input name="date" id="article_date" value="{$date|default:$article.news_publication_date|default:''}" />
       </div>
       <div class="form_block div_checkbox">
-        <label for="category_new">Категория</label>
+        <label>Категория</label>
         <div class="checkbox_in">
           {if $cats|@count}
             {foreach from=$departments item=d}
@@ -85,20 +92,20 @@
         </div>
       </div>
       <div class="form_block">
-        <label for="article_description_new">Описание новости</label>
-        <textarea name="desc" id="article_description_new" rows="3" cols="90">{$desc|default:$article.news_description|default:''}</textarea>
+        <label for="article_description">Описание новости</label>
+        <textarea name="desc" id="article_description" rows="3" cols="90">{$desc|default:$article.news_description|default:''}</textarea>
       </div>
       <div class="form_block">
-        <label for="article_body_new">Текст</label>
-        <textarea name="body" id="article_body_new" rows="10" cols="90">{$body|default:$article.news_body|default:''}</textarea>
+        <label for="article_body">Текст</label>
+        <textarea name="body" id="article_body" rows="10" cols="90">{$body|default:$article.news_body|default:''}</textarea>
       </div>
       <div class="form_block">
-         <label for="description_new">Meta description</label>
-         <textarea name="description" id="description_new" cols="90" rows="10">{$mdescription|default:$article.news_meta_description|default:''}</textarea>
+         <label for="description">Meta description</label>
+         <textarea name="description" id="description" cols="90" rows="10">{$mdescription|default:$article.news_meta_description|default:''}</textarea>
       </div>
       <div class="form_block">
-         <label for="keywords_new">Meta keywords</label>
-         <textarea name="keywords" id="keywords_new" cols="90" rows="10">{$mkeywords|default:$article.news_meta_keywords|default:''}</textarea>
+         <label for="keywords">Meta keywords</label>
+         <textarea name="keywords" id="keywords" cols="90" rows="10">{$mkeywords|default:$article.news_meta_keywords|default:''}</textarea>
       </div>
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>

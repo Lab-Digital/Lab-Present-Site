@@ -5,6 +5,8 @@
    <link rel="stylesheet" href="/css/styles_for_text.css" />
    <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.js"></script>
    <script src="/upload_photo/js/plugin.js"></script>
+   <script src="/ckeditor/ckeditor.js"></script>
+   <script src="/ckeditor/adapters/jquery.js"></script>
    <script>
    {literal}
    $(function(){
@@ -33,6 +35,8 @@
       });
       $('div.avatar_in a').fancybox();
       $('div.photos_in a').fancybox();
+
+      $("textarea[name='desc']").ckeditor();
    });
    {/literal}
    </script>
@@ -45,11 +49,11 @@
     <form action="/admin/{$handle_url}" method="post" id="add_article">
       <input type="hidden" class="article_id" name="id" value="{$portfolio.portfolio_id|default:''}" />
       <div class="form_block">
-        <label for="article_head_new">Заголовок</label>
-        <input name="head" id="article_head_new" value="{$head|default:$portfolio.portfolio_head|default:''}" />
+        <label for="article_head">Заголовок</label>
+        <input name="head" id="article_head" value="{$head|default:$portfolio.portfolio_head|default:''}" />
       </div>
       <div class="form_block div_checkbox">
-        <label for="category_new">Отдел</label>
+        <label>Отдел</label>
         <div class="checkbox_in">
           {if $cats|@count}
             {foreach from=$departments item=d}
@@ -63,8 +67,8 @@
         </div>
       </div>
       <div class="form_block">
-        <label for="article_description_new">Описание портфолио</label>
-        <textarea name="desc" id="article_description_new" rows="3" cols="90">{$desc|default:$portfolio.portfolio_description|default:''}</textarea>
+        <label for="article_description">Описание портфолио</label>
+        <textarea name="desc" id="article_description" rows="3" cols="90">{$desc|default:$portfolio.portfolio_description|default:''}</textarea>
       </div>
       <div class="buttons">{if $isAdd|default:false}<button class="save" name="mode" value="Insert">Добавить</button>{else}<button class="save" name="mode" value="Update">Сохранить</button><button class="delete red" name="mode" value="Delete">Удалить</button>{/if}</div>
     </form>

@@ -60,6 +60,12 @@ div.edit {
 	display: none;
 }
 
+form div.form_block span.left {
+  display: inline-block;
+  margin-right: 5px;
+  font-style: italic;
+}
+
 div.in {
 	margin-top: 20px;
 }

@@ -17,7 +17,7 @@ form span.error.top_error {
   margin-left: 0;
 }
 
-input {
+form input {
   padding: 3px 5px;
   border: 1px solid #cacaca;
   min-width: 200px;

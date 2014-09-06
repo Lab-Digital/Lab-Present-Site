@@ -6,6 +6,10 @@
    <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.js"></script>
    <script type="text/javascript" src="/js/select_plugin.js"></script>
    <script src="/upload_photo/js/plugin.js"></script>
+   
+   <link rel="stylesheet" media="screen" type="text/css" href="/css/colorpicker.css" />
+   <script type="text/javascript" src="/js/colorpicker.js"></script>
+   
    <script>
    {literal}
    $(function(){
@@ -22,6 +26,19 @@
          });
       });
       $('div.avatar_in a').fancybox();
+      $("input[name='color']").each(function(){
+         $(this).ColorPicker({
+            onSubmit: function(hsb, hex, rgb, el) {
+               $(el).val(hex);
+               $(el).ColorPickerHide();
+            },
+            onBeforeShow: function () {
+               $(this).ColorPickerSetColor(this.value);
+            }
+         }).bind('keyup', function(){
+            $(this).ColorPickerSetColor(this.value);
+         });
+      });
    });
    {/literal}
    </script>
@@ -60,7 +77,7 @@
                   </div>
                   <div class="form_block">
                      <label for="color_{$smarty.foreach.f.index}">Цвет</label>
-                     <input name="color" id="color_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_color}{else}{$color|default:$s.main_slider_color}{/if}" />
+                     <span class="left">#</span><input name="color" id="color_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_color}{else}{$color|default:$s.main_slider_color}{/if}" />
                   </div>
                   <div class="form_block">
                      <label for="url_{$smarty.foreach.f.index}">URL</label>
@@ -106,7 +123,7 @@
             </div>
             <div class="form_block">
                <label for="color_new">Цвет</label>
-               <input name="color" id="color_new" value="{$color}" />
+               <span class="left">#</span><input name="color" id="color_new" value="{$color}" />
             </div>
             <div class="form_block">
                <label for="url_new">URL</label>
