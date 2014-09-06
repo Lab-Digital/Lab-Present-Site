@@ -26,7 +26,7 @@
          });
       });
       $('div.avatar_in a').fancybox();
-      $("input[name='color']").each(function(){
+      $("input[name='color'], input[name='text_color']").each(function(){
          $(this).ColorPicker({
             onSubmit: function(hsb, hex, rgb, el) {
                $(el).val(hex);
@@ -76,8 +76,12 @@
                      <textarea name="text" id="text_{$smarty.foreach.f.index}" cols="90" rows="10">{if $isInsert}{$s.main_slider_text}{else}{$text|default:$s.main_slider_text}{/if}</textarea>
                   </div>
                   <div class="form_block">
-                     <label for="color_{$smarty.foreach.f.index}">Цвет</label>
+                     <label for="color_{$smarty.foreach.f.index}">Цвет фона</label>
                      <span class="left">#</span><input name="color" id="color_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_color}{else}{$color|default:$s.main_slider_color}{/if}" />
+                  </div>
+                  <div class="form_block">
+                     <label for="text_color_{$smarty.foreach.f.index}">Цвет текста</label>
+                     <span class="left">#</span><input name="text_color" id="text_color_{$smarty.foreach.f.index}" value="{if $isInsert}{$s.main_slider_text_color}{else}{$text_color|default:$s.main_slider_text_color}{/if}" />
                   </div>
                   <div class="form_block">
                      <label for="url_{$smarty.foreach.f.index}">URL</label>
@@ -104,6 +108,7 @@
          {assign var='head' value=''}
          {assign var='text' value=''}
          {assign var='color' value=''}
+         {assign var='text_color' value=''}
       {/if}
       <div class="add">
          <h2>Добавление слайда</h2>
@@ -122,8 +127,12 @@
                <textarea name="text" id="text_new" cols="90" rows="10">{$text}</textarea>
             </div>
             <div class="form_block">
-               <label for="color_new">Цвет</label>
+               <label for="color_new">Цвет фона</label>
                <span class="left">#</span><input name="color" id="color_new" value="{$color}" />
+            </div>
+            <div class="form_block">
+               <label for="text_color_new">Цвет текста</label>
+               <span class="left">#</span><input name="text_color" id="text_color_new" value="{$text_color}" />
             </div>
             <div class="form_block">
                <label for="url_new">URL</label>

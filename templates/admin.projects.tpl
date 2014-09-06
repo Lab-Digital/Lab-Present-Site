@@ -34,8 +34,21 @@
             'sizes'       : 's#102#34,b#900#300'
          });
       });
+      $('div.text_in button.upload').each(function(){
+         $data = $(this).attr('data');
+         $(this).getUpload({
+            'uploadType'  : 'projects',
+            'isTextPhoto' : 'true',
+            'item_id'     : $data,
+            'width'       : '800',
+            'height'      : '400',
+            'count'       : '5',
+            'sizes'       : 's#100#50,b#800#400'
+         });
+      });
       $('div.avatar_in a').fancybox();
       $('div.photos_in a').fancybox();
+      $('div.text_in a').fancybox();
 
       $("textarea[name='body']").each(function(){
          $(this).ckeditor();
@@ -105,6 +118,15 @@
                <ul>
                   {if !empty($d.projects_avatar_id)}
                      <li><a href="/images/uploads/{$d.projects_avatar_id.name}_s.{$d.projects_avatar_id.ext}"><img src="/images/uploads/{$d.projects_avatar_id.name}_s.{$d.projects_avatar_id.ext}" /></a><button class="x" data="{$d.projects_avatar_id.name}" data-ext="{$d.projects_avatar_id.ext}">x</button></li>
+                  {/if}
+               </ul>
+            </div>
+            <div class="in text_in">
+               <h1 class="head_upload">Фото для текста</h1>
+               <button class="upload" type="submit" data="{$d.projects_id}">Загрузить фото для текста</button>
+               <ul>
+                  {if !empty($d.projects_text_photo_id)}
+                     <li><a href="/images/uploads/{$d.projects_text_photo_id.name}_s.{$d.projects_text_photo_id.ext}"><img src="/images/uploads/{$d.projects_text_photo_id.name}_s.{$d.projects_text_photo_id.ext}" /></a><button class="x" data="{$d.projects_text_photo_id.name}" data-ext="{$d.projects_text_photo_id.ext}">x</button></li>
                   {/if}
                </ul>
             </div>
