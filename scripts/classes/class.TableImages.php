@@ -14,13 +14,13 @@ class TableImages extends Entity
       $this->photoField = new Field(static::PHOTO_FLD, IntType(), true);
    }
 
-   public function Insert($getLastInsertId = false)
+   public function Insert($ext, $getLastInsertId = false)
    {
       global $db, $_image;
       $resId = -1;
       try {
          $db->link->beginTransaction();
-         $resId = $_image->Insert($getLastInsertId);
+         $resId = $_image->SetFieldByName(Image::EXT_FLD, $ext)->Insert($getLastInsertId);
          $this->SetFieldByName(static::PHOTO_FLD, $resId);
          Entity::Insert();
          $db->link->commit();
@@ -53,4 +53,26 @@ class NewsImages extends TableImages
    }
 }
 
-$_newsImages   = new NewsImages();
+class ProjectsImages extends TableImages
+{
+   const PROJECTS_FLD  = 'project_id';
+
+   const TABLE = 'projects_images';
+
+   public function __construct()
+   {
+      parent::__construct();
+      $this->fields = Array(
+         $this->idField,
+         $this->photoField,
+         new Field(
+            static::PROJECTS_FLD,
+            IntType(),
+            true
+         )
+      );
+   }
+}
+
+$_newsImages     = new NewsImages();
+$_projectsImages = new ProjectsImages();

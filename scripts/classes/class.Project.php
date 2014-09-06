@@ -4,8 +4,11 @@ require_once CLASSES_ROOT . 'class.TableImages.php';
 
 class Project extends TextsBase
 {
-   const MAIN_SCHEME    = 2;
-   const PROJECT_SCHEME = 3;
+   const MAIN_SCHEME         = 2;
+   const PROJECT_SCHEME      = 3;
+   const ADMIN_CHANGE_SCHEME = 4;
+
+   const PHOTOS_FLD = 'photos';
 
    const TABLE = 'projects';
 
@@ -28,6 +31,14 @@ class Project extends TextsBase
    public function SetSelectValues()
    {
       switch ($this->samplingScheme) {
+         case static::ADMIN_CHANGE_SCHEME:
+            global $_projectsImages;
+            $fields = SQL::PrepareFieldsForSelect(static::TABLE, $this->fields);
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::AVATAR_FLD));
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::PHOTO_FLD));
+            $fields[] = ImageSelectSQL($this, $_projectsImages, ProjectsImages::PROJECTS_FLD);
+            break;
+
          case static::MAIN_SCHEME:
             $fields = SQL::PrepareFieldsForSelect(
                static::TABLE,
@@ -62,6 +73,15 @@ class Project extends TextsBase
    {
       if (empty($sample)) return;
       switch ($this->samplingScheme) {
+         case static::ADMIN_CHANGE_SCHEME:
+            $key = $this->ToPrfxNm(static::PHOTOS_FLD);
+            foreach ($sample as &$set) {
+               $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
+               ModifyArrayWithImages($set[$key]);
+               ModifySetWithImage($set, [$this->ToPrfxNm(static::PHOTO_FLD), $this->ToPrfxNm(static::AVATAR_FLD)]);
+            }
+            break;
+
          case static::MAIN_SCHEME:
             ModifySampleWithImage($sample, [$this->ToPrfxNm(static::AVATAR_FLD)]);
             break;

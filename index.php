@@ -128,7 +128,7 @@ switch ($request_parts[0]) {
             require_once CLASSES_ROOT . 'class.Project.php';
             require_once CLASSES_ROOT . 'class.Department.php';
             $page = $request_parts[1];
-            $obj = $page == 'projects' ? $_project : $_department;
+            $obj = $page == 'projects' ? $_project->SetSamplingScheme(Project::ADMIN_CHANGE_SCHEME) : $_department;
             $smarty->assign('pname', $page == 'projects' ? 'Проект' : 'Отдел');
             require_once ADMIN_ROOT . 'admin.textsbase.php';
             break;

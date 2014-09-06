@@ -156,7 +156,7 @@ class News extends EntityURL
                $date_var = new DateTime($set[$dateKey]);
                $set[$dateKey] = $date_var->format('d.m.Y');
                $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
-               ModifyArrayWithImages($set[$key], [$this->ToPrfxNm(static::PHOTOS_FLD)]);
+               ModifyArrayWithImages($set[$key]);
                $a = [];
                if (!empty($set[$catKey])) {
                   foreach (explode(',', $set[$catKey]) as $category_id) {
@@ -399,12 +399,12 @@ class News extends EntityURL
       }
    }
 
-   public function UpdatePhoto($id, $field)
+   public function UpdatePhoto($ext, $id, $field)
    {
       global $db, $_image;
       try {
          $db->link->beginTransaction();
-         $__file = $_image->Insert(true);
+         $__file = $_image->SetFieldByName(Image::EXT_FLD, $ext)->Insert(true);
          $this->SetFieldByName(News::ID_FLD, $id)->SetFieldByName($field, $__file);
          parent::Update();
          $db->link->commit();

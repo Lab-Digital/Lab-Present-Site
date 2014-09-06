@@ -137,6 +137,15 @@ CREATE TABLE IF NOT EXISTS `projects` (
    FOREIGN KEY (`avatar_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `projects_images` (
+   `id`         INT NOT NULL AUTO_INCREMENT,
+   `project_id` INT NOT NULL,
+   `photo_id`   INT NOT NULL,
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`photo_id`)   REFERENCES `images`   (`id`) ON DELETE CASCADE,
+   FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS `main_slider` (
    `id`         INT          NOT NULL AUTO_INCREMENT,
    `head`       VARCHAR(150) NOT NULL,

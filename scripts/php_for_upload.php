@@ -4,18 +4,36 @@ try {
    $ajaxOtherResult = Array('result' => true, 'message' => 'Загрузка прошла успешно!');
    $item_id = $request->get('item_id');
    switch ($request->get('uploadType')) {
-      case 'resume':
       case 'projects':
+         require_once CLASSES_ROOT . 'class.Project.php';
+         if ($request->get('isTextPhoto', false)) {
+            $__file = $_projectsImages->SetFieldByName(ProjectsImages::PROJECTS_FLD, $item_id)->Insert($ext, true);
+         } else {
+            if (!$request->get('image_id')) {
+               $_image->Delete($request->get('image_id'));
+            }
+            try {
+               $db->link->beginTransaction();
+               $__file = $_image->SetFieldByName(Image::EXT_FLD, $ext)->Insert(true);
+               $_project->SetFieldByName(Project::ID_FLD, $item_id)
+                        ->SetFieldByName($request->get('isAvatar', false) ? Project::AVATAR_FLD : Project::PHOTO_FLD, $__file)
+                        ->Update();
+               $db->link->commit();
+            } catch (DBException $e) {
+               $db->link->rollback();
+               throw new Exception($e->getMessage());
+            }
+         }
+         break;
+
+      case 'resume':
       case 'departments':
       case 'main_slider':
-         require_once CLASSES_ROOT . 'class.Project.php';
          require_once CLASSES_ROOT . 'class.Department.php';
          require_once CLASSES_ROOT . 'class.MainSlider.php';
          require_once CLASSES_ROOT . 'class.Resume.php';
          $uploadType = $request->get('uploadType');
-         if ($uploadType == 'projects') {
-            $obj = $_project;
-         } elseif ($uploadType == 'departments') {
+         if ($uploadType == 'departments') {
             $obj = $_department;
          } elseif ($uploadType == 'main_slider') {
             $obj = $_mainSlider;
@@ -46,10 +64,9 @@ try {
 
       case 'news':
          require_once CLASSES_ROOT . 'class.News.php';
-         $_image->SetFieldByName(Image::EXT_FLD, $ext);
          if (!$request->get('isAvatar', false) && !$request->get('isBigphoto', false)
             && !$request->get('isWatchother', false) && $request->get('isTextPhoto', false)) {
-            $__file = $_newsImages->SetFieldByName(NewsImages::NEWS_FLD, $item_id)->Insert(true);
+            $__file = $_newsImages->SetFieldByName(NewsImages::NEWS_FLD, $item_id)->Insert($ext, true);
          } else {
             $fieldName = News::PHOTO_FLD;
             if ($request->get('isBigphoto', false)) {
@@ -57,7 +74,7 @@ try {
             } elseif ($request->get('isWatchother', false)) {
                $fieldName = News::OTHER_PHOTO_FLD;
             }
-            $__file = $_news->UpdatePhoto($item_id, $fieldName);
+            $__file = $_news->UpdatePhoto($ext, $item_id, $fieldName);
          }
       break;
 
