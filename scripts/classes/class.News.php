@@ -150,10 +150,13 @@ class News extends EntityURL
             break;
 
          case static::ADMIN_CHANGE_SCHEME:
+            $key = $this->ToPrfxNm(static::PHOTOS_FLD);
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             foreach ($sample as &$set) {
                $date_var = new DateTime($set[$dateKey]);
                $set[$dateKey] = $date_var->format('d.m.Y');
+               $set[$key] = !empty($set[$key]) ? explode(',', $set[$key]) : Array();
+               ModifyArrayWithImages($set[$key], [$this->ToPrfxNm(static::PHOTOS_FLD)]);
                $a = [];
                if (!empty($set[$catKey])) {
                   foreach (explode(',', $set[$catKey]) as $category_id) {
@@ -193,7 +196,7 @@ class News extends EntityURL
       $fields = Array();
       switch ($this->samplingScheme) {
          case static::INFO_SCHEME:
-            global $_newsImages;
+            // global $_newsImages;
             $fields =
                SQL::PrepareFieldsForSelect(
                   static::TABLE,
@@ -208,7 +211,7 @@ class News extends EntityURL
                      $this->GetFieldByName(static::META_DESCRIPTION_FLD),
                   )
                );
-            $fields[] = ImageSelectSQL($this, $_newsImages, NewsImages::NEWS_FLD);
+            // $fields[] = ImageSelectSQL($this, $_newsImages, NewsImages::NEWS_FLD);
             break;
 
          case static::ARTICLE_SCHEME:
@@ -265,6 +268,7 @@ class News extends EntityURL
             break;
 
          case static::ADMIN_CHANGE_SCHEME:
+            global $_newsImages;
             $fields = SQL::PrepareFieldsForSelect(static::TABLE, [
                $this->idField,
                $this->urlField,
@@ -280,6 +284,7 @@ class News extends EntityURL
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::BIG_PHOTO_FLD));
             $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::OTHER_PHOTO_FLD));
             $fields[] = $this->_SelectCategories();
+            $fields[] = ImageSelectSQL($this, $_newsImages, NewsImages::NEWS_FLD);
             break;
 
       }

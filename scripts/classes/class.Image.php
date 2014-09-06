@@ -85,7 +85,7 @@ function ImageSelectSQL($th, $entity, $field)
    global $_image;
    return sprintf(
       "IFNULL((SELECT GROUP_CONCAT(%s) FROM %s %s WHERE %s GROUP BY %s), '') as %s",
-      $entity->ToTblNm($entity::PHOTO_FLD),
+      sprintf('CONCAT(%s, %s)', $_image->ToTblNm(Image::ID_FLD), $_image->ToTblNm(Image::EXT_FLD)),
       $entity::TABLE,
       SQL::MakeJoin($entity::TABLE, [Image::TABLE => [null, [$entity::PHOTO_FLD, Image::ID_FLD]]]),
       (new Clause(
@@ -127,6 +127,16 @@ function ImageWithFlagSelectSQL($table, $field, $withFlag = true)
       ),
       SQL::ToPrfxNm($table, $field->GetName())
    );
+}
+
+function ModifyArrayWithImages(&$a)
+{
+   $res = [];
+   foreach ($a as $item) {
+      $tmp = !empty($item) ? explode('.', $item) : [];
+      $res[] = !empty($tmp) ? ['name' => $tmp[0], 'ext' => $tmp[1]] : null;
+   }
+   $a = $res;
 }
 
 function ModifySetWithImage(&$set, $image_fields)

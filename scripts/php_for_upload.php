@@ -47,7 +47,8 @@ try {
       case 'news':
          require_once CLASSES_ROOT . 'class.News.php';
          $_image->SetFieldByName(Image::EXT_FLD, $ext);
-         if (!$request->get('isAvatar', false) && !$request->get('isBigphoto', false) && !$request->get('isWatchother', false)) {
+         if (!$request->get('isAvatar', false) && !$request->get('isBigphoto', false)
+            && !$request->get('isWatchother', false) && $request->get('isTextPhoto', false)) {
             $__file = $_newsImages->SetFieldByName(NewsImages::NEWS_FLD, $item_id)->Insert(true);
          } else {
             $fieldName = News::PHOTO_FLD;

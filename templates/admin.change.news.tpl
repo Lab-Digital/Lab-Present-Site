@@ -154,9 +154,7 @@
          <h1 class="head_upload">Фото для текста</h1>
          <button class="upload" type="submit" data="{$article.news_id}">Загрузить фото для текста</button>
          <ul>
-            {if !empty($article.news_text_photo_id)}
-               <li><a href="/images/uploads/{$article.news_text_photo_id.name}_s.{$article.news_text_photo_id.ext}"><img src="/images/uploads/{$article.news_text_photo_id.name}_s.{$article.news_text_photo_id.ext}" /></a><button class="x" data="{$article.news_text_photo_id.name}" data-ext="{$article.news_text_photo_id.ext}">x</button></li>
-            {/if}
+            {foreach from=$article.news_photos item=photo}<li><a href="/images/uploads/{$photo.name}_b.{$photo.ext}"><img src="/images/uploads/{$photo.name}_s.{$photo.ext}" /></a><button class="x" data="{$photo.name}" data-ext="{$photo.ext}">x</button></li>{/foreach}
          </ul>
       </div>
     {/if}
