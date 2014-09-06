@@ -87,7 +87,7 @@ switch ($request_parts[0]) {
    case 'admin':
       require_once CLASSES_ROOT . 'class.Admin.php';
 
-      $smarty->assign('server_root', $_SERVER['SERVER_NAME']);
+      $smarty->assign('server_root', 'http://' . $_SERVER['SERVER_NAME']);
 
       $isLoginPage = empty($request_parts[1]) || $request_parts[1] == 'login';
       if ($_admin->IsAdmin()) {
