@@ -19,8 +19,6 @@
 				],
 					{
 						'autoDimensions'  : true,
-						'width'           : 886,
-						'height'          : 'auto',
 						'transitionIn'    : 'none',
 						'transitionOut'   : 'none'
 					}

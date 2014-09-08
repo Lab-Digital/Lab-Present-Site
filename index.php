@@ -8,6 +8,7 @@ require_once SCRIPTS_ROOT . 'container.php';
 
 switch ($request_parts[0]) {
    case '': case null: case false:
+      $smarty->assign('is_main', 1);
       require_once SCRIPTS_ROOT . 'main.php';
       break;
 

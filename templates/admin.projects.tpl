@@ -2,7 +2,6 @@
 {block name='title' append} - Проекты{/block}
 {block name='links' append}
    <link rel="stylesheet" type="text/css" href="/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-   <link rel="stylesheet" href="/css/styles_for_text.css" />
    <script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.js"></script>
    <script type="text/javascript" src="/js/select_plugin.js"></script>
    <script src="/upload_photo/js/plugin.js"></script>

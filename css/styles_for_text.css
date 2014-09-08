@@ -1,0 +1,47 @@
+div.text img {
+	margin: 0 auto;
+	display: block;
+}
+
+div.text ul {
+	list-style: disc;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
+
+div.text ul ul {
+	list-style: circle;
+	margin-bottom: 0;
+}
+
+div.text ol {
+	list-style: decimal;
+	margin-left: 30px;
+	margin-bottom: 20px;
+}
+
+div.text ol ol {
+	list-style: lower-latin;
+	margin-bottom: 0;
+}
+
+div.text table {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+div.text table caption {
+	margin: 10px;
+	font-size: 150%;
+	text-align: center;
+}
+
+div.text table th {
+	font-weight: bold;
+}
+
+div.text table td, div.text table th {
+	border: 1px black solid;
+	padding: 10px;
+	text-align: center;
+}

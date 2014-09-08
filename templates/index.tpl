@@ -58,7 +58,7 @@
       <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled"></button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="disabled"></button></div>
       <ul>
       </ul>
-      <a href="/news" class="button" id="go_news_button">Новости</a>
+      <a href="/news" class="button" id="go_news_button">Все новости</a>
    </section>
    <!-- news end -->
    <!-- menu_second -->

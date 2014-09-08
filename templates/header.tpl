@@ -1,5 +1,5 @@
 <header>
-	<a href="/"><img src="/images/logo.png" class="top_logo" /></a>
+	{if !$is_main|default:false}<a href="/">{/if}<img src="/images/logo.png" class="top_logo" />{if !$is_main|default:false}</a>{/if}
 	<div class="right">
 		<div class="top_info">
 			<a href="mailto:info@adlab.ru" class="mailto">info@adlab.ru</a>
@@ -30,7 +30,7 @@
 				</div>
 				<div class="right">
 					<ul id="category_choose">
-					{foreach from=$departments item=d}<li data="{$d.departments_id}">{$d.departments_head}</li>{/foreach}
+					{foreach from=$departments item=d name=f}<li data="{$d.departments_id}">{$d.departments_head}</li>{if ($smarty.foreach.f.index + 1) % 3 == 0}<br />{/if}{/foreach}
 					</ul>
 					<input type="hidden" id="category" name="category" />
 					<div class="textarea">

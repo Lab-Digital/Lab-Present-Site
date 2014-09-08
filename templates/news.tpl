@@ -7,6 +7,7 @@
   <link href="/css/footer.css" rel="stylesheet" />
   <link href="/css/news.css" rel="stylesheet" />
   <link href="/css/forms.css" rel="stylesheet" />
+  <link href="/css/styles_for_text.css" rel="stylesheet" />
 {/block}
 {block name='div.main'}
    {include file="header.tpl"}

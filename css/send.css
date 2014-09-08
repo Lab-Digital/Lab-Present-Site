@@ -56,7 +56,6 @@
 #send_window div.main_send_block div.right {
 	margin-top: 25px;
 	display: inline-block;
-	width: 466px;
 	vertical-align: top;
 }
 
@@ -94,7 +93,7 @@
 }
 
 #send_window div.main_send_block div.right div.textarea textarea {
-	width: 442px;
+	width: 100%;
 	height: 214px;
 	resize: none;
 	padding: 3px 9px;
