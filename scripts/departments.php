@@ -6,5 +6,5 @@ $data = $_department->SetSamplingScheme(Department::USUAL_SCHEME)->GetByURL($req
 if (empty($data)) Redirect('/#departments');
 
 $smarty->assign('department', $data)
-       ->assign($_news->GetDepartmentNews($data[$_department->ToPrfxNm(Department::ID_FLD)]))
+       ->assign('articles', $_news->SetSamplingScheme(News::DEPARTMENT_SCHEME)->GetAll())
        ->display('departments.tpl');

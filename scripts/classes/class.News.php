@@ -10,7 +10,8 @@ class News extends EntityURL
    const ARTICLE_SCHEME      = 4;
    const ADMIN_INFO_SCHEME   = 5;
    const WATH_OTHER_SCHEME   = 6;
-   const ADMIN_CHANGE_SCHEME = 7;
+   const DEPARTMENT_SCHEME   = 7;
+   const ADMIN_CHANGE_SCHEME = 8;
 
    const PHOTO_FLD            = 'photo_id';
    const BIG_PHOTO_FLD        = 'bigphoto_id';
@@ -123,6 +124,7 @@ class News extends EntityURL
          case static::INFO_SCHEME:
          case static::ARTICLE_SCHEME:
          case static::WATH_OTHER_SCHEME:
+         case static::DEPARTMENT_SCHEME:
             $key = $this->ToPrfxNm(static::PHOTOS_FLD);
             $catKey = $this->ToPrfxNm(static::CATEGORIES_FLD);
             foreach ($sample as &$set) {
@@ -184,7 +186,7 @@ class News extends EntityURL
          ModifySampleWithImage($sample, [$this->ToPrfxNm(static::PHOTO_FLD)]);
       } elseif ($this->samplingScheme == static::ARTICLE_SCHEME) {
          ModifySampleWithImage($sample, [$this->ToPrfxNm(static::BIG_PHOTO_FLD)]);
-      } elseif ($this->samplingScheme == static::WATH_OTHER_SCHEME) {
+      } elseif ($this->samplingScheme == static::WATH_OTHER_SCHEME || $this->samplingScheme == static::DEPARTMENT_SCHEME) {
          ModifySampleWithImage($sample, [$this->ToPrfxNm(static::OTHER_PHOTO_FLD)]);
       }
    }
@@ -248,6 +250,22 @@ class News extends EntityURL
             break;
 
          case static::WATH_OTHER_SCHEME:
+            $fields = SQL::PrepareFieldsForSelect(
+               static::TABLE,
+               [
+                  $this->idField,
+                  $this->urlField,
+                  $this->GetFieldByName(static::TEXT_HEAD_FLD),
+                  $this->GetFieldByName(static::DESCRIPTION_FLD),
+                  $this->GetFieldByName(static::PUBLICATION_DATE_FLD)
+               ]
+            );
+            $fields[] = ImageWithFlagSelectSQL(static::TABLE, $this->GetFieldByName(static::OTHER_PHOTO_FLD));
+            $this->_NotNullImageClause(static::OTHER_PHOTO_FLD);
+            break;
+
+         case static::DEPARTMENT_SCHEME:
+            $this->AddLimit(3);
             $fields = SQL::PrepareFieldsForSelect(
                static::TABLE,
                [
@@ -433,26 +451,6 @@ class News extends EntityURL
          $db->link->rollback();
          throw new Exception($e->getMessage());
       }
-   }
-
-   public function CreateDepartmentNewsSearch($department_id)
-   {
-      $this->CreateSearch()->search->SetJoins([NewsDepartments::TABLE => [null, [static::ID_FLD, NewsDepartments::NEWS_FLD]]]);
-      global $_newsDepartments;
-      $this->search->AddClause(CCond(
-         CF(NewsDepartments::TABLE, $_newsDepartments->GetFieldByName(NewsDepartments::DEPARTMENT_FLD)),
-         CVP($department_id)
-      ));
-      return $this;
-   }
-
-   public function GetDepartmentNews($department_id)
-   {
-      list($curPage, $pagesDesc) = $this->GeneratePages(
-         $this->CreateDepartmentNewsSearch($department_id)->SetSamplingScheme(static::WATH_OTHER_SCHEME)->GetAllAmountWithPhoto(static::OTHER_PHOTO_FLD),
-         News::NEWS_ON_DEPARTMENT_PAGE
-      );
-      return ['curPage' => $curPage + 1, 'pagesInfo' => $pagesDesc, 'articles' => $this->GetNews($curPage, static::NEWS_ON_DEPARTMENT_PAGE)];
    }
 
    public function GetAllNews()
