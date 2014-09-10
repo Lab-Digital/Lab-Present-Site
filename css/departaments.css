@@ -129,3 +129,7 @@ div.watch_other li article time {
 	margin: 0 auto;
 	margin-top: 60px;
 }
+
+#go_news:hover {
+	background: #0551a3;
+}

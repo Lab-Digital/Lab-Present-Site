@@ -63,6 +63,7 @@
 	z-index: 9101;
 	outline: none;
 	display: none;
+	width: auto !important;
 }
 
 #fancybox-outer {
@@ -70,7 +71,7 @@
 	width: 100%;
 	height: 100%;
 	background: #fff;
-	border-radius: 6px;
+	border-radius: 0px;
 }
 
 #fancybox-content {
@@ -81,8 +82,8 @@
 	position: relative;
 	overflow: hidden;
 	z-index: 9102;
-	border: 0px solid #fff;
-	border-radius: 6px;
+	border: 0px solid #fff !important;
+	border-radius: 0px;
 }
 
 #fancybox-hide-sel-frame {

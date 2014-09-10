@@ -1,20 +1,20 @@
 $(function(){
    function incPage(value) {
-      $('#to_left').attr('data-page',  parseInt($('#to_left').attr('data-page')) + value);
-      $('#to_right').attr('data-page', parseInt($('#to_right').attr('data-page')) + value);
+      $('section.news div.wrapper').attr('data-page',  parseInt($('section.news div.wrapper').attr('data-page')) + value);
    }
 
-   function appendArticles($ul, articles) {
+   function appendArticles($place, articles) {
+      $html = "<ul>";
       for (var i = 0; i < articles.length; i++) {
-         $ul.append(
+         $html +=
             "<li><a href='/news/" + articles[i].news_url + "'><article>" +
             (articles[i].news_photo_id ? "<img src='/images/uploads/" + articles[i].news_photo_id.name + "_s." + articles[i].news_photo_id.ext +"' />" : "") +
-            "<div class='head'><h1>" + articles[i].news_head + "</h1>" +
-            "<div class='text'>" + articles[i].news_description + "</div></div>" +
+            "<div class='head'><h1>" + articles[i].news_head + "</h1></div>" +
             "<time>" + articles[i].news_publication_date + "</time>" +
-            "</article></a></li>"
-         );
+            "</article></a></li>";
       };
+      $html += "</ul>";
+      $place.append($html);
    }
 
    function getNews(p) {
@@ -26,30 +26,19 @@ $(function(){
          },
          function(data) {
             result = data.result;
+            $place = $('section.news div.wrapper');
             if (result) {
-               console.log(data.news);
-               $('#to_left').attr('data-pages-amount', data.pages_amount);
-               $('#to_right').attr('data-pages-amount', data.pages_amount);
-               var $news = $('section.news ul');
-               $news.empty();
-               appendArticles($news, data.news);
-               var left_page = parseInt($('#to_left').attr('data-page'));
-               var pages_amount = parseInt($('#to_left').attr('data-pages-amount'));
-               enableButton('left');
-               enableButton('right');
-               if (pages_amount == 0 || ((left_page == pages_amount) && left_page == 1)) {
-                  hideButton('left');
-                  hideButton('right');
-               } else {
-                  showButton('left');
-                  showButton('right');
-               }
-               if (left_page == 1) {
-                  disableButton('left');
-               }
-               if (parseInt($('#to_right').attr('data-page')) == pages_amount) {
-                  disableButton('right');
-               }
+               $place.attr('data-pages-amount', data.pages_amount);
+               $place.attr('data-last', Math.max($place.attr('data-last'), $place.attr('data-page')));
+
+               appendArticles($place, data.news);
+               
+               $place.stop(true, true).animate(
+                  { marginLeft: "-=1024" },
+                  { duration: 500 }
+               );
+
+               checkArrows();
             }
          },
          "json"
@@ -57,31 +46,62 @@ $(function(){
       return result;
    }
 
+   function checkArrows() {
+      $place = $('section.news div.wrapper');
+      var cur_page = $place.attr('data-page');
+      var pages_amount = $place.attr('data-pages-amount');
+      
+      enableButton('left');
+      enableButton('right');
+
+      if (pages_amount == 0 || ((cur_page == pages_amount) && cur_page == 1)) {
+         disableButton('left');
+         disableButton('right');
+         alert('f');
+      }
+
+      if (cur_page == pages_amount) {
+         disableButton('right');
+      }
+
+      if (cur_page == 1) {
+         disableButton('left');
+      }
+
+   }
+
    $("body").on('click', '#to_left.enabled', function() {
       incPage(-1);
-      getNews($(this).attr('data-page'));
+      $('section.news div.wrapper').stop(true, true).animate(
+         { marginLeft: "+=1024" },
+         { duration: 500 }
+      );
+      checkArrows();
+      //enableButton('right');
    });
 
    $("body").on('click', '#to_right.enabled', function() {
       incPage(1);
-      getNews($(this).attr('data-page'));
-      //enableButton('left');
+      if ($('section.news div.wrapper').attr('data-last') < $('section.news div.wrapper').attr('data-page')) {
+         getNews($('section.news div.wrapper').attr('data-page'));
+      } else {
+         $('section.news div.wrapper').stop(true, true).animate(
+            { marginLeft: "-=1024" },
+            { duration: 500 }
+         );
+         checkArrows();
+      }
+      //enableButton('');
    });
+
    getNews(1);
+
+   function disableButton(button) {
+      $('#to_' + button).removeClass('enabled').addClass('disabled');
+   }
+
+   function enableButton(button) {
+      $('#to_' + button).removeClass('disabled').addClass('enabled');
+   }
+
 });
-
-function hideButton(button) {
-   $('#to_' + button).hide();
-}
-
-function showButton(button) {
-   $('#to_' + button).show();
-}
-
-function disableButton(button) {
-   $('#to_' + button).removeClass('enabled').addClass('disabled');
-}
-
-function enableButton(button) {
-   $('#to_' + button).removeClass('disabled').addClass('enabled');
-}

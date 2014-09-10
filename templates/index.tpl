@@ -34,7 +34,7 @@
       <ul class="bxslider">
         {foreach from=$sliders item=s name=f}
          <li>
-            {if !empty($s.main_slider_url)}<a href="{$s.main_slider_url}">{/if}<div class="slide" style="background: url('/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}')"><div class="circle" style="background: #{$s.main_slider_color}; color: #{$s.main_slider_text_color}"><h1>{$s.main_slider_head}</h1><div class="text">{$s.main_slider_text}</div></div></div>{if !empty($s.main_slider_url)}</a>{/if}
+            {if !empty($s.main_slider_url)}<a href="{$s.main_slider_url}">{/if}<div class="slide" style="background: url('/images/uploads/{$s.main_slider_avatar_id.name}_b.{$s.main_slider_avatar_id.ext}')"><div class="circle" style="background: #{$s.main_slider_color}; color: #{$s.main_slider_text_color}"><div class="child"><h1>{$s.main_slider_head}</h1><div class="text">{$s.main_slider_text}</div></div><div class="helper"></div></div></div>{if !empty($s.main_slider_url)}</a>{/if}
          </li>
         {/foreach}
       </ul>
@@ -55,9 +55,9 @@
    <!-- menu_first end -->
    <!-- news -->
    <section class="news">
-      <div class="button_left"><button data-page="1" data-pages-amount="1" id="to_left" class="disabled"></button></div><div class="button_right"><button data-page="1" data-pages-amount="1" id="to_right" class="disabled"></button></div>
-      <ul>
-      </ul>
+      <button id="to_left" class="disabled"></button><button id="to_right" class="disabled"></button>
+      <div class="wrapper" data-page="1" data-pages-amount="1" data-last="0">
+      </div>
       <a href="/news" class="button" id="go_news_button">Все новости</a>
    </section>
    <!-- news end -->

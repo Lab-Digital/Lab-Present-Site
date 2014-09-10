@@ -1,7 +1,7 @@
 #map {
 	width: 1024px;
 	height: 528px;
-	background: url('/images/map.png') -735px -10px;
+	background: url('/images/map.png') 0 0 no-repeat;
 	overflow: hidden;
 	position: relative;
 }
@@ -16,11 +16,33 @@
 #map div.right {
 	position: absolute;
 	right: 0;
-	background: white url('/images/strbg.jpg') top center repeat-x;
-	border-left: 27px #5391F8 solid;
+	/*border-left: 27px #5391F8 solid;*/
 	margin-top: 27px;
-	padding: 50px 7px 14px 7px;
 	z-index: 5;
+}
+
+#hide_send_button {
+	width: 27px;
+	height: 464px;
+	margin-left: -27px;
+	float: left;
+	position: absolute;
+	cursor: pointer;
+}
+
+#hide_send_button.open {
+	background: #009cfa url('/images/express_arrow.png') center center no-repeat;
+}
+
+#hide_send_button.close {
+	background: #009cfa url('/images/express_arrow_back.png') center center no-repeat;
+}
+
+#send_form {
+	background: white url('/images/strbg.jpg') top center repeat-x;
+	padding: 50px 7px 14px 7px;
+	height: 400px;
+	width: 316px;
 }
 
 #map div.right div.top {

@@ -35,10 +35,6 @@ a.button, button {
     transition: all 0.3s ease-in-out;
 }
 
-a.button:hover, button:hover {
-    opacity: 0.8;
-}
-
 #nav_num {
   margin-top: 25px;
 }

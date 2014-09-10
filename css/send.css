@@ -1,5 +1,7 @@
 #send_window {
-	width: 886px;
+	width: 940px;
+	padding-top: 17px;
+	background: url('/images/strbg.jpg') top center repeat-x;
 }
 
 #send_window div.error {
@@ -39,6 +41,7 @@
 	border: 1px #e1e1e1 solid;
 	border-right: 3px #e1e1e1 solid;
 	padding: 3px;
+	background: #fafafa;
 }
 
 #send_window div.main_send_block div.left input:last-child {
@@ -60,7 +63,7 @@
 }
 
 #send_window div.main_send_block div.right ul {
-	text-align: center;
+	text-align: right;
 }
 
 #send_window div.main_send_block div.right ul li {
@@ -82,6 +85,7 @@
 
 #send_window div.main_send_block div.right div.textarea {
 	margin-top: 18px;
+	width: 540px;
 }
 
 #send_window div.main_send_block div.right div.textarea label {
@@ -90,6 +94,7 @@
 	font-weight: normal;
 	margin-bottom: 10px;
 	font-size: 120%;
+	width: 540px;
 }
 
 #send_window div.main_send_block div.right div.textarea textarea {
@@ -99,6 +104,8 @@
 	padding: 3px 9px;
 	margin-bottom: 15px;
 	border: 1px #e1e1e1 solid;
+	width: 519px;
+	background: #fafafa;
 }
 
 #send_window div.main_send_block {
@@ -124,11 +131,24 @@
 }
 
 #add_file {
-	background: #aaaaaa;
+	background: #a8a8a8;
 }
 
 #send_send {
 	background: #7bc34c;
+}
+
+#add_file:hover {
+	background: #818181;
+}
+
+#send_send:hover {
+	background: #72ae29;
+}
+
+#send_window div.buttons button:hover {
+    -webkit-box-shadow:inset 2px 2px 2px 1px rgba(0,0,0,0.5);
+    box-shadow:inset 2px 2px 2px 1px rgba(0,0,0,0.5);
 }
 
 #send_window div.files_send_block table.attachments {
@@ -136,32 +156,35 @@
 }
 
 #send_window div.files_send_block table.attachments tr td {
-	height: 30px;
+	height: 36px;
 	vertical-align: middle;
+	background-image: url('/images/shadow.png');
+	background-repeat: repeat-x;
+	background-position: top center;
 }
 
 #send_window div.files_send_block table.attachments tr td.num {
 	width: 88px;
 	text-align: center;
-	background: #424242;
+	background-color: #424242;
 	color: white;
 }
 
 #send_window div.files_send_block table.attachments tr td.name {
-	background: #e4e4e4;
+	background-color: #e4e4e4;
 	padding-left: 34px;
 }
 
 #send_window div.files_send_block table.attachments tr td.delete {
 	width: 128px;
-	background: #aaaaaa;
+	background-color: #aaaaaa;
 	text-align: center;
 	cursor: pointer;
 	color: white;
 }
 
 #send_window div.files_send_block table.attachments tr td.delete:hover {
-	background: #d94245;
+	background-color: #d94245;
 }
 
 #send_window div.files_send_block table.attachments tr input.file_input {

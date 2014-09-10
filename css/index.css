@@ -20,6 +20,18 @@ div.slider div.slide div.circle {
 	overflow: hidden;
 }
 
+div.slider div.slide div.circle div.child {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+div.slider div.slide div.circle div.helper {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 0px;
+}
+
 div.slider div.slide div.circle div.text {
 	font-size: 130%;
 	line-height: 1.2;
@@ -105,20 +117,30 @@ section.menu_first ul li img {
 }
 
 section.news {
-	height: 385px;
+	height: 340px;
 	background: url('/images/newsbg.png');
+	overflow: hidden;
+	width: 1024px;
+}
+
+section.news div.wrapper {
+	position: relative;
+	width: 3072px;
+	height: 340px;
+	margin-left: 1024px;
 }
 
 section.news ul {
 	text-align: center;
+	display: inline-block;
+	width: 1024px;
 }
 
 section.news {
 	position: relative;
-	overflow: hidden;
 }
 
-section.news .button_left {
+#to_left {
 	margin-top: 63px;
 	left: -33px;
 	position: absolute;
@@ -128,36 +150,33 @@ section.news button.disabled {
 	display: none !important;
 }
 
-section.news .button_left, section.news .button_right {
-	overflow: hidden;
-}
-
-section.news .button_left button {
+#to_left {
 	padding-left: 40px;
 	background: #ffbf5e url('/images/left_news.png') 33px center no-repeat;
 	-webkit-box-shadow: -6px 4px 7px 0 rgba(3,0,0,0.5);
 	box-shadow: -6px 4px 7px 0 rgba(3,0,0,0.5);
 }
 
-section.news .button_right button {
+#to_right {
 	padding-right: 40px;
 	background: #ffbf5e url('/images/right_news.png') 7px center no-repeat;
 	-webkit-box-shadow: 6px 4px 7px 0 rgba(3,0,0,0.5);
 	box-shadow: 6px 4px 7px 0 rgba(3,0,0,0.5);
 }
 
-section.news .button_left button, section.news .button_right button {
+section.news button {
 	width: 66px;
 	height: 66px;
 	border-radius: 66px;
 	font-weight: bold;
+	z-index: 15;
 }
 
-section.news .button_left button.hidden, section.news .button_right button.hidden {
+section.news button.hidden {
 	display: none;
 }
 
-section.news .button_right {
+#to_right {
 	margin-top: 63px;
 	position: absolute;
 	right: -33px;
@@ -183,14 +202,8 @@ section.news ul li article h1 {
 }
 
 section.news ul li article div.head {
-	height: 100px;
+	height: 50px;
 	overflow: hidden;
-}
-
-section.news ul li article div.text {
-	text-align: left;
-	line-height: 1.3;
-	font-size: 80%;
 }
 
 section.news ul li article time {
@@ -224,6 +237,10 @@ section.news ul li article img {
 	color: white;
 	text-decoration: none;
 	display: block;
+}
+
+#go_news_button:hover {
+	background: #777;
 }
 
 section.menu_second {
