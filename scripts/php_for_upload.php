@@ -27,11 +27,13 @@ try {
          break;
 
       case 'resume':
+      case 'socials':
       case 'departments':
       case 'main_slider':
          require_once CLASSES_ROOT . 'class.Department.php';
          require_once CLASSES_ROOT . 'class.MainSlider.php';
          require_once CLASSES_ROOT . 'class.Resume.php';
+         require_once CLASSES_ROOT . 'class.Socials.php';
          $uploadType = $request->get('uploadType');
          if ($uploadType == 'departments') {
             $obj = $_department;
@@ -39,6 +41,8 @@ try {
             $obj = $_mainSlider;
          } elseif ($uploadType == 'resume') {
             $obj = $_resume;
+         } elseif ($uploadType == 'socials') {
+            $obj = $_socials;
          }
          if (!$request->get('image_id')) {
             $_image->Delete($request->get('image_id'));

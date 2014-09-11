@@ -30,6 +30,15 @@ CREATE TABLE IF NOT EXISTS `meta` (
    PRIMARY KEY (`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `socials` (
+   `id`       INT          NOT NULL AUTO_INCREMENT,
+   `url`      VARCHAR(150) NOT NULL,
+   `head`     VARCHAR(150) NOT NULL,
+   `photo_id` INT,
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
+);
+
 CREATE TABLE IF NOT EXISTS `news` (
    `id`               INT          NOT NULL AUTO_INCREMENT,
    `url`              VARCHAR(150) NOT NULL,

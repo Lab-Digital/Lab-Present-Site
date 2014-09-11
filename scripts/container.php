@@ -19,7 +19,9 @@ $ds = ['', 'departments', 'projects', 'news', 'resume', 'contacts'];
 foreach ($ds as $d) {
    if ($d == $request_parts[0]) {
       require_once CLASSES_ROOT . 'class.Department.php';
-      $smarty->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll());
+      require_once CLASSES_ROOT . 'class.Socials.php';
+      $smarty->assign('socials', $_socials->SetSamplingScheme(Socials::PAGE_SCHEME)->GetAll())
+             ->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll());
       break;
    }
 }
