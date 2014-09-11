@@ -18,10 +18,14 @@ $ds = ['', 'departments', 'projects', 'news', 'resume', 'contacts'];
 
 foreach ($ds as $d) {
    if ($d == $request_parts[0]) {
+      require_once CLASSES_ROOT . 'class.Settings.php';
       require_once CLASSES_ROOT . 'class.Department.php';
-      require_once CLASSES_ROOT . 'class.Socials.php';
-      $smarty->assign('socials', $_socials->SetSamplingScheme(Socials::PAGE_SCHEME)->GetAll())
-             ->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll());
+      $smarty->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll());
+      $flag = $_settings->SetSamplingScheme(Settings::PAGE_SCHEME)->GetById(Settings::SOCIAL_ID)[$_settings->ToPrfxNm(Settings::FLAG_FLD)];
+      if ($flag) {
+         require_once CLASSES_ROOT . 'class.Socials.php';
+         $smarty->assign('socials', $_socials->SetSamplingScheme(Socials::PAGE_SCHEME)->GetAll());
+      }
       break;
    }
 }

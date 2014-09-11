@@ -39,6 +39,13 @@ CREATE TABLE IF NOT EXISTS `socials` (
    FOREIGN KEY (`photo_id`) REFERENCES `images` (`id`) ON DELETE SET NULL
 );
 
+CREATE TABLE IF NOT EXISTS `settings` (
+   `id`   INT          NOT NULL AUTO_INCREMENT,
+   `flag` INT(1)       NOT NULL,
+   `head` VARCHAR(150) NOT NULL,
+   PRIMARY KEY (`id`)
+);
+
 CREATE TABLE IF NOT EXISTS `news` (
    `id`               INT          NOT NULL AUTO_INCREMENT,
    `url`              VARCHAR(150) NOT NULL,
@@ -191,6 +198,8 @@ END//
 DELIMITER ;
 
 INSERT INTO `admin`(`login`, `pass_md5`) VALUES('admin', '21232f297a57a5a743894a0e4a801fc3');
+
+INSERT INTO `settings`(`head`, `flag`) VALUES('Показывать соц. сети', 1);
 
 INSERT INTO `meta`(`head`, `title`, `keywords`, `description`) VALUES
    ('Главная страница', 'Lab Present - Главная', 'main page keywords', 'main page description'),
