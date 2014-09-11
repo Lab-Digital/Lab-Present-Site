@@ -1,5 +1,5 @@
 {extends file='admin.tpl'}
-{block name='title' append} - Проекты{/block}
+{block name='title' append} - Социальные сети{/block}
 {block name='links' append}
    <script type="text/javascript" src="/js/select_plugin.js"></script>
    <script src="/upload_photo/js/plugin.js"></script>
