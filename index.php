@@ -142,6 +142,14 @@ switch ($request_parts[0]) {
             require_once ADMIN_ROOT . 'admin.meta.php';
             break;
 
+         case 'other':
+            require_once ADMIN_ROOT . 'admin.other.php';
+            break;
+
+         case 'socials':
+            require_once ADMIN_ROOT . 'admin.socials.php';
+            break;
+
          case 'proposals':
             require_once CLASSES_ROOT . 'class.Proposal.php';
             require_once CLASSES_ROOT . 'class.Department.php';

@@ -26,4 +26,4 @@ if ($request->get('mode')) {
 
 $smarty->assign($vars)
        ->assign('meta', $_meta->SetSamplingScheme(Meta::ADMIN_SCHEME)->GetAll())
-       ->display('admin.other.tpl');
+       ->display('admin.meta.tpl');

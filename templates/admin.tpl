@@ -11,10 +11,10 @@
   <header>
     <nav>
       <ul>
-        <li><a href="/admin/slider">Слайдер</a></li><li><a href="/admin/proposals">Заявки</a></li><li><a href="/admin/news">Новости</a></li><li><a href="/admin/portfolio">Портфолио</a></li><li><a href="/admin/departments">Отделы</a></li><li><a href="/admin/projects">Проекты</a></li><li><a href="/admin/meta">Мета-данные</a></li><li><a href="/admin/resume">Резюме</a></li>
+        <li><a href="/admin/slider">Слайдер</a></li><li><a href="/admin/proposals">Заявки</a></li><li><a href="/admin/news">Новости</a></li><li><a href="/admin/portfolio">Портфолио</a></li><li><a href="/admin/departments">Отделы</a></li><li><a href="/admin/projects">Проекты</a></li><li><a href="/admin/meta">Мета</a></li><li><a href="/admin/resume">Резюме</a></li><li><a href="/admin/socials">Соц-сети</a></li>
       </ul>
       <ul>
-        <li><a href="/admin/change_data">Изменить данные</a></li><li><a href="/admin/logout">Выход</a></li>
+        <li><a href="/admin/other">Другое</a></li><li><a href="/admin/change_data">Изменить данные</a></li><li><a href="/admin/logout">Выход</a></li>
       </ul>
     </nav>
   </header>
