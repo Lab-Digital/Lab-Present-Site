@@ -7,6 +7,11 @@ header img.top_logo {
 	float: left;
 }
 
+@font-face {
+    font-family: Daxline; /* Имя шрифта */
+    src: url(/images/DaxlinePro-Regular.otf); /* Путь к файлу со шрифтом */
+}
+
 header div.right {
 	text-align: right;
 }
@@ -28,12 +33,14 @@ header div.right .top_info a.mailto {
 	font-size: 240%;
 	margin-bottom: 10px;
 	margin-right: 7px;
+	font-family: Daxline;
 }
 
 header div.right .top_info a.tel {
 	color: #cc282b;
 	font-size: 190%;
 	margin-right: 7px;
+	font-family: Daxline;
 }
 
 #top_send {

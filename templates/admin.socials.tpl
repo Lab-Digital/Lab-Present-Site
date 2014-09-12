@@ -11,10 +11,10 @@
          $(this).getUpload({
             'uploadType'  : 'socials',
             'item_id'     :  $data,
-            'width'       : '80',
-            'height'      : '80',
+            'width'       : '30',
+            'height'      : '30',
             'count'       : '1',
-            'sizes'       : 's#80#80'
+            'sizes'       : 's#30#30'
          });
       });
    });
@@ -56,7 +56,7 @@
                <button class="upload" type="submit" data="{$d.socials_id}">Загрузить фото</button>
                <ul>
                   {if !empty($d.socials_photo_id)}
-                     <li><a href="/images/uploads/{$d.socials_photo_id.name}_s.{$d.socials_photo_id.ext}"><img src="/images/uploads/{$d.socials_photo_id.name}_s.{$d.socials_photo_id.ext}" /></a><button class="x" data="{$d.socials_photo_id.name}" data-ext="{$d.socials_photo_id.ext}">x</button></li>
+                     <li><a href="/images/uploads/{$d.socials_photo_id.name}_s.{$d.socials_photo_id.ext}"><img src="/images/uploads/{$d.socials_photo_id.name}_s.{$d.socials_photo_id.ext}" style="width:30px;" /></a><button class="x" data="{$d.socials_photo_id.name}" data-ext="{$d.socials_photo_id.ext}">x</button></li>
                   {/if}
                </ul>
             </div>

@@ -64,6 +64,13 @@
 	{/literal}
 {/block}
 {block name='page'}
+	<div id="socials">
+		<ul>
+			{foreach from=$socials item=s}
+				{if !empty($s.socials_photo_id)}<li><a href="{$s.socials_url}" title="{$s.socials_head}" style="background:url('/images/uploads/{$s.socials_photo_id.name}_s.{$s.socials_photo_id.ext}');"></a></li>{/if}
+			{/foreach}
+		</ul>
+	</div>
 	<div id="wrap">
 		{block name='div.main'}{/block}
 	</div>

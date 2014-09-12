@@ -24,5 +24,6 @@ if ($request->get('mode')) {
 
 $smarty->assign($vars)
        ->assign('isInsert', $request->get('mode') == 'Insert')
+       ->assign('item_id', $request->query->get('item_id'))
        ->assign('socials', $_socials->GetAll())
        ->display('admin.socials.tpl');

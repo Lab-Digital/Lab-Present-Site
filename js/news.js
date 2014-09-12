@@ -57,7 +57,6 @@ $(function(){
       if (pages_amount == 0 || ((cur_page == pages_amount) && cur_page == 1)) {
          disableButton('left');
          disableButton('right');
-         alert('f');
       }
 
       if (cur_page == pages_amount) {
