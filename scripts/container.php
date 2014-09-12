@@ -22,10 +22,12 @@ foreach ($ds as $d) {
       require_once CLASSES_ROOT . 'class.Department.php';
       $smarty->assign('departments', $_department->SetSamplingScheme(Department::MAIN_SCHEME)->GetAll());
       $flag = $_settings->SetSamplingScheme(Settings::PAGE_SCHEME)->GetById(Settings::SOCIAL_ID)[$_settings->ToPrfxNm(Settings::FLAG_FLD)];
+      $socials = [];
       if ($flag) {
          require_once CLASSES_ROOT . 'class.Socials.php';
-         $smarty->assign('socials', $_socials->SetSamplingScheme(Socials::PAGE_SCHEME)->GetAll());
+         $socials = $_socials->SetSamplingScheme(Socials::PAGE_SCHEME)->GetAll();
       }
+      $smarty->assign('socials', $socials);
       break;
    }
 }
