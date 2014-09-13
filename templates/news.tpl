@@ -32,7 +32,7 @@
                <li>
                   <a href='/news/{$a.news_url}'>
                      <article>
-                        {if !empty($a.news_other_photo_id)}<img src="/images/uploads/{$a.news_other_photo_id.name}_b.{$a.news_other_photo_id.ext}" class="photo" />{/if}
+                        {if !empty($a.news_other_photo_id)}<img src="/images/uploads/{$a.news_other_photo_id.name}_s.{$a.news_other_photo_id.ext}" class="photo" />{/if}
                         <h1>{$a.news_head}</h1>
                         <span>Добавлено:</span>
                         <time>{$a.news_publication_date}</time>
