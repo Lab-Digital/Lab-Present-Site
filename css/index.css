@@ -195,6 +195,10 @@ section.news ul li a {
 	color: white;
 }
 
+section.news ul li article {
+	text-align: center;
+}
+
 section.news ul li article h1 {
 	font-weight: bold;
 	margin-bottom: 5px;
@@ -202,7 +206,7 @@ section.news ul li article h1 {
 }
 
 section.news ul li article div.head {
-	height: 50px;
+	height: 60px;
 	overflow: hidden;
 }
 
