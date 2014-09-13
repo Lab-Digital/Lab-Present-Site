@@ -241,7 +241,6 @@ class News extends EntityURL
                   $this->idField,
                   $this->urlField,
                   $this->GetFieldByName(static::TEXT_HEAD_FLD),
-                  $this->GetFieldByName(static::DESCRIPTION_FLD),
                   $this->GetFieldByName(static::PUBLICATION_DATE_FLD)
                ]
             );
