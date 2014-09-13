@@ -2,6 +2,7 @@
 .sublime-project
 templates_c/*
 /images/uploads/*
+bgu.png
 cache/*
 *~
 *.ajax
