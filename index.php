@@ -231,6 +231,6 @@ switch ($request_parts[0]) {
       break;
 
    default:
-      echo "FAIL ERROR";
-      #error page
+      require_once SCRIPTS_ROOT . '404.php';
+      break;
 }
