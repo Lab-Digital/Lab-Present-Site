@@ -38,7 +38,7 @@ $(function(){
 	$('#map').mouseleave(function(){
 		var end_width = 3833;
 		var end_height = 654;
-		var end_left = -1500;
+		var end_left = -1450;
 		var end_top = -80;
 		zoom(end_width, end_height, end_left, end_top, 1);
 	});

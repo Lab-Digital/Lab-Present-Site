@@ -32,15 +32,7 @@
       </div>
    </div>
    <ul class="bxslider">
-     {foreach from=$sliders item=s name=f}
-      <li>
-         <article class="slider_text">
-           <h1>{$s.resume_head}</h1>
-           <div class="text">{$s.resume_body}</div>
-         </article>
-         <img src="/images/uploads/{$s.resume_photo_id.name}_b.{$s.resume_photo_id.ext}" />
-      </li>
-     {/foreach}
+     {foreach from=$sliders item=s name=f}<li><article class="slider_text"><h1>{$s.resume_head}</h1><div class="text">{$s.resume_body}</div></article><img src="/images/uploads/{$s.resume_photo_id.name}_b.{$s.resume_photo_id.ext}" /></li>{/foreach}
    </ul>
    {include file="footer.tpl"} 
 {/block}
