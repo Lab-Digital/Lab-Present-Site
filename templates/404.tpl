@@ -1,12 +1,15 @@
-{extends file='html.tpl'}
+{extends file='page.tpl'}
 {block name='links' append}
-   <link href="/css/main.css" rel="stylesheet" />
-   {literal}<style>body {background: #fff;}</style>{/literal}
+	<link href="/css/main.css" rel="stylesheet" />
+	<link href="/css/404.css" rel="stylesheet" />
+	<link href="/css/header.css" rel="stylesheet" />
+	<link href="/css/footer.css" rel="stylesheet" />
 {/block}
-{block name='page'}
-	<div style="width:900px; height:425px; background: url('/images/bgu.png'); margin: 100px auto">
-	    <div style="width:900px; height:425px; background: url('/images/poly.png')"></div>
+{block name='div.main'}
+   {include file="header.tpl"}
+	<div id="wrap_404">
+		<img src="/images/404.png" id="main_404" />
+		<div class="sorry_404">К сожалению, такой страницы не существует :(</div>
 	</div>
-	<div style="font-size: 180%; font-weight: bold; margin: 0 auto; text-align: center;">Страница не найдена! :(</div>
-	<div style="font-size: 180%; font-weight: bold; margin: 100px auto 0; text-align: center;"><a href="/">На главную</a></div>
+   {include file="footer.tpl"}
 {/block}

@@ -29,9 +29,11 @@
 					<!-- <input id="is_express" type="hidden" name="is_express" value="0" /> -->
 				</div>
 				<div class="right">
-					<ul id="category_choose">
-					{foreach from=$departments item=d name=f}<li data="{$d.departments_id}">{$d.departments_head}</li>{if ($smarty.foreach.f.index + 1) % 3 == 0}<br />{/if}{/foreach}
-					</ul>
+					<table id="category_choose">
+						<tr>
+							{foreach from=$departments item=d name=f}<td {if ($smarty.foreach.f.index == ($departments|@count - 1)) && ($departments|@count % 3 != 0)}colspan = {4 - ($departments|@count % 3)}{/if} data="{$d.departments_id}">{$d.departments_head}</td>{if ($smarty.foreach.f.index % 3) == 2}</tr><tr>{/if}{/foreach}
+						</tr>
+					</table>
 					<input type="hidden" id="category" name="category" />
 					<div class="textarea">
 						<label for="text">Текст заявки</label>

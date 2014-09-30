@@ -8,6 +8,7 @@
   <link href="/css/departaments.css" rel="stylesheet" />
   <link href="/css/forms.css" rel="stylesheet" />
   <link href="/css/portfolio.css" rel="stylesheet" />
+
   <script>
     {literal}
       $(function(){
@@ -21,7 +22,7 @@
    <table class="menu">
     <tr>{foreach from=$departments item=d}<td><a href="/departments/{$d.departments_url}" {if $d.departments_id==$department.departments_id}class="active"{/if}>{$d.departments_head}</a></td>{/foreach}</tr>
    </table>
-   <div class="wrap_deps">
+   <div class="wrap_deps" style="background: url('/images/dephead{$department.departments_id}.png') 405px 0 no-repeat;">
       <div class="main_block">
          <div class="left">
             <div class="photo">

@@ -231,6 +231,6 @@ switch ($request_parts[0]) {
       break;
 
    default:
-      require_once SCRIPTS_ROOT . '404.php';
+      $smarty->display('404.tpl');
       break;
 }

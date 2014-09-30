@@ -9,11 +9,11 @@
     <link href="/css/forms.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/express_send.js"></script>
     <script src="/js/overlay.js"></script>
-    <script src="/js/hide_contacts.js"></script>
 {/block}
 {block name='div.main'}
     {include file="header.tpl"}
     <div id="map">
+      <img id="map_overlay" src="/images/map.jpg" />
       <img id="overlay" src="/images/overlay.png" />
       <div class="right">
         <div id="hide_send_button" class="open"></div>

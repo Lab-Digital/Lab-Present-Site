@@ -63,22 +63,25 @@
 }
 
 #send_window div.main_send_block div.right ul {
-	text-align: right;
+	text-align: center;
 }
 
-#send_window div.main_send_block div.right ul li {
-	display: inline-block;
+#send_window div.main_send_block div.right table {
+	width: 100%;
+	border-spacing: 2px 3px;
+    border-collapse: separate;
+}
+
+#send_window div.main_send_block div.right table td {
 	min-width: 134px;
 	padding: 4px 8px;
 	font-size: 80%;
 	border: 1px #c1c1c1 solid;
 	text-align: center;
-	margin-right: 3px;
-	margin-bottom: 6px;
 	cursor: pointer;
 }
 
-#send_window div.main_send_block div.right ul li.active, #send_window div.main_send_block div.right ul li:hover {
+#send_window div.main_send_block div.right td.active, #send_window div.main_send_block div.right td:hover {
 	background: #5392f7;
 	color: white;
 }

@@ -1,0 +1,14 @@
+#wrap_404 {
+	text-align: center;
+}
+
+#main_404 {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+div.sorry_404 {
+	font-size: 150%; 
+	margin: 0 auto; 
+	text-align: center;
+}

@@ -1,9 +1,14 @@
 #map {
 	width: 1024px;
 	height: 528px;
-	background: url('/images/map.png') 0 0 no-repeat;
 	overflow: hidden;
 	position: relative;
+}
+
+#map_overlay {
+	position: absolute;
+	z-index: 1;
+	left: -500px;
 }
 
 #overlay {

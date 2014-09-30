@@ -9,7 +9,7 @@ header img.top_logo {
 
 @font-face {
     font-family: Daxline; /* Имя шрифта */
-    src: url(/images/DaxlinePro-Regular.otf); /* Путь к файлу со шрифтом */
+    src: url('/images/DaxlinePro-Medium.otf'); /* Путь к файлу со шрифтом */
 }
 
 header div.right {
