@@ -1,3 +1,6 @@
+header {
+	border: 1px #cdcdcd solid;
+}
 
 header img.top_logo {
 	width: 277px;
@@ -57,7 +60,7 @@ header div.right .top_info a.tel {
 }
 
 header nav {
-	margin-bottom: 5px;
+	margin-bottom: 1px;
 }
 
 header nav li {

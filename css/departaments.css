@@ -1,6 +1,7 @@
 table.menu {
 	width: 100%;
-	border-collapse: collapse;
+	border-spacing: 1px;
+    border-collapse: separate;
 }
 
 table.menu td {
@@ -10,7 +11,7 @@ table.menu td {
 
 table.menu td a {
 	text-decoration: none;
-	padding: 7px 18px;
+	padding: 7px 10px;
 	display: block;
 }
 
